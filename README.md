@@ -21,9 +21,9 @@ You can publish the config file with:
 php artisan vendor:publish --tag="wireuse-config"
 ```
 
-## Usage
+## Documentation
 
-To learn more about WireUse, please read our [documentation](https://foxws.nl/projects/wireuse)!
+You will find full documentation on the dedicated [documentation](https://foxws.nl/projects/wireuse) site.
 
 ## Testing
 
