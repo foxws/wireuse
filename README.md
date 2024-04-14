@@ -25,6 +25,8 @@ php artisan vendor:publish --tag="wireuse-config"
 
 You will find full documentation on the dedicated [documentation](https://foxws.nl/projects/wireuse) site.
 
+> NOTE: The documentation is far from complete, see [this discussion](https://github.com/foxws/wireuse/discussions/3) for progress.
+
 ## Testing
 
 ```bash

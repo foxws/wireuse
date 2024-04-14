@@ -3,6 +3,7 @@
 namespace Foxws\WireUse\Forms\Concerns;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Fluent;
 use Illuminate\Validation\ValidationException;
 use ReflectionProperty;
 
@@ -15,11 +16,18 @@ trait WithForm
         return $instance->getType()->getName();
     }
 
-    protected function collect(...$properties): Collection
+    protected function toCollection(...$properties): Collection
     {
         return $properties
-            ? collect($this->only(...$properties))
-            : collect($this->all());
+            ? new Collection($this->only(...$properties))
+            : new Collection($this->all());
+    }
+
+    protected function toFluent(...$properties): Fluent
+    {
+        return $properties
+            ? new Fluent($this->only(...$properties))
+            : new Fluent($this->all());
     }
 
     protected function keys(): array
@@ -34,7 +42,7 @@ trait WithForm
 
     public function has(...$properties): bool
     {
-        return $this->collect()
+        return $this->toCollection()
             ->has($properties);
     }
 
@@ -61,14 +69,14 @@ trait WithForm
 
     public function filled(...$properties): bool
     {
-        return $this->collect($properties)
+        return $this->toCollection($properties)
             ->filter()
             ->isNotEmpty();
     }
 
     public function blank(...$properties): bool
     {
-        return $this->collect($properties)
+        return $this->toCollection($properties)
             ->filter()
             ->isEmpty();
     }
