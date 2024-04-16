@@ -3,7 +3,7 @@
 namespace Foxws\WireUse\Support\Discover;
 
 use Illuminate\View\Component;
-use Spatie\StructureDiscoverer\Cache\LaravelDiscoverCacheDriver;
+use Spatie\StructureDiscoverer\Cache\FileDiscoverCacheDriver;
 use Spatie\StructureDiscoverer\Discover;
 use Spatie\StructureDiscoverer\StructureScout;
 
@@ -26,10 +26,10 @@ class ComponentScout extends StructureScout
         return $this->prefix ?? static::class;
     }
 
-    public function cacheDriver(): LaravelDiscoverCacheDriver
+    public function cacheDriver(): FileDiscoverCacheDriver
     {
-        return new LaravelDiscoverCacheDriver(
-            prefix: $this->identifier(),
+        return new FileDiscoverCacheDriver(
+            implode('/', [sys_get_temp_dir(), $this->identifier()]),
         );
     }
 
