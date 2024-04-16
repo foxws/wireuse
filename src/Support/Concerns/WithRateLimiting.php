@@ -34,8 +34,9 @@ trait WithRateLimiting
     protected static function incrementRateLimiter(): void
     {
         RateLimiter::increment(
-            static::getRateLimitKey(),
-            static::getDecaySeconds()
+            key: static::getRateLimitKey(),
+            decaySeconds: static::getDecaySeconds(),
+            amount: static::getRateLimitAmount(),
         );
     }
 
@@ -59,5 +60,10 @@ trait WithRateLimiting
     protected static function getDecaySeconds(): int
     {
         return static::$decaySeconds;
+    }
+
+    protected static function getRateLimitAmount(): int
+    {
+        return 1;
     }
 }
