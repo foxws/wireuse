@@ -13,13 +13,15 @@ trait WithRateLimiting
 
     protected function rateLimit(): void
     {
-        if (static::$maxAttempts < 1) {
+        $maxAttempts = static::getMaxAttempts();
+
+        if ($maxAttempts < 1) {
             return;
         }
 
         $key = static::getRateLimitKey();
 
-        if (RateLimiter::tooManyAttempts($key, static::$maxAttempts)) {
+        if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
             throw new RateLimitedException(
                 request()->ip(),
                 RateLimiter::availableIn($key)
@@ -31,7 +33,10 @@ trait WithRateLimiting
 
     protected static function incrementRateLimiter(): void
     {
-        RateLimiter::increment(static::getRateLimitKey(), static::$decaySeconds);
+        RateLimiter::increment(
+            static::getRateLimitKey(),
+            static::getDecaySeconds()
+        );
     }
 
     protected static function clearRateLimiter(): void
@@ -44,5 +49,15 @@ trait WithRateLimiting
         return hash('crc32c', serialize([
             get_called_class(), request()->ip(),
         ]));
+    }
+
+    protected static function getMaxAttempts(): int
+    {
+        return static::$maxAttempts;
+    }
+
+    protected static function getDecaySeconds(): int
+    {
+        return static::$decaySeconds;
     }
 }
