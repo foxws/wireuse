@@ -24,8 +24,6 @@ abstract class CreateForm extends Form
 
     protected function handle(): void
     {
-        app(static::$model)::create(
-            $this->all()
-        );
+        app(static::$model)::create($this->all());
     }
 }

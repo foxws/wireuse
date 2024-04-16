@@ -12,7 +12,7 @@ trait WithSession
 
     public function restore(): void
     {
-        if (! static::$store || ! $this->hasStore()) {
+        if (! $this->useStore() || ! $this->hasStore()) {
             return;
         }
 
@@ -24,7 +24,7 @@ trait WithSession
 
     public function store(): void
     {
-        if (! static::$store || ! $this->storeWhen()) {
+        if (! $this->storeWhen()) {
             return;
         }
 
@@ -39,6 +39,11 @@ trait WithSession
         session()->forget($this->storeId());
     }
 
+    protected function useStore(): bool
+    {
+        return static::$store;
+    }
+
     protected function getStore(): array
     {
         return unserialize(session()->get($this->storeId(), []));
@@ -51,7 +56,7 @@ trait WithSession
 
     protected function storeWhen(): bool
     {
-        return true;
+        return $this->useStore();
     }
 
     protected function storeWith(): array

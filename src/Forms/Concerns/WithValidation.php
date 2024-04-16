@@ -8,7 +8,7 @@ trait WithValidation
 
     public function check(): void
     {
-        if (! static::$recoverable) {
+        if (! static::isRecoverable()) {
             $this->validate();
 
             return;
@@ -18,5 +18,10 @@ trait WithValidation
             fn () => $this->validate(),
             fn () => $this->reset(),
         );
+    }
+
+    protected static function isRecoverable(): bool
+    {
+        return static::$recoverable;
     }
 }
