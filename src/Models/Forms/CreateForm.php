@@ -6,24 +6,24 @@ use Foxws\WireUse\Forms\Support\Form;
 
 abstract class CreateForm extends Form
 {
-    protected ?string $model = null;
+    protected static ?string $model = null;
 
     public function submit(): void
     {
-        $this->canCreate($this->model);
+        $this->canCreate(static::modelClass());
 
         parent::submit();
     }
 
-    protected function set(string $class): void
-    {
-        $this->canCreate($class);
-
-        $this->model = $class;
-    }
-
     protected function handle(): void
     {
-        app(static::$model)::create($this->all());
+        app(static::modelClass())::create(
+            $this->all()
+        );
+    }
+
+    protected static function modelClass(): ?string
+    {
+        return static::$model;
     }
 }

@@ -24,7 +24,7 @@ trait WithSession
 
     public function store(): void
     {
-        if (! $this->storeWhen()) {
+        if (! $this->useStore() || ! $this->storeWhen()) {
             return;
         }
 

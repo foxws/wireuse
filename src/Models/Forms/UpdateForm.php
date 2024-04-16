@@ -22,19 +22,12 @@ abstract class UpdateForm extends Form
     {
         $this->canDelete($this->model);
 
-        $this->model->delete();
-    }
-
-    protected function set(Model $model): void
-    {
-        $this->canUpdate($model);
-
-        $this->model = $model;
+        $this->model->deleteOrFail();
     }
 
     protected function handle(): void
     {
-        $this->model->update(
+        $this->model->updateOrFail(
             $this->all()
         );
     }
