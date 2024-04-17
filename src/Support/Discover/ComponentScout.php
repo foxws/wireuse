@@ -29,7 +29,7 @@ class ComponentScout extends StructureScout
     public function cacheDriver(): FileDiscoverCacheDriver
     {
         return new FileDiscoverCacheDriver(
-            implode('/', [sys_get_temp_dir(), $this->identifier()]),
+            $this->cacheDirectory()
         );
     }
 
@@ -45,5 +45,10 @@ class ComponentScout extends StructureScout
         $this->path = $path;
 
         return $this;
+    }
+
+    protected function cacheDirectory(): string
+    {
+        return realpath(config('wireuse.cache-path', storage_path('framework/cache')));
     }
 }
