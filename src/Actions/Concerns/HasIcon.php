@@ -18,13 +18,6 @@ trait HasIcon
         return $this;
     }
 
-    public function disabledIcon(string $icon): static
-    {
-        $this->disabledIcon = $icon;
-
-        return $this;
-    }
-
     public function getIcon(): ?string
     {
         return $this->value('icon');
@@ -32,11 +25,6 @@ trait HasIcon
 
     public function getActiveIcon(): ?string
     {
-        return $this->value('activeIcon');
-    }
-
-    public function getDisabledIcon(): ?string
-    {
-        return $this->value('disabledIcon');
+        return $this->value('activeIcon', 'icon');
     }
 }

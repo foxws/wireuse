@@ -37,4 +37,12 @@ class Link extends Component
     {
         return $this->action->hasRoute() || $this->action->shouldNavigate();
     }
+
+    public function icon(): ?string
+    {
+        return $this->when($this->active(),
+            fn () => $this->action->getActiveIcon(),
+            fn () => $this->action->getIcon(),
+        );
+    }
 }
