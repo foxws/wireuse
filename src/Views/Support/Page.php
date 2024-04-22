@@ -1,6 +1,6 @@
 <?php
 
-namespace Foxws\WireUse\Pages\Support;
+namespace Foxws\WireUse\Views\Support;
 
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Auth\Concerns\WithAuthorization;
