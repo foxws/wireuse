@@ -30,7 +30,6 @@ class Bladeable
         return str($attributeBag->whereStartsWith('class:'))->matchAll('/class:(.*?)\=/s');
     }
 
-
     public static function classKeys(...$keys): Collection
     {
         return collect($keys)
