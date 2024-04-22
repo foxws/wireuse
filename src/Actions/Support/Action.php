@@ -16,7 +16,7 @@ class Action extends Component
     use HasRequest;
     use HasRoute;
 
-    public static function make(string | Closure | null $name = null): static
+    public static function make(string|Closure|null $name = null): static
     {
         $static = app(static::class, ['name' => $name]);
 

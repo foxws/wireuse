@@ -11,9 +11,9 @@ use Livewire\Component;
 
 abstract class Page extends Component
 {
+    use Hookable;
     use WithAuthentication;
     use WithAuthorization;
-    use Hookable;
     use WithSeo;
     use WithStates;
 }

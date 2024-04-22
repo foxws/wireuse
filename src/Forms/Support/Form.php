@@ -13,9 +13,9 @@ use Livewire\Form as BaseForm;
 
 abstract class Form extends BaseForm
 {
+    use Hookable;
     use WithAuthorization;
     use WithForm;
-    use Hookable;
     use WithSession;
     use WithThrottle;
     use WithValidation;
