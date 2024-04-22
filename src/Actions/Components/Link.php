@@ -2,6 +2,7 @@
 
 namespace Foxws\WireUse\Actions\Components;
 
+use Closure;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Views\Support\Component;
 use Illuminate\View\View;
@@ -13,7 +14,7 @@ class Link extends Component
     ) {
     }
 
-    public function render(): View
+    public function render(): View|Closure|string
     {
         return view('wireuse::actions.link');
     }
