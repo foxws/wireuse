@@ -5,7 +5,7 @@ namespace Foxws\WireUse\Support\Concerns;
 use Foxws\WireUse\Exceptions\RateLimitedException;
 use Illuminate\Support\Facades\RateLimiter;
 
-trait WithRateLimiting
+trait Ratelimitable
 {
     protected static int $maxAttempts = 0;
 

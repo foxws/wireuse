@@ -2,7 +2,7 @@
 
 namespace Foxws\WireUse\Support\Concerns;
 
-trait WithHooks
+trait Hookable
 {
     protected function callHook(string $hook, ...$args): mixed
     {

@@ -15,6 +15,7 @@ class WireUseServiceProvider extends PackageServiceProvider
         $package
             ->name('wireuse')
             ->hasConfigFile()
+            ->hasViews()
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publishConfigFile();
@@ -30,7 +31,9 @@ class WireUseServiceProvider extends PackageServiceProvider
     {
         $this
             ->registerFeatures()
-            ->registerBladeMacros();
+            ->registerBladeMacros()
+            ->registerComponents()
+            ->registerLivewire();
     }
 
     protected function registerFeatures(): static
@@ -129,6 +132,36 @@ class WireUseServiceProvider extends PackageServiceProvider
             return $this
                 ->whereDoesntStartWith('class:');
         });
+
+        return $this;
+    }
+
+    protected function registerComponents(): static
+    {
+        if (config('wireuse.register_components') === false) {
+            return $this;
+        }
+
+        WireUse::registerComponents(
+            path: __DIR__,
+            namespace: 'Foxws\\WireUse\\',
+            prefix: config('wireuse.view_prefix'),
+        );
+
+        return $this;
+    }
+
+    protected function registerLivewire(): static
+    {
+        if (config('wireuse.register_components') === false) {
+            return $this;
+        }
+
+        WireUse::registerLivewireComponents(
+            path: __DIR__,
+            namespace: 'Foxws\\WireUse\\',
+            prefix: config('wireuse.view_prefix'),
+        );
 
         return $this;
     }
