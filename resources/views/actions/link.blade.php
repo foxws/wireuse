@@ -11,6 +11,8 @@
         ])
         ->merge([
             'href' => $url(),
+            'aria-label' => $action->getName(),
+            'title' => $action->getName(),
         ])
     }}
 >
