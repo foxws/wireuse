@@ -34,6 +34,6 @@ class Link extends Component
 
     public function navigate(): bool
     {
-        return $this->action->shouldNavigate() || $this->action->hasRoute();
+        return $this->action->hasRoute() || $this->action->shouldNavigate();
     }
 }
