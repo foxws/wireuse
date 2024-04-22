@@ -27,12 +27,12 @@ class Link extends Component
         return $this->action->getUrl() ?? '/';
     }
 
-    public function active(): ?string
+    public function active(): bool
     {
         return $this->action->isRoute() || $this->action->isAppUrl();
     }
 
-    public function navigate(): ?string
+    public function navigate(): bool
     {
         return $this->action->shouldNavigate() || $this->action->isAppUrl();
     }
