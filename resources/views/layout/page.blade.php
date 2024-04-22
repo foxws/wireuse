@@ -1,3 +1,8 @@
-<x-wireuse::layout-container>
+<div {{ $attributes
+    ->cssClass([
+        'layer' => 'w-full overflow-auto',
+    ])
+    ->classMerge()
+}}>
     {{ $slot }}
-</x-wireuse::layout-container>
+</div>

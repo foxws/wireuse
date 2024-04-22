@@ -1,6 +1,6 @@
 <?php
 
-namespace Foxws\WireUse\Actions\Components;
+namespace Foxws\WireUi\Actions\Components;
 
 use Foxws\WireUse\Views\Support\Component;
 use Illuminate\Contracts\Support\Htmlable;
@@ -15,6 +15,6 @@ class Button extends Component
 
     public function render(): View
     {
-        return view('wireuse::actions.button');
+        return view('wireui::actions.button');
     }
 }
