@@ -10,9 +10,4 @@ trait HasLivewire
 
         return $this;
     }
-
-    public function shouldNavigate(): bool
-    {
-        return $this->value('wireNavigate', false);
-    }
 }
