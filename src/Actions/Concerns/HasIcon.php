@@ -18,11 +18,6 @@ trait HasIcon
         return $this;
     }
 
-    public function getIcon(): ?string
-    {
-        return $this->value('icon');
-    }
-
     public function getActiveIcon(): ?string
     {
         return $this->value('activeIcon', $this->getIcon());

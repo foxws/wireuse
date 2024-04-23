@@ -30,6 +30,6 @@ trait HasLivewire
 
     public function shouldNavigate(): bool
     {
-        return $this->value('wireNavigate', $this->isAppUrl());
+        return $this->value('wireNavigate', false);
     }
 }

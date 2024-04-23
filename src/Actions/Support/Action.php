@@ -29,4 +29,31 @@ class Action extends Component
 
         return $static;
     }
+
+    public function getUrl(): ?string
+    {
+        if ($this->hasRoute()) {
+            return $this->getRoute();
+        }
+
+        return $this->getRequestUrl();
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->when($this->getActive(),
+            fn () => $this->getActiveIcon(),
+            fn () => $this->getIcon(),
+        );
+    }
+
+    public function getActive(): bool
+    {
+        return $this->isActive() || $this->isRoute();
+    }
+
+    public function getWireNavigate(): bool
+    {
+        return $this->shouldNavigate() || $this->hasRoute() || $this->isAppUrl();
+    }
 }

@@ -11,14 +11,14 @@ trait HasRequest
         return $this;
     }
 
-    public function getUrl(): ?string
+    public function getRequestUrl(): ?string
     {
         return $this->value('url');
     }
 
     public function isAppUrl(): bool
     {
-        $url = str($this->getUrl())->trim();
+        $url = str($this->getUrl() ?: '')->trim();
 
         return $url->is('/') || $url->startsWith(config('app.url'));
     }
