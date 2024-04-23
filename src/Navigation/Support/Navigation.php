@@ -9,9 +9,6 @@ class Navigation extends Component
 {
     public ?string $active = null;
 
-    /**
-     * @var array<int, NavigationItem>
-     */
     public array $items = [];
 
     public static function make(): static
