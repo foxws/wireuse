@@ -2,8 +2,6 @@
 
 namespace Foxws\WireUse\Actions\Concerns;
 
-use Closure;
-
 trait HasState
 {
     public function active(bool $active = true): static
@@ -13,12 +11,8 @@ trait HasState
         return $this;
     }
 
-    public function getActive(?Closure $value = null): bool
+    public function isActive(): bool
     {
-        if (! $value instanceof Closure) {
-            return $this->value('active', false);
-        }
-
-        return value($value, $this);
+        return $this->value('active', false);
     }
 }

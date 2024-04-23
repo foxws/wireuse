@@ -33,7 +33,7 @@ class Link extends Component
 
     public function active(): bool
     {
-        return $this->action->isRoute() || $this->action->isAppUrl();
+        return $this->action->isActive() || $this->action->isRoute() || $this->action->isAppUrl();
     }
 
     public function navigate(): bool

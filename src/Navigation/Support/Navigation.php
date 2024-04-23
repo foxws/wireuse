@@ -3,13 +3,17 @@
 namespace Foxws\WireUse\Navigation\Support;
 
 use Foxws\WireUse\Support\Livewire\StateObjects\State;
+use Illuminate\Support\Collection;
 
 class Navigation extends State
 {
     public array $items = [];
 
-    public function items(): array
+    public ?string $active = null;
+
+    public function items(): Collection
     {
-        return $this->items;
+        return collect($this->items)
+            ->map(fn (NavigationItem $item) => $item->active($item->getName() === $this->active));
     }
 }
