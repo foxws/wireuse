@@ -35,14 +35,6 @@ class Action extends Component
         return $this->getRequestUrl();
     }
 
-    public function getIcon(): ?string
-    {
-        return $this->when($this->isActive(),
-            fn () => $this->getActiveIcon(),
-            fn () => $this->getIcon(),
-        );
-    }
-
     public function isActive(): bool
     {
         return $this->isRoute() || $this->isFullUrl();
