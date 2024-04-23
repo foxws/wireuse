@@ -8,7 +8,7 @@ use Foxws\WireUse\Views\Concerns\WithLayout;
 use Foxws\WireUse\Views\Support\Component;
 use Illuminate\View\View;
 
-class Group extends Component
+class Tabs extends Component
 {
     use WithLayout;
 
@@ -19,6 +19,6 @@ class Group extends Component
 
     public function render(): View|Closure|string
     {
-        return view('wireuse::navigation.group');
+        return view('wireuse::navigation.tabs');
     }
 }
