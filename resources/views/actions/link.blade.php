@@ -13,7 +13,7 @@
         ->classMerge([
             'layer',
             'active' => $action->getActive() || $wireModelValue === $action->getName(),
-            'inactive' => ! $action->getActive(),
+            'inactive' => ! $action->getActive() && $wireModelValue !== $action->getName(),
         ])
         ->merge([
             'wire:navigate' => $action->getWireNavigate(),
