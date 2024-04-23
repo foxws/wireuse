@@ -120,7 +120,7 @@ class WireUseServiceProvider extends PackageServiceProvider
             /** @var ComponentAttributeBag $this */
 
             return $this
-                ->whereDoesntStartWith('wire:model:');
+                ->whereDoesntStartWith('wire:model');
         });
 
         return $this;
