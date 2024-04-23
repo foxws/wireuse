@@ -2,9 +2,9 @@
 
 namespace Foxws\WireUse\Navigation\Contracts;
 
-use Foxws\WireUse\Navigation\Support\NavigationGroup;
+use Foxws\WireUse\Navigation\Support\Navigation;
 
 interface HasNavigation
 {
-    public function navigation(): NavigationGroup;
+    // public function navigation(): array;
 }

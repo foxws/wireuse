@@ -2,12 +2,21 @@
 
 namespace Foxws\WireUse\Navigation\Concerns;
 
-use Foxws\WireUse\Navigation\Support\NavigationGroup;
+use Foxws\WireUse\Navigation\Support\Navigation;
 
 trait WithNavigation
 {
-    public function navigation(): NavigationGroup
+    public Navigation $navigation;
+
+    public function mountWithNavigation(): void
     {
-        return NavigationGroup::make();
+        $this->navigation->fill([
+            'schema' => $this->navigation(),
+        ]);
+    }
+
+    public function navigation(): array
+    {
+        return [];
     }
 }
