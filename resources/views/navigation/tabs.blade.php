@@ -10,6 +10,8 @@
     ])
     ->withoutWireModel()
 }}>
+    current: {{ $navigation->selected()?->getName() }}<br><br>
+
     @foreach ($navigation->items as $item)
         <a wire:click="$set('tab', '{{ $item->getName() }}')">
             {{ $item->getName() }}
