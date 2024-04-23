@@ -18,7 +18,7 @@ trait HasRequest
 
     public function isAppUrl(): bool
     {
-        $url = str($this->getUrl() ?: '')->trim();
+        $url = str($this->value('url', ''))->trim();
 
         return $url->is('/') || $url->startsWith(config('app.url'));
     }

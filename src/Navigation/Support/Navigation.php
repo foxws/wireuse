@@ -53,9 +53,15 @@ class Navigation extends Component
         return $this->filterItems($this->items, $callback);
     }
 
-    public function selected(): ?NavigationItem
+    public function current(): ?NavigationItem
     {
-        $items = $this->filter(fn (NavigationItem $item) => $item->getName() === $this->active);
+        $items = $this->filter(function (NavigationItem $item) {
+            if ($item->getName() === $this->active) {
+                return $item;
+            }
+
+            return $item->isActive();
+        });
 
         return collect($items)
             ->sortByDesc(fn (NavigationItem $item) => count($item->getParents()))
