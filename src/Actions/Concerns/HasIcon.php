@@ -4,14 +4,14 @@ namespace Foxws\WireUse\Actions\Concerns;
 
 trait HasIcon
 {
-    public function icon(string $icon): static
+    public function icon(?string $icon = null): static
     {
         $this->icon = $icon;
 
         return $this;
     }
 
-    public function activeIcon(string $icon): static
+    public function activeIcon(?string $icon = null): static
     {
         $this->activeIcon = $icon;
 

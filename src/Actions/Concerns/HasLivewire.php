@@ -4,7 +4,7 @@ namespace Foxws\WireUse\Actions\Concerns;
 
 trait HasLivewire
 {
-    public function wireModel(string $model): static
+    public function wireModel(?string $model = null): static
     {
         $this->wireModel = $model;
 

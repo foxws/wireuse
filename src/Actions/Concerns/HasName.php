@@ -4,14 +4,14 @@ namespace Foxws\WireUse\Actions\Concerns;
 
 trait HasName
 {
-    public function name(string $name): static
+    public function name(?string $name = null): static
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function label(string $label): static
+    public function label(?string $label = null): static
     {
         $this->label = $label;
 

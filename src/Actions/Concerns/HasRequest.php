@@ -4,7 +4,7 @@ namespace Foxws\WireUse\Actions\Concerns;
 
 trait HasRequest
 {
-    public function url(string $url): static
+    public function url(?string $url = null): static
     {
         $this->url = $url;
 

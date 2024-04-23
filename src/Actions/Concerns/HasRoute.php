@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 trait HasRoute
 {
-    public function route(string $route, mixed $parameters = null, bool $absolute = true): static
+    public function route(?string $route = null, mixed $parameters = null, bool $absolute = true): static
     {
         $this->route = $route;
 
