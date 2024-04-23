@@ -50,8 +50,6 @@ class WireUse
                     ? $callback($class, $namespace)
                     : static::componentName($class, $namespace, $prefix);
 
-                logger($name);
-
                 Livewire::component($name->value(), $class->getFcqn());
             });
     }

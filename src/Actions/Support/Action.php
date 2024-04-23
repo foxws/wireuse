@@ -25,9 +25,7 @@ class Action extends Component
 
     public static function make(): static
     {
-        $static = app(static::class);
-
-        return $static;
+        return app(static::class);
     }
 
     public function getUrl(): ?string

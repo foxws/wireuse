@@ -8,15 +8,19 @@
     ->classMerge([
         'layer',
     ])
-    ->whereDoesntStartWith('wire:model')
+    ->withoutWireModel()
 }}>
-    @foreach ($navigation->items() as $item)
-        <x-wireuse::actions-link
+    @foreach ($navigation->items as $item)
+        <a wire:click="$set('tab', '{{ $item->getName() }}')">
+            {{ $item->getName() }}
+        </a>
+
+        {{-- <x-wireuse::actions-link
             :action="$item"
             wire:model="{{ $navigation->getWireModel() }}"
             class="{{ $attributes->classFor('tab') }}"
             class:active="{{ $attributes->classFor('active') }}"
             class:inactive="{{ $attributes->classFor('inactive') }}"
-        />
+        /> --}}
     @endforeach
 </nav>

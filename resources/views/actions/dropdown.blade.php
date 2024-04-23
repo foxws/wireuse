@@ -9,7 +9,7 @@
         ->cssClass([
             'layer' => 'absolute z-50',
         ])
-        ->classWithout()
+        ->withoutClass()
     }}
 >
     <div

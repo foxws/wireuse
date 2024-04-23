@@ -22,9 +22,4 @@ trait HasComponents
 
         return $this;
     }
-
-    public function items(): array
-    {
-        return $this->value('components', []);
-    }
 }
