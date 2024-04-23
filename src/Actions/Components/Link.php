@@ -4,11 +4,14 @@ namespace Foxws\WireUse\Actions\Components;
 
 use Closure;
 use Foxws\WireUse\Actions\Support\Action;
+use Foxws\WireUse\Views\Concerns\WithLayout;
 use Foxws\WireUse\Views\Support\Component;
 use Illuminate\View\View;
 
 class Link extends Component
 {
+    use WithLayout;
+
     public function __construct(
         public Action $action,
     ) {
@@ -25,7 +28,7 @@ class Link extends Component
             return $this->action->getRoute();
         }
 
-        return $this->action->getUrl() ?? '/';
+        return $this->action->getUrl() ?? '#';
     }
 
     public function active(): bool

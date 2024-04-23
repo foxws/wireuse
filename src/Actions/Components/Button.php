@@ -1,20 +1,34 @@
 <?php
 
-namespace Foxws\WireUi\Actions\Components;
+namespace Foxws\WireUse\Actions\Components;
 
+use Closure;
+use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Views\Support\Component;
-use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\View\View;
 
 class Button extends Component
 {
     public function __construct(
-        public string|Htmlable|null $label = '',
+        public Action $action,
     ) {
     }
 
-    public function render(): View
+    public function render(): View|Closure|string
     {
-        return view('wireui::actions.button');
+        return view('wireuse::actions.button');
+    }
+
+    public function active(): bool
+    {
+        return $this->action->isActive();
+    }
+
+    public function icon(): ?string
+    {
+        return $this->when($this->active(),
+            fn () => $this->action->getActiveIcon(),
+            fn () => $this->action->getIcon(),
+        );
     }
 }

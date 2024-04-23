@@ -2,9 +2,9 @@
     @if ($navigate()) wire:navigate @endif
     {{ $attributes
         ->cssClass([
-            'layer' => 'inline-flex shrink-0 cursor-pointer items-center hover:text-primary-400',
+            'layer' => 'inline-flex shrink-0 cursor-pointer items-center',
             'active' => 'text-primary-400 hover:text-primary-300',
-            'inactive' => 'text-secondary',
+            'inactive' => 'text-secondary hover:text-primary-400',
         ])
         ->classMerge([
             'layer',
@@ -12,7 +12,7 @@
             'inactive' => ! $active(),
         ])
         ->merge([
-            'href' => $url(),
+            'href' => $attributes->has('wire:click') ? false : $url(),
             'aria-label' => $action->getLabel(),
             'title' => $action->getLabel(),
         ])

@@ -6,5 +6,8 @@ use Illuminate\Support\Collection;
 
 class Group extends Collection
 {
-    //
+    public function items(): array
+    {
+        return $this->all();
+    }
 }
