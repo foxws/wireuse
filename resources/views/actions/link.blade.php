@@ -1,5 +1,5 @@
 @php
-    $wireModelValue = $wireModel() ? $this->getPropertyValue($wireModel()) : false;
+    $wireModelValue = $wireModel() ? $this->getPropertyValue($wireModel()) : null;
 @endphp
 
 <a
