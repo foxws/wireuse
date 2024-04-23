@@ -11,7 +11,7 @@ use Illuminate\View\Component as BaseComponent;
 abstract class Component extends BaseComponent
 {
     use Conditionable;
+    use Tappable;
     use WithHash;
     use WithLivewire;
-    use Tappable;
 }

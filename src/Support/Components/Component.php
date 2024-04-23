@@ -10,6 +10,6 @@ use Illuminate\Support\Traits\Tappable;
 abstract class Component extends Fluent
 {
     use Conditionable;
-    use WithHash;
     use Tappable;
+    use WithHash;
 }
