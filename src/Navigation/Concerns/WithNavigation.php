@@ -11,7 +11,7 @@ trait WithNavigation
     public function mountWithNavigation(): void
     {
         $this->navigation->fill([
-            'active' => $this->getNavigationModel(),
+            'state' => $this->navigator(),
             'items' => $this->navigation(),
         ]);
     }
@@ -19,7 +19,7 @@ trait WithNavigation
     public function updatedWithNavigation(): void
     {
         $this->navigation->fill([
-            'active' => $this->getNavigationModel(),
+            'state' => $this->navigator(),
         ]);
     }
 
@@ -28,8 +28,8 @@ trait WithNavigation
         return [];
     }
 
-    protected function getNavigationModel(): ?string
+    protected function navigator(): ?string
     {
-        return $this->tab;
+        return null;
     }
 }

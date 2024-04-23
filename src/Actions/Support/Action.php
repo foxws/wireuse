@@ -4,6 +4,7 @@ namespace Foxws\WireUse\Actions\Support;
 
 use Foxws\WireUse\Actions\Concerns\HasComponent;
 use Foxws\WireUse\Actions\Concerns\HasIcon;
+use Foxws\WireUse\Actions\Concerns\HasLivewire;
 use Foxws\WireUse\Actions\Concerns\HasName;
 use Foxws\WireUse\Actions\Concerns\HasRequest;
 use Foxws\WireUse\Actions\Concerns\HasRoute;
@@ -15,6 +16,7 @@ class Action extends Component
 {
     use HasComponent;
     use HasIcon;
+    use HasLivewire;
     use HasName;
     use HasRequest;
     use HasRoute;

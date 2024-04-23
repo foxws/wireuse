@@ -1,5 +1,6 @@
 <a
     @if ($navigate()) wire:navigate @endif
+    @if ($livewire()) wire:click="$set('{{ $action->getWireModel() }}', '{{ $action->getName() }}')" @endif
     {{ $attributes
         ->cssClass([
             'layer' => 'inline-flex shrink-0 cursor-pointer items-center',
@@ -12,7 +13,7 @@
             'inactive' => ! $active(),
         ])
         ->merge([
-            'href' => $attributes->has('wire:click') ? false : $url(),
+            'href' => $livewire() ? false : $url(),
             'aria-label' => $action->getLabel(),
             'title' => $action->getLabel(),
         ])

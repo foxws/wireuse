@@ -28,7 +28,7 @@ class Link extends Component
             return $this->action->getRoute();
         }
 
-        return $this->action->getUrl() ?? '#';
+        return $this->action->getUrl() ?? '/';
     }
 
     public function active(): bool
@@ -39,6 +39,11 @@ class Link extends Component
     public function navigate(): bool
     {
         return $this->action->hasRoute() || $this->action->shouldNavigate();
+    }
+
+    public function livewire(): bool
+    {
+        return $this->action->hasWireModel();
     }
 
     public function icon(): ?string
