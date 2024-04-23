@@ -2,7 +2,7 @@
 
 namespace Foxws\WireUse\Support\Components;
 
-use Foxws\WireUse\Views\Concerns\Hashable;
+use Foxws\WireUse\Views\Concerns\WithHash;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Tappable;
@@ -10,6 +10,6 @@ use Illuminate\Support\Traits\Tappable;
 abstract class Component extends Fluent
 {
     use Conditionable;
-    use Hashable;
+    use WithHash;
     use Tappable;
 }

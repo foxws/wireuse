@@ -2,7 +2,7 @@
 
 namespace Foxws\WireUse\Views\Concerns;
 
-trait Hashable
+trait WithHash
 {
     public function hash(): string
     {

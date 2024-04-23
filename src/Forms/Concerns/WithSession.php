@@ -2,11 +2,11 @@
 
 namespace Foxws\WireUse\Forms\Concerns;
 
-use Foxws\WireUse\Views\Concerns\Hashable;
+use Foxws\WireUse\Views\Concerns\WithHash;
 
 trait WithSession
 {
-    use Hashable;
+    use WithHash;
 
     protected static bool $store = false;
 

@@ -5,7 +5,7 @@ namespace Foxws\WireUse\Views\Concerns;
 use Illuminate\Support\Str;
 use Ramsey\Uuid\UuidInterface;
 
-trait Livewireable
+trait WithLivewire
 {
     public function wireKey(): string
     {
