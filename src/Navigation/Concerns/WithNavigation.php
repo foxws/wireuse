@@ -11,7 +11,7 @@ trait WithNavigation
     public function mountWithNavigation(): void
     {
         $this->navigation->fill([
-            'schema' => $this->navigation(),
+            'items' => $this->navigation(),
         ]);
     }
 

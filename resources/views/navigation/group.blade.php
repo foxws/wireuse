@@ -11,8 +11,6 @@
     ->whereDoesntStartWith('wire:model')
 }}>
     @foreach ($navigation->items() as $item)
-        {{ $item->state() }}
-
         <x-wireuse::actions-link
             :action="$item"
             wire:click="$set('{{ $wireModel }}', '{{ $item->getName() }}')"
