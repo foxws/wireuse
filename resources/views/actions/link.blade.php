@@ -1,5 +1,9 @@
+@php
+    $wireModelValue = $this->getPropertyValue($wireModel());
+@endphp
+
 <a
-    @if ($action->hasWireModel()) wire:click="$set('{{ $action->getWireModel() }}', '{{ $action->getName() }}')" @endif
+    @if ($wireModel()) wire:click="$set('{{ $wireModel() }}', '{{ $action->getName() }}')" @endif
     {{ $attributes
         ->cssClass([
             'layer' => 'inline-flex shrink-0 cursor-pointer items-center',
@@ -8,7 +12,7 @@
         ])
         ->classMerge([
             'layer',
-            'active' => $action->getActive(),
+            'active' => $action->getActive() || $wireModelValue === $action->getName(),
             'inactive' => ! $action->getActive(),
         ])
         ->merge([
@@ -17,6 +21,7 @@
             'aria-label' => $action->getLabel(),
             'title' => $action->getLabel(),
         ])
+        ->withoutWireModel()
     }}
 >
     @if ($slot->isEmpty())

@@ -76,8 +76,8 @@ class WireUseServiceProvider extends PackageServiceProvider
             $this->offsetSet('class', $classes);
 
             return $this
-                ->classSort()
-                ->classWithout();
+                ->sortClasses()
+                ->withoutClass();
         });
 
         ComponentAttributeBag::macro('classOnly', function (array $values): ComponentAttributeBag {
@@ -88,13 +88,13 @@ class WireUseServiceProvider extends PackageServiceProvider
             $this->offsetSet('class', $classes);
 
             return $this
-                ->classSort()
-                ->classWithout();
+                ->sortClasses()
+                ->withoutClass();
         });
 
-        ComponentAttributeBag::macro('classSort', function (): ComponentAttributeBag {
+        ComponentAttributeBag::macro('sortClasses', function (): ComponentAttributeBag {
             /** @var ComponentAttributeBag $this */
-            $classes = app(Bladeable::class)->classSort(
+            $classes = app(Bladeable::class)->sortClasses(
                 $this->get('class', '')
             );
 
@@ -109,11 +109,18 @@ class WireUseServiceProvider extends PackageServiceProvider
             return $this->get(app(Bladeable::class)::classKeys($key)->first(), $default ?? '');
         });
 
-        ComponentAttributeBag::macro('classWithout', function (): ComponentAttributeBag {
+        ComponentAttributeBag::macro('withoutClass', function (): ComponentAttributeBag {
             /** @var ComponentAttributeBag $this */
 
             return $this
                 ->whereDoesntStartWith('class:');
+        });
+
+        ComponentAttributeBag::macro('withoutWireModel', function (): ComponentAttributeBag {
+            /** @var ComponentAttributeBag $this */
+
+            return $this
+                ->whereDoesntStartWith('wire:model:');
         });
 
         return $this;

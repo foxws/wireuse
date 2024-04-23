@@ -13,6 +13,7 @@
     @foreach ($navigation->items() as $item)
         <x-wireuse::actions-link
             :action="$item"
+            wire:model="{{ $navigation->getWireModel() }}"
             class="{{ $attributes->classFor('tab') }}"
             class:active="{{ $attributes->classFor('active') }}"
             class:inactive="{{ $attributes->classFor('inactive') }}"
