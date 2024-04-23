@@ -10,16 +10,19 @@ trait WithNavigation
 
     public function mountWithNavigation(): void
     {
-        $this->navigation->fill([
-            'state' => $this->navigator(),
-            'items' => $this->navigation(),
-        ]);
+        $this->syncNavigation();
     }
 
     public function updatedWithNavigation(): void
     {
+        $this->syncNavigation();
+    }
+
+    protected function syncNavigation(): void
+    {
         $this->navigation->fill([
             'state' => $this->navigator(),
+            'items' => $this->navigation(),
         ]);
     }
 
