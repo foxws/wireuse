@@ -55,8 +55,6 @@ class Action extends Component
     //     );
     // }
 
-
-
     // public function getWireNavigate(): bool
     // {
     //     return $this->shouldNavigate() || $this->hasRoute() || $this->isAppUrl();
