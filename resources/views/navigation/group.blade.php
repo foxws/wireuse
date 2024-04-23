@@ -10,8 +10,6 @@
     ])
     ->whereDoesntStartWith('wire:model')
 }}>
-
-
     @foreach ($navigation->items() as $item)
         <x-wireuse::actions-link
             :action="$item"
@@ -20,30 +18,5 @@
             class:active="{{ $attributes->classFor('active') }}"
             class:inactive="{{ $attributes->classFor('inactive') }}"
         />
-
-
-
-        {{-- <input
-            type="radio"
-            value="{{ $item->getName() }}"
-            id="{{ $item->getName() }}"
-            class="hidden"
-            {{ $attributes->whereStartsWith('wire:model') }}
-        >
-
-        <label
-
-            {{ $attributes
-                ->classOnly([
-                    'tab',
-                    'active' => $item->getName() === $this->{$wireModel()},
-                ])
-                ->merge([
-                    'for' => $item->getName()
-                ])
-            }}
-        >
-            {{ $item->getLabel() }}
-        </label> --}}
     @endforeach
 </nav>
