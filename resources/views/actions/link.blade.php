@@ -1,5 +1,5 @@
 @php
-    $icon = $action->isCurrent() ? $action->getIconActive() : $action->getIcon();
+    $icon = $action->isActive() ? $action->getIconActive() : $action->getIcon();
 @endphp
 
 <a
@@ -16,11 +16,11 @@
         ])
         ->classMerge([
             'layer',
-            'active' => $action->isCurrent(),
-            'inactive' => ! $action->isCurrent(),
+            'active' => $action->isActive(),
+            'inactive' => ! $action->isActive(),
         ])
         ->merge([
-            'wire:navigate' => $action->canNavigate(),
+            'wire:navigate' => $action->navigable(),
             'href' => $action->getUrl(),
             'aria-label' => $action->getLabel(),
             'title' => $action->getLabel(),

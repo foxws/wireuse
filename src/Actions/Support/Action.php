@@ -2,6 +2,7 @@
 
 namespace Foxws\WireUse\Actions\Support;
 
+use Closure;
 use Foxws\WireUse\Actions\Concerns\HasAttributes;
 use Foxws\WireUse\Actions\Concerns\HasComponents;
 use Foxws\WireUse\Actions\Concerns\HasIcon;
@@ -23,34 +24,60 @@ class Action extends Component
     use HasRoute;
     use HasView;
 
-    public static function make(): static
+    public function __construct(?object $parent = null, ?string $name = null)
     {
-        return app(static::class);
+        $this->parent = $parent;
+
+        $this->name = $name;
     }
 
-    public function getUrl(): ?string
+    public static function make(?string $name = null, ?array $attributes = null): static
     {
-        if ($this->hasRoute()) {
-            return $this->getRoute();
+        return app(static::class, compact('name', 'attributes'));
+    }
+
+    public function add(string $name, ?Closure $callback = null): self
+    {
+        $item = new Action($this, $name);
+
+        if ($callback instanceof Closure) {
+            $callback($item);
         }
 
-        return $this->getRequestUrl();
+        $this->items[] = $item;
+
+        return $this;
     }
 
-    public function isActive(): bool
+    public function addIf(mixed $condition, string $name, ?Closure $callback = null): self
     {
-        return $this->isRoute() || $this->isFullUrl();
+        if (value($condition)) {
+            $this->add($name, $callback);
+        }
+
+        return $this;
     }
 
-    public function isFullUrl(): bool
+    public function getParent(): ?ActionGroup
     {
-        return $this->isAppUrl() && request()->fullUrlIs(
-            $this->getUrl()
-        );
+        return $this->value('parent');
     }
 
-    public function canNavigate(): bool
+    public function getParents(): array
     {
-        return $this->getWireNavigate() || $this->hasRoute() || $this->isAppUrl();
+        if (! $this->parent) {
+            return [];
+        }
+
+        return array_merge($this->parent->getParents(), [$this->parent]);
+    }
+
+    public function getDepth(): int
+    {
+        if (! $this->parent) {
+            return 0;
+        }
+
+        return count($this->parent->getParents());
     }
 }

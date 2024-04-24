@@ -2,71 +2,35 @@
 
 namespace Foxws\WireUse\Navigation\Support;
 
-use Closure;
 use Foxws\WireUse\Actions\Support\Action;
 
 class NavigationItem extends Action
 {
-    public function __construct(object $parent, string $name)
+    public function getUrl(): ?string
     {
-        $this->name($name);
-
-        $this->parent = $parent;
-    }
-
-    public function add(string $name, ?Closure $callback = null): self
-    {
-        $item = new NavigationItem($this, $name);
-
-        if ($callback instanceof Closure) {
-            $callback($item);
+        if ($this->hasRoute()) {
+            return $this->getRoute();
         }
 
-        $this->items[] = $item;
-
-        return $this;
+        return $this->getRequestUrl();
     }
 
-    public function addIf(mixed $condition, string $name, ?Closure $callback = null): self
+    public function isFullUrl(): bool
     {
-        if (value($condition)) {
-            $this->add($name, $callback);
-        }
-
-        return $this;
+        return $this->isAppUrl() && request()->fullUrlIs(
+            $this->getUrl()
+        );
     }
 
-    public function isCurrent(): bool
+    public function isActive(): bool
     {
         $current = $this->getParent()?->current();
 
-        if ($current?->getName() === $this->getName()) {
-            return true;
-        }
-
-        return $this->isActive();
+        return $current?->getName() === $this->getName();
     }
 
-    public function getParent(): ?object
+    public function navigable(): bool
     {
-        return $this->value('parent');
-    }
-
-    public function getParents(): array
-    {
-        if (! $this->parent) {
-            return [];
-        }
-
-        return array_merge($this->parent->getParents(), [$this->parent]);
-    }
-
-    public function getDepth(): int
-    {
-        if (! $this->parent) {
-            return 0;
-        }
-
-        return count($this->parent->getParents());
+        return $this->getWireNavigate() || $this->hasRoute() || $this->isAppUrl();
     }
 }
