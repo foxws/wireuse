@@ -24,7 +24,7 @@ class Action extends Component
     use HasRoute;
     use HasView;
 
-    public function __construct(ActionGroup|Action $instance = null, ?string $name = null)
+    public function __construct(ActionGroup|Action|null $instance = null, ?string $name = null)
     {
         $this->instance = $instance;
 
