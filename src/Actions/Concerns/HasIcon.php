@@ -27,4 +27,14 @@ trait HasIcon
     {
         return $this->value('iconActive', $this->getIcon());
     }
+
+    public function hasIcon(): bool
+    {
+        return $this->offsetExists('icon');
+    }
+
+    public function hasIconActive(): bool
+    {
+        return $this->offsetExists('iconActive');
+    }
 }

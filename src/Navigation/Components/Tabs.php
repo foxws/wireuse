@@ -4,14 +4,11 @@ namespace Foxws\WireUse\Navigation\Components;
 
 use Closure;
 use Foxws\WireUse\Navigation\Support\Navigation;
-use Foxws\WireUse\Views\Concerns\WithLayout;
 use Foxws\WireUse\Views\Support\Component;
 use Illuminate\View\View;
 
 class Tabs extends Component
 {
-    use WithLayout;
-
     public function __construct(
         public Navigation $navigation,
     ) {

@@ -22,4 +22,9 @@ trait HasRequest
 
         return $url->is('/') || $url->startsWith(config('app.url'));
     }
+
+    public function hasUrl(): bool
+    {
+        return $this->offsetExists('url');
+    }
 }

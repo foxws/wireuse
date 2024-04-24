@@ -1,3 +1,7 @@
+@php
+    $current = $navigation->current();
+@endphp
+
 <nav {{ $attributes
     ->cssClass([
         'layer' => 'flex items-center overflow-x-auto',
@@ -18,4 +22,6 @@
             class:icon="{{ $attributes->classFor('icon') }}"
         />
     @endforeach
+
+    @includeWhen($current?->hasView(), $current->getView(), compact('action'))
 </nav>

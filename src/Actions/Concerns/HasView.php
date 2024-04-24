@@ -2,20 +2,22 @@
 
 namespace Foxws\WireUse\Actions\Concerns;
 
-use Closure;
-use Illuminate\View\View;
-
 trait HasView
 {
-    public function view(View|Closure|string|null $view = null): static
+    public function view(?string $view = null): static
     {
         $this->view = $view;
 
         return $this;
     }
 
-    public function getView(): mixed
+    public function getView(): ?string
     {
         return $this->value('view');
+    }
+
+    public function hasView(): bool
+    {
+        return $this->offsetExists('view');
     }
 }

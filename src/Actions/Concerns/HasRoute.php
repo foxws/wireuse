@@ -26,11 +26,6 @@ trait HasRoute
         );
     }
 
-    public function isRoute(): bool
-    {
-        return $this->hasRoute() && request()->routeIs($this->getRouteName());
-    }
-
     public function getRouteName(): ?string
     {
         return $this->value('route');
@@ -48,6 +43,15 @@ trait HasRoute
 
     public function hasRoute(): bool
     {
-        return ($name = $this->getRouteName()) && Route::has($name);
+        return $this->offsetExists('route') && Route::has(
+            $this->getRouteName()
+        );
+    }
+
+    public function isRoute(): bool
+    {
+        return $this->hasRoute() && request()->routeIs(
+            $this->getRouteName()
+        );
     }
 }

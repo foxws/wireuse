@@ -27,4 +27,14 @@ trait HasName
     {
         return $this->value('label', $this->getName());
     }
+
+    public function hasName(): bool
+    {
+        return $this->offsetExists('icon');
+    }
+
+    public function hasLabel(): bool
+    {
+        return $this->offsetExists('icon');
+    }
 }
