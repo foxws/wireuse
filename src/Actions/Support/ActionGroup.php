@@ -45,6 +45,15 @@ class ActionGroup extends Component
         return $this;
     }
 
+    public function first(string $name): ?Action
+    {
+        $items = $this->filter(fn (Action $item) => $item->getName() === $name);
+
+        return collect($items)
+            ->sortByDesc(fn (Action $item) => count($item->getInstances()))
+            ->first();
+    }
+
     public function filter(Closure $callback): array
     {
         return $this->filterItems($this->items, $callback);

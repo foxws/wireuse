@@ -1,6 +1,6 @@
 <div {{ $attributes
     ->cssClass([
-        'layer' => 'flex gap-3',
+        'layer' => 'flex items-center gap-3',
     ])
     ->classMerge()
 }}>
