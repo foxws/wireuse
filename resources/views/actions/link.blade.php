@@ -3,7 +3,10 @@
 @endphp
 
 <a
-    @if ($action->getWireModel()) wire:click="$set('{{ $action->getWireModel() }}', '{{ $action->getName() }}')" @endif
+    @if ($action->getWireModel())
+        wire:click="$set('{{ $action->getWireModel() }}', '{{ $action->getName() }}')"
+    @endif
+
     {{ $attributes
         ->cssClass([
             'layer' => 'inline-flex shrink-0 cursor-pointer items-center',
