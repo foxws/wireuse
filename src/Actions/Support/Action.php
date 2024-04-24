@@ -62,7 +62,7 @@ class Action extends Component
         return $this;
     }
 
-    public function getInstance(): ?ActionGroup
+    public function getInstance(): ?object
     {
         return $this->value('instance');
     }
