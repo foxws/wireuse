@@ -18,6 +18,6 @@ trait HasComponents
 
     public function hasComponent(): bool
     {
-        return $this->offsetExists('icon');
+        return $this->offsetExists('component');
     }
 }
