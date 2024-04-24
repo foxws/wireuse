@@ -1,6 +1,6 @@
 <nav {{ $attributes
     ->cssClass([
-        'base' => 'flex flex-nowrap items-center justify-between',
+        'base' => 'flex flex-nowrap items-center justify-between leading-none',
         'padding' => 'py-6',
         'start' => 'inline-flex w-2/4 items-center justify-start',
         'center' => 'inline-flex shrink-0 items-center',
