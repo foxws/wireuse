@@ -2,8 +2,8 @@
     ->cssClass([
         'layer' => 'flex items-center overflow-x-auto',
         'tab' => 'py-3 border-b',
-        'active' => 'text-white border-white-600/80',
-        'inactive' => 'text-secondary-600 border-transparent',
+        'active' => 'text-white border-white-500/80',
+        'inactive' => 'text-secondary-500 border-transparent',
     ])
     ->classMerge([
         'layer',
