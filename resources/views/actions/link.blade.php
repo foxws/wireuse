@@ -1,5 +1,6 @@
 @php
     $wireModelValue = $wireModel() ? $this->getPropertyValue($wireModel()) : null;
+    $isActive = $action->isActive() || $wireModelValue === $action->getName();
 @endphp
 
 <a
@@ -12,8 +13,8 @@
         ])
         ->classMerge([
             'layer',
-            'active' => $action->isActive() || $wireModelValue === $action->getName(),
-            'inactive' => ! $action->isActive() && $wireModelValue !== $action->getName(),
+            'active' => $isActive,
+            'inactive' => ! $isActive,
         ])
         ->merge([
             'wire:navigate' => $action->shouldNavigate(),
