@@ -56,6 +56,7 @@ class WireUseServiceProvider extends PackageServiceProvider
 
         ComponentAttributeBag::macro('cssClass', function (array $values = []): ComponentAttributeBag {
             /** @var ComponentAttributeBag $this */
+
             foreach ($values as $key => $value) {
                 $key = app(Bladeable::class)::classKeys($key)->first();
 
@@ -69,6 +70,7 @@ class WireUseServiceProvider extends PackageServiceProvider
 
         ComponentAttributeBag::macro('classMerge', function (?array $values = null): ComponentAttributeBag {
             /** @var ComponentAttributeBag $this */
+
             $classes = app(Bladeable::class)::classMerged($this, $values)
                 ->merge($this->get('class'))
                 ->join(' ');
@@ -82,6 +84,7 @@ class WireUseServiceProvider extends PackageServiceProvider
 
         ComponentAttributeBag::macro('classOnly', function (array $values): ComponentAttributeBag {
             /** @var ComponentAttributeBag $this */
+
             $classes = app(Bladeable::class)::classMerged($this, $values)
                 ->join(' ');
 
@@ -121,6 +124,16 @@ class WireUseServiceProvider extends PackageServiceProvider
 
             return $this
                 ->whereDoesntStartWith('wire:model');
+        });
+
+        ComponentAttributeBag::macro('mergeAttributes', function (array $values = []): ComponentAttributeBag {
+            /** @var ComponentAttributeBag $this */
+
+            foreach ($values as $key => $value) {
+                $this->offsetSet($key, $value);
+            }
+
+            return $this;
         });
 
         return $this;

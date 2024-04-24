@@ -6,18 +6,16 @@
     {{ $attributes
         ->cssClass([
             'layer' => 'inline-flex shrink-0 cursor-pointer items-center',
-            // 'icon' => 'size-5',
+            'active' => 'text-primary-400 hover:text-primary-300',
+            'inactive' => 'text-secondary hover:text-primary-400',
+            'icon' => 'size-5',
         ])
+        ->mergeAttributes($action->getBladeAttributes())
         ->classMerge([
             'layer',
         ])
-        ->merge(['class:icon' => 'size-1'])
     }}
 >
-    @dd($attributes)
-
-    {{-- @dd($action->getBladeAttributes()); --}}
-
     @if ($slot->isEmpty())
         @if ($action->getIcon())
             <x-icon :name="$icon" class="{{ $attributes->classFor('icon') }}" />
