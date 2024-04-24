@@ -1,26 +1,28 @@
-<a
-    @if ($navigate()) wire:navigate @endif
+@php
+    $icon = $action->isCurrent() ? $action->getIconActive() : $action->getIcon();
+@endphp
+
+<button
     {{ $attributes
         ->cssClass([
-            'layer' => 'inline-flex shrink-0 cursor-pointer items-center hover:text-primary-400',
-            'active' => 'text-primary-400 hover:text-primary-300',
-            'inactive' => 'text-secondary',
+            'layer' => 'inline-flex shrink-0 cursor-pointer items-center',
+            'icon' => 'size-5',
         ])
         ->classMerge([
             'layer',
-            'active' => $active(),
-            'inactive' => ! $active(),
         ])
         ->merge([
-            'href' => $url(),
             'aria-label' => $action->getLabel(),
-            'title' => $action->getLabel(),
         ])
     }}
 >
     @if ($slot->isEmpty())
+        @if ($action->getIcon())
+            <x-icon :name="$icon" class="{{ $attributes->classFor('icon') }}" />
+        @endif
+
         {{ $action->getLabel() }}
     @else
         {{ $slot }}
     @endif
-</a>
+</button>
