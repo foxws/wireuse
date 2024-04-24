@@ -8,7 +8,6 @@
     ->classMerge([
         'layer',
     ])
-    ->withoutWireModel()
 }}>
     @foreach ($navigation->items as $action)
         <x-wireuse::actions-link
@@ -16,7 +15,6 @@
             class="{{ $attributes->classFor('tab') }}"
             class:active="{{ $attributes->classFor('active') }}"
             class:inactive="{{ $attributes->classFor('inactive') }}"
-            wire:model.live="{{ $wireModel() }}"
         />
     @endforeach
 </nav>

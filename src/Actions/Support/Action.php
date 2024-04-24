@@ -47,8 +47,8 @@ class Action extends Component
         );
     }
 
-    public function shouldNavigate(): bool
+    public function canNavigate(): bool
     {
-        return $this->value('navigate', $this->hasRoute() || $this->isAppUrl());
+        return $this->getWireNavigate() || $this->hasRoute() || $this->isAppUrl();
     }
 }

@@ -13,4 +13,9 @@ trait HasView
 
         return $this;
     }
+
+    public function getView(): mixed
+    {
+        return $this->value('view');
+    }
 }

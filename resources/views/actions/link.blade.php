@@ -1,10 +1,9 @@
 @php
-    $wireModelValue = $wireModel() ? $this->getPropertyValue($wireModel()) : null;
-    $isActive = $action->isActive() || $wireModelValue === $action->getName();
+    $navigation = $action->getParent();
+    $current = $navigation?->current();
 @endphp
-
 <a
-    @if ($wireModel()) wire:click="$set('{{ $wireModel() }}', '{{ $action->getName() }}')" @endif
+    @if ($action->getWireModel()) wire:click="$set('{{ $action->getWireModel() }}', '{{ $action->getName() }}')" @endif
     {{ $attributes
         ->cssClass([
             'layer' => 'inline-flex shrink-0 cursor-pointer items-center',
@@ -13,20 +12,21 @@
         ])
         ->classMerge([
             'layer',
-            'active' => $isActive,
-            'inactive' => ! $isActive,
+            'active' => $action->isActive(),
+            'inactive' => ! $action->isActive(),
         ])
         ->merge([
-            'wire:navigate' => $action->shouldNavigate(),
+            'wire:navigate' => $action->canNavigate(),
             'href' => $action->getUrl(),
             'aria-label' => $action->getLabel(),
             'title' => $action->getLabel(),
         ])
-        ->withoutWireModel()
     }}
 >
     @if ($slot->isEmpty())
         {{ $action->getLabel() }}
+        {{ $navigation?->current()?->getName() }}
+        {{-- {{ $action->getParent()->current()?->getName() }} --}}
     @else
         {{ $slot }}
     @endif

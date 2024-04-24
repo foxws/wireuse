@@ -7,9 +7,9 @@ use Foxws\WireUse\Support\Components\Component;
 
 class Navigation extends Component
 {
-    public ?string $active = null;
-
     public array $items = [];
+
+    public ?string $active = null;
 
     public static function make(): static
     {
@@ -53,7 +53,7 @@ class Navigation extends Component
     public function current(): ?NavigationItem
     {
         $items = $this->filter(function (NavigationItem $item) {
-            if ($item->getName() === $this->active) {
+            if ($item->getName() === $this->getActive()) {
                 return $item;
             }
 
@@ -80,6 +80,11 @@ class Navigation extends Component
         }
 
         return $filtered;
+    }
+
+    public function getActive(): ?string
+    {
+        return $this->active;
     }
 
     public function getParent(): ?object
