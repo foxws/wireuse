@@ -10,19 +10,13 @@
     ])
     ->withoutWireModel()
 }}>
-    current: {{ $navigation->current()?->getName() }}<br><br>
-
-    @foreach ($navigation->items as $item)
-        <a wire:click="$set('tab', '{{ $item->getName() }}')">
-            {{ $item->getName() }}
-        </a>
-
-        {{-- <x-wireuse::actions-link
-            :action="$item"
-            wire:model="{{ $navigation->getWireModel() }}"
+    @foreach ($navigation->items as $action)
+        <x-wireuse::actions-link
+            :$action
             class="{{ $attributes->classFor('tab') }}"
             class:active="{{ $attributes->classFor('active') }}"
             class:inactive="{{ $attributes->classFor('inactive') }}"
-        /> --}}
+            wire:model.live="{{ $wireModel() }}"
+        />
     @endforeach
 </nav>

@@ -12,11 +12,11 @@
         ])
         ->classMerge([
             'layer',
-            'active' => $action->getActive() || $wireModelValue === $action->getName(),
-            'inactive' => ! $action->getActive() && $wireModelValue !== $action->getName(),
+            'active' => $action->isActive() || $wireModelValue === $action->getName(),
+            'inactive' => ! $action->isActive() && $wireModelValue !== $action->getName(),
         ])
         ->merge([
-            'wire:navigate' => $action->getWireNavigate(),
+            'wire:navigate' => $action->shouldNavigate(),
             'href' => $action->getUrl(),
             'aria-label' => $action->getLabel(),
             'title' => $action->getLabel(),
