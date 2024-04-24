@@ -24,9 +24,9 @@ class Action extends Component
     use HasRoute;
     use HasView;
 
-    public function __construct(?object $parent = null, ?string $name = null)
+    public function __construct(ActionGroup|Action $instance = null, ?string $name = null)
     {
-        $this->parent = $parent;
+        $this->instance = $instance;
 
         $this->name = $name;
     }
@@ -36,12 +36,16 @@ class Action extends Component
         return app(static::class, compact('name', 'attributes'));
     }
 
-    public function add(string $name, ?Closure $callback = null): self
+    public function add(string $name, ?Closure $callback = null, ?array $attributes = null): self
     {
         $item = new Action($this, $name);
 
         if ($callback instanceof Closure) {
             $callback($item);
+        }
+
+        if ($attributes) {
+            $item->attributes($attributes);
         }
 
         $this->items[] = $item;
@@ -58,26 +62,26 @@ class Action extends Component
         return $this;
     }
 
-    public function getParent(): ?ActionGroup
+    public function getInstance(): ?ActionGroup
     {
-        return $this->value('parent');
+        return $this->value('instance');
     }
 
-    public function getParents(): array
+    public function getInstances(): array
     {
-        if (! $this->parent) {
+        if (! $this->instance) {
             return [];
         }
 
-        return array_merge($this->parent->getParents(), [$this->parent]);
+        return array_merge($this->instance->getInstances(), [$this->instance]);
     }
 
     public function getDepth(): int
     {
-        if (! $this->parent) {
+        if (! $this->instance) {
             return 0;
         }
 
-        return count($this->parent->getParents());
+        return count($this->instance->getInstances());
     }
 }

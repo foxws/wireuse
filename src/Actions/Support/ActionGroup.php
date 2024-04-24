@@ -67,12 +67,12 @@ class ActionGroup extends Component
         return $filtered;
     }
 
-    public function getParent(): ?object
+    public function getInstance(): ?object
     {
         return null;
     }
 
-    public function getParents(): array
+    public function getInstances(): array
     {
         return [];
     }
