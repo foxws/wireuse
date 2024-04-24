@@ -36,7 +36,7 @@ class Bladeable
             ->map(fn (string $value) => str($value)->startsWith('class:') ? $value : "class:{$value}");
     }
 
-    public static function sortClasses(string $class = ''): string
+    public static function sortClass(string $class = ''): string
     {
         return str($class)
             ->squish()
