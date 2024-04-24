@@ -1,7 +1,7 @@
 @php
-    $navigation = $action->getParent();
-    $current = $navigation?->current();
+    $current = $action->getParent()?->current();
 @endphp
+
 <a
     @if ($action->getWireModel()) wire:click="$set('{{ $action->getWireModel() }}', '{{ $action->getName() }}')" @endif
     {{ $attributes
@@ -12,8 +12,8 @@
         ])
         ->classMerge([
             'layer',
-            'active' => $action->isActive(),
-            'inactive' => ! $action->isActive(),
+            'active' => $current?->getName() === $action->getName(),
+            'inactive' => $current?->getName() !== $action->getName(),
         ])
         ->merge([
             'wire:navigate' => $action->canNavigate(),
@@ -25,8 +25,6 @@
 >
     @if ($slot->isEmpty())
         {{ $action->getLabel() }}
-        {{ $navigation?->current()?->getName() }}
-        {{-- {{ $action->getParent()->current()?->getName() }} --}}
     @else
         {{ $slot }}
     @endif
