@@ -92,15 +92,10 @@ class WireUseServiceProvider extends PackageServiceProvider
                 ->withoutClass();
         });
 
-        ComponentAttributeBag::macro('classFor', function (string $key, ?string $default = null): ComponentAttributeBag {
+        ComponentAttributeBag::macro('classFor', function (string $key, string $default = ''): string {
             /** @var ComponentAttributeBag $this */
-            $value = $this->get(app(Bladeable::class)::classKeys($key)->first(), $default ?? '');
 
-            $this->offsetSet('class', $value);
-
-            return $this
-                ->sortClass()
-                ->withoutClass();
+            return $this->get(app(Bladeable::class)::classKeys($key)->first(), $default);
         });
 
         ComponentAttributeBag::macro('sortClass', function (): ComponentAttributeBag {

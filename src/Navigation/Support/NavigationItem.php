@@ -36,6 +36,17 @@ class NavigationItem extends Action
         return $this;
     }
 
+    public function isCurrent(): bool
+    {
+        $current = $this->getParent()?->current();
+
+        if ($current?->getName() === $this->getName()) {
+            return true;
+        }
+
+        return $this->isActive();
+    }
+
     public function getParent(): ?object
     {
         return $this->value('parent');

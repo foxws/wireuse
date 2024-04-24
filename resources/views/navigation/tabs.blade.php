@@ -15,6 +15,7 @@
             class="{{ $attributes->classFor('tab') }}"
             class:active="{{ $attributes->classFor('active') }}"
             class:inactive="{{ $attributes->classFor('inactive') }}"
+            class:icon="{{ $attributes->classFor('icon') }}"
         />
     @endforeach
 </nav>

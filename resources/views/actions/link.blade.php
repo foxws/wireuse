@@ -1,5 +1,5 @@
 @php
-    $current = $action->getParent()?->current();
+    $icon = $action->isCurrent() ? $action->getIconActive() : $action->getIcon();
 @endphp
 
 <a
@@ -13,8 +13,8 @@
         ])
         ->classMerge([
             'layer',
-            'active' => $current?->getName() === $action->getName(),
-            'inactive' => $current?->getName() !== $action->getName(),
+            'active' => $action->isCurrent(),
+            'inactive' => ! $action->isCurrent(),
         ])
         ->merge([
             'wire:navigate' => $action->canNavigate(),
@@ -25,15 +25,11 @@
     }}
 >
     @if ($slot->isEmpty())
-        @if ($action->getIcon() && $action->isIconPosition('left'))
-            <x-icon {{ $attributes->classFor('icon') }} :name="$action->getIcon()" />
+        @if ($action->getIcon())
+            <x-icon :name="$icon" class="{{ $attributes->classFor('icon') }}" />
         @endif
 
         {{ $action->getLabel() }}
-
-        @if ($action->getIcon() && $action->isIconPosition('right'))
-            <x-icon {{ $attributes->classFor('icon') }} :name="$action->getIcon()" />
-        @endif
     @else
         {{ $slot }}
     @endif

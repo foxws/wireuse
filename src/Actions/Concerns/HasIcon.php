@@ -11,13 +11,6 @@ trait HasIcon
         return $this;
     }
 
-    public function iconPosition(?string $position = null): static
-    {
-        $this->iconPosition = $position;
-
-        return $this;
-    }
-
     public function iconActive(?string $icon = null): static
     {
         $this->iconActive = $icon;
@@ -30,18 +23,8 @@ trait HasIcon
         return $this->value('icon');
     }
 
-    public function getIconPosition(): ?string
-    {
-        return $this->value('iconPosition', 'left');
-    }
-
     public function getIconActive(): ?string
     {
         return $this->value('iconActive', $this->getIcon());
-    }
-
-    public function isIconPosition(?string $position = null): ?string
-    {
-        return $this->getIconPosition() === $position;
     }
 }
