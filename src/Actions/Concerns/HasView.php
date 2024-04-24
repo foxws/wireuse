@@ -11,6 +11,13 @@ trait HasView
         return $this;
     }
 
+    public function bladeAttributes(?array $attributes = []): static
+    {
+        $this->bladeAttributes = $attributes;
+
+        return $this;
+    }
+
     public function getView(): ?string
     {
         return $this->value('view');
@@ -19,5 +26,15 @@ trait HasView
     public function hasView(): bool
     {
         return $this->offsetExists('view');
+    }
+
+    public function getBladeAttributes(): array
+    {
+        return $this->value('bladeAttributes', []);
+    }
+
+    public function hasBladeAttributes(): bool
+    {
+        return $this->offsetExists('bladeAttributes');
     }
 }
