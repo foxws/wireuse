@@ -62,7 +62,7 @@ class Action extends Component
         return $this;
     }
 
-    public function getInstance(): ?object
+    public function getInstance(): mixed
     {
         return $this->value('instance');
     }
