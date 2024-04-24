@@ -24,6 +24,8 @@ class Action extends Component
     use HasRoute;
     use HasView;
 
+    public array $items = [];
+
     public function __construct(ActionGroup|Action|null $instance = null, ?string $name = null)
     {
         $this->instance = $instance;
@@ -60,6 +62,11 @@ class Action extends Component
         }
 
         return $this;
+    }
+
+    public function all(): array
+    {
+        return $this->items;
     }
 
     public function getInstance(): mixed
