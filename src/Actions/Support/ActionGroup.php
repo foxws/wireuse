@@ -45,6 +45,11 @@ class ActionGroup extends Component
         return $this;
     }
 
+    public function all(): array
+    {
+        return $this->items;
+    }
+
     public function first(string $name): ?Action
     {
         $items = $this->filter(fn (Action $item) => $item->getName() === $name);
