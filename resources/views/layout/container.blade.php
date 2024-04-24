@@ -4,7 +4,11 @@
         'padding' => 'px-6',
         'width' => 'max-w-4xl xl:max-w-5xl',
     ])
-    ->classMerge();
+    ->classMerge([
+        'layer',
+        'padding',
+        'width' => ! $fluid,
+    ]);
 }}>
     {{ $slot }}
 </div>

@@ -1,7 +1,7 @@
 <nav {{ $attributes
     ->cssClass([
         'layer' => 'flex items-center overflow-x-auto',
-        'tab' => 'text-sm font-medium border-b py-3',
+        'tab' => 'py-3 border-b',
         'active' => 'text-white border-white-600/80',
         'inactive' => 'text-secondary-600 border-transparent',
     ])
