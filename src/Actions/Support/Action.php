@@ -26,9 +26,9 @@ class Action extends Component
 
     public array $items = [];
 
-    public function __construct(ActionGroup|Action|null $instance = null, ?string $name = null)
+    public function __construct(ActionGroup|Action|null $container = null, ?string $name = null)
     {
-        $this->instance = $instance;
+        $this->container = $container;
 
         $this->name = $name;
     }
@@ -69,26 +69,26 @@ class Action extends Component
         return $this->items;
     }
 
-    public function getInstance(): mixed
+    public function getContainer(): mixed
     {
-        return $this->value('instance');
+        return $this->value('container');
     }
 
-    public function getInstances(): array
+    public function getContainers(): array
     {
-        if (! $this->instance) {
+        if (! $this->container) {
             return [];
         }
 
-        return array_merge($this->instance->getInstances(), [$this->instance]);
+        return array_merge($this->container->getContainers(), [$this->container]);
     }
 
     public function getDepth(): int
     {
-        if (! $this->instance) {
+        if (! $this->container) {
             return 0;
         }
 
-        return count($this->instance->getInstances());
+        return count($this->container->getContainers());
     }
 }

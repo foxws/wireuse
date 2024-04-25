@@ -40,7 +40,7 @@ class Navigation extends ActionGroup
         });
 
         return collect($items)
-            ->sortByDesc(fn (NavigationItem $item) => count($item->getInstances()))
+            ->sortByDesc(fn (NavigationItem $item) => count($item->getContainers()))
             ->first();
     }
 }

@@ -55,7 +55,7 @@ class ActionGroup extends Component
         $items = $this->filter(fn (Action $item) => $item->getName() === $name);
 
         return collect($items)
-            ->sortByDesc(fn (Action $item) => count($item->getInstances()))
+            ->sortByDesc(fn (Action $item) => count($item->getContainers()))
             ->first();
     }
 
@@ -81,12 +81,12 @@ class ActionGroup extends Component
         return $filtered;
     }
 
-    public function getInstance(): ?object
+    public function getContainer(): ?object
     {
         return null;
     }
 
-    public function getInstances(): array
+    public function getContainers(): array
     {
         return [];
     }

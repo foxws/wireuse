@@ -24,7 +24,7 @@ class NavigationItem extends Action
 
     public function isActive(): bool
     {
-        $current = $this->getInstance()?->current();
+        $current = $this->getContainer()?->current();
 
         return $current?->getName() === $this->getName();
     }
