@@ -18,11 +18,9 @@ class WireUse
 {
     public static function routes(): void
     {
-        Route::name('auth.')->group(function () {
-            Route::get('/login', LoginController::class)->middleware('guest')->name('login');
-            Route::get('/register', RegisterController::class)->middleware('guest')->name('register');
-            Route::post('/logout', LogoutController::class)->name('logout');
-        });
+        Route::get('/login', LoginController::class)->middleware('guest')->name('login');
+        Route::get('/register', RegisterController::class)->middleware('guest')->name('register');
+        Route::post('/logout', LogoutController::class)->name('logout');
     }
 
     public static function registerComponents(
