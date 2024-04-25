@@ -4,7 +4,7 @@
 
 <div {{ $attributes
     ->cssClass([
-        'layer' => 'relative w-full overflow-x-auto',
+        'layer' => 'relative w-full',
         'tabs' => 'flex items-center overflow-x-auto',
         'item' => 'py-3 border-b',
         'active' => 'text-white border-white-500/80',
