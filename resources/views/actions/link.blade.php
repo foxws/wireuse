@@ -12,6 +12,7 @@
             'layer' => 'inline-flex shrink-0 cursor-pointer items-center',
             'active' => 'text-primary-400 hover:text-primary-300',
             'inactive' => 'text-secondary hover:text-primary-400',
+            'label' => 'line-clamp-2',
             'icon' => 'size-5',
         ])
         ->classMerge([
@@ -32,7 +33,7 @@
             <x-icon :name="$icon" class="{{ $attributes->classFor('icon') }}" />
         @endif
 
-        {{ $action->getLabel() }}
+        <span class="{{ $attributes->classFor('label') }}">{{ $action->getLabel() }}</span>
     @else
         {{ $slot }}
     @endif
