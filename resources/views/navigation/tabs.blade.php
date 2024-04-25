@@ -4,17 +4,14 @@
 
 <div {{ $attributes
     ->cssClass([
-        'layer' => 'relative w-full',
-        'tabs' => 'flex items-center overflow-x-auto',
+        'layer' => 'flex items-center h-full',
         'item' => 'py-3 border-b',
         'active' => 'text-white border-white-500/80',
         'inactive' => 'text-secondary-500 border-transparent',
     ])
-    ->classMerge([
-        'layer',
-    ])
+    ->withoutClass()
 }}>
-    <nav class="{{ $attributes->classFor('tabs') }}">
+    <nav class="{{ $attributes->classFor('layer') }}">
         @foreach ($navigation->items as $action)
             <x-wireuse::actions-link
                 :$action
