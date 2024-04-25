@@ -33,14 +33,12 @@ trait WithQueryBuilder
 
     protected static function getQuery(): Builder
     {
-        return static::getModel()
-            ->newQuery();
+        return static::getModel()->newQuery();
     }
 
     protected static function getScout(string $query = '*', ?Closure $callback = null): ScoutBuilder
     {
-        return static::getModel()
-            ->search($query, $callback);
+        return static::getModel()->search($query, $callback);
     }
 
     protected static function getLimit(): ?int
