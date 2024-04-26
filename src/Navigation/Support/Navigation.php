@@ -22,7 +22,7 @@ class Navigation extends ActionGroup
         return $this;
     }
 
-    public function active(?string $name = null): self
+    public function active(bool|string|null $name = null): self
     {
         $this->active = $name;
 
@@ -32,7 +32,13 @@ class Navigation extends ActionGroup
     public function current(): ?NavigationItem
     {
         $items = $this->filter(function (NavigationItem $item) {
-            if ($item->getName() === $this->active) {
+            $active = $item->getActive();
+
+            if (is_bool($active)) {
+                return $active;
+            }
+
+            if (is_string($active) && $item->getName() === $active) {
                 return $item;
             }
 
