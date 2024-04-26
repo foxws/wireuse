@@ -32,7 +32,7 @@ class Navigation extends ActionGroup
     public function current(): ?NavigationItem
     {
         $items = $this->filter(function (NavigationItem $item) {
-            $active = $item->getActive();
+            $active = $this->active ?: $item->getActive();
 
             if (is_bool($active)) {
                 return $active;
