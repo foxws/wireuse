@@ -9,7 +9,7 @@
     ->classMerge(['base', 'padding'])
 }}>
     @if ($start)
-        <div {{ $classFor('start') }}>
+        <div {{ $attributes->classFor('start') }}>
             {{ $start }}
         </div>
     @endif

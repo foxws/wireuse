@@ -1,16 +1,29 @@
 <div {{ $attributes
     ->cssClass([
-        'layer' => 'flex items-center gap-3',
+        'layer' => 'flex items-center h-full',
+        'item' => 'py-3 border-b',
+        'active' => 'text-white border-white-500/80',
+        'inactive' => 'text-secondary-500 border-transparent',
     ])
-    ->classMerge()
+    ->withoutClass()
 }}>
-    @foreach ($group->items as $action)
-        @if ($action->hasComponent())
-            <x-dynamic-component :component="$action->getComponent()" :$action />
-        @endif
+    <nav class="{{ $attributes->classFor('layer') }}">
+        @foreach ($group->items as $action)
+            <x-wireuse::actions-link
+                :$action
+                class="{{ $attributes->classFor('item') }}"
+                class:active="{{ $attributes->classFor('active') }}"
+                class:inactive="{{ $attributes->classFor('inactive') }}"
+                class:icon="{{ $attributes->classFor('icon') }}"
+            />
 
-        @if ($action->hasLivewire())
-            @livewire($action->getLivewire(), compact('action'), key($action->getName()))
-        @endif
-    @endforeach
+            @if ($action?->hasComponent())
+                <x-dynamic-component :component="$action->getComponent()" :$action />
+            @endif
+
+            @if ($action?->hasLivewire())
+                @livewire($action->getLivewire(), ['action' => $action], key($action->getName()))
+            @endif
+        @endforeach
+    </nav>
 </div>
