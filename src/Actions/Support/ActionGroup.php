@@ -122,7 +122,7 @@ class ActionGroup extends Component
         return [];
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'name' => $this->name,

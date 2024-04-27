@@ -23,8 +23,8 @@ class ActionObjectSynth extends Synth
     public function hydrate($value)
     {
         $container = ActionGroup::make(
-            data_get($value['container'], 'name'),
-            data_get($value['container'], 'attributes')
+            data_get($value['container'], 'name', null),
+            data_get($value['container'], 'attributes', [])
         );
 
         $action = new Action($container, $value['name']);
