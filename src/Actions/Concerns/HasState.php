@@ -11,25 +11,20 @@ trait HasState
         return $this;
     }
 
-    public function toggle(bool|string|null $toggle = null): static
-    {
-        $this->toggle = $toggle;
-
-        return $this;
-    }
-
     public function getActive(): mixed
     {
         return $this->value('active');
     }
 
-    public function getToggle(): mixed
+    public function hasActive(): mixed
     {
-        return $this->value('toggle');
+        return $this->offsetExists('active');
     }
 
-    public function hasToggle(): mixed
+    public function hasActiveState(): mixed
     {
-        return $this->offsetExists('toggle');
+        $active = $this->getActive();
+
+        return is_string($active) && str($active)->startsWith('$');
     }
 }

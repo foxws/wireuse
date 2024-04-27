@@ -66,6 +66,13 @@ class Action extends Component
         return $this;
     }
 
+    public function isActive(): bool
+    {
+        $current = $this->getContainer()?->current();
+
+        return $current?->getName() === $this->getName();
+    }
+
     public function all(): array
     {
         return $this->items;

@@ -22,13 +22,6 @@ class NavigationItem extends Action
         );
     }
 
-    public function isActive(): bool
-    {
-        $current = $this->getContainer()?->current();
-
-        return $current?->getName() === $this->getName();
-    }
-
     public function navigable(): bool
     {
         return $this->getWireNavigate() || $this->hasRoute() || $this->isAppUrl();

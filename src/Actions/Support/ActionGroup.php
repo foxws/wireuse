@@ -9,6 +9,8 @@ class ActionGroup extends Component
 {
     public ?string $name = null;
 
+    public ?string $active = null;
+
     public array $items = [];
 
     public static function make(?string $name = null, array $attributes = []): static
@@ -41,6 +43,13 @@ class ActionGroup extends Component
     public function attributes(?array $attributes = null): static
     {
         $this->attributes = array_merge($this->attributes, $attributes);
+
+        return $this;
+    }
+
+    public function active(bool|string|null $name = null): self
+    {
+        $this->active = $name;
 
         return $this;
     }

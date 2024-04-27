@@ -7,8 +7,6 @@ use Foxws\WireUse\Actions\Support\ActionGroup;
 
 class Navigation extends ActionGroup
 {
-    public ?string $active = null;
-
     public function add(string $name, ?Closure $callback = null): self
     {
         $item = new NavigationItem($this, $name);
@@ -18,13 +16,6 @@ class Navigation extends ActionGroup
         }
 
         $this->items[] = $item;
-
-        return $this;
-    }
-
-    public function active(bool|string|null $name = null): self
-    {
-        $this->active = $name;
 
         return $this;
     }
