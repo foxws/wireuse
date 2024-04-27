@@ -9,19 +9,19 @@
     ->classMerge(['base', 'padding'])
 }}>
     @if ($start)
-        <div {{ $attributes->classFor('start') }}>
+        <div {{ $classFor('start') }}>
             {{ $start }}
         </div>
     @endif
 
     @if ($slot->hasActualContent())
-        <div {{ $attributes->classFor('center') }}>
+        <div {{ $classFor('center') }}>
             {{ $slot }}
         </div>
     @endif
 
     @if ($end)
-        <div {{ $attributes->classFor('end') }}>
+        <div {{ $classFor('end') }}>
             {{ $end }}
         </div>
     @endif

@@ -11,14 +11,14 @@
     ])
     ->withoutClass()
 }}>
-    <nav class="{{ $attributes->classFor('layer') }}">
+    <nav class="{{ $classFor('layer') }}">
         @foreach ($navigation->items as $action)
             <x-wireuse::actions-link
                 :$action
-                class="{{ $attributes->classFor('item') }}"
-                class:active="{{ $attributes->classFor('active') }}"
-                class:inactive="{{ $attributes->classFor('inactive') }}"
-                class:icon="{{ $attributes->classFor('icon') }}"
+                class="{{ $classFor('item') }}"
+                class:active="{{ $classFor('active') }}"
+                class:inactive="{{ $classFor('inactive') }}"
+                class:icon="{{ $classFor('icon') }}"
             />
         @endforeach
     </nav>

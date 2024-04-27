@@ -18,7 +18,7 @@
 >
     @if ($slot->isEmpty())
         @if ($action->getIcon())
-            <x-icon :name="$icon" class="{{ $attributes->classFor('icon') }}" />
+            <x-icon :name="$icon" class="{{ $classFor('icon') }}" />
         @endif
 
         {{ $action->getLabel() }}

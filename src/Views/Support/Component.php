@@ -3,6 +3,7 @@
 namespace Foxws\WireUse\Views\Support;
 
 use Foxws\WireUse\Views\Concerns\WithHash;
+use Foxws\WireUse\Views\Concerns\WithLayout;
 use Foxws\WireUse\Views\Concerns\WithLivewire;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Tappable;
@@ -13,5 +14,6 @@ abstract class Component extends BaseComponent
     use Conditionable;
     use Tappable;
     use WithHash;
+    use WithLayout;
     use WithLivewire;
 }

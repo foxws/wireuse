@@ -31,10 +31,10 @@
 >
     @if ($slot->isEmpty())
         @if ($action->getIcon())
-            <x-icon :name="$icon" class="{{ $attributes->classFor('icon') }}" />
+            <x-icon :name="$icon" class="{{ $classFor('icon') }}" />
         @endif
 
-        <span class="{{ $attributes->classFor('label') }}">{{ $action->getLabel() }}</span>
+        <span class="{{ $classFor('label') }}">{{ $action->getLabel() }}</span>
     @else
         {{ $slot }}
     @endif

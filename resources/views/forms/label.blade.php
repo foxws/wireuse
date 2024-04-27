@@ -13,11 +13,11 @@
     {{ $slot }}
 
     @if ($required)
-        <span {{ $attributes->classFor('required') }}>*</span>
+        <span {{ $classFor('required') }}>*</span>
     @endif
 
     @if ($hint)
-        <p {{ $attributes->classFor('hint') }}>
+        <p {{ $classFor('hint') }}>
             {{ $hint }}
         </p>
     @endif
