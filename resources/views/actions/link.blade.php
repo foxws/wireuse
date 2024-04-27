@@ -1,5 +1,5 @@
 <a
-    @if ($action->getWireModel())
+    @if ($action->hasWireModel())
         wire:click="$set('{{ $action->getWireModel() }}', '{{ $action->getName() }}')"
     @endif
 
@@ -21,7 +21,6 @@
             'wire:navigate' => $action->useNavigate(),
             'href' => $action->getUrl(),
             'aria-label' => $action->getLabel(),
-            'title' => $action->getLabel(),
         ])
     }}
 >
