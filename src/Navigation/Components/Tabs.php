@@ -3,14 +3,14 @@
 namespace Foxws\WireUse\Navigation\Components;
 
 use Closure;
-use Foxws\WireUse\Navigation\Support\Navigation;
+use Foxws\WireUse\Actions\Support\ActionGroup;
 use Foxws\WireUse\Views\Support\Component;
 use Illuminate\View\View;
 
 class Tabs extends Component
 {
     public function __construct(
-        public Navigation $navigation,
+        public ActionGroup $actions,
     ) {
     }
 

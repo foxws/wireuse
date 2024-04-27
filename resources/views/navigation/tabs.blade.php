@@ -1,5 +1,5 @@
 @php
-    $current = $navigation->current();
+    $current = $actions->current();
 @endphp
 
 <div {{ $attributes
@@ -12,7 +12,7 @@
     ->withoutClass()
 }}>
     <nav class="{{ $attributes->classFor('layer') }}">
-        @foreach ($navigation->items as $action)
+        @foreach ($actions->items as $action)
             <x-wireuse::actions-link
                 :$action
                 class="{{ $attributes->classFor('item') }}"

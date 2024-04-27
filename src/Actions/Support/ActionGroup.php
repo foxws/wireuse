@@ -95,6 +95,27 @@ class ActionGroup extends Component
         return $this->filterItems($this->items, $callback);
     }
 
+    public function current(): ?Action
+    {
+        $items = $this->filter(function (Action $item) {
+            $active = $this->active ?: $item->getActive();
+
+            if (is_bool($active)) {
+                return $active;
+            }
+
+            if (is_string($active) && $item->getName() === $active) {
+                return $item;
+            }
+
+            return $item->isRoute() || $item->isFullUrl();
+        });
+
+        return collect($items)
+            ->sortByDesc(fn (Action $item) => count($item->getContainers()))
+            ->first();
+    }
+
     protected function filterItems(array $items, Closure $callback): array
     {
         $filtered = [];
