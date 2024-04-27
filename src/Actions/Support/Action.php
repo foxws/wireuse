@@ -40,6 +40,11 @@ class Action extends Component
         return app(static::class, compact('name', 'attributes'));
     }
 
+    public function all(): array
+    {
+        return $this->items;
+    }
+
     public function add(string $name, ?Closure $callback = null, ?array $attributes = null): self
     {
         $item = new Action($this, $name);
@@ -73,9 +78,29 @@ class Action extends Component
         return $current?->getName() === $this->getName();
     }
 
-    public function all(): array
+    public function getUrl(): ?string
     {
-        return $this->items;
+        if ($this->hasRoute()) {
+            return $this->getRoute();
+        }
+
+        return $this->getRequestUrl();
+    }
+
+    public function isFullUrl(): bool
+    {
+        return $this->isAppUrl() && request()->fullUrlIs(
+            $this->getUrl()
+        );
+    }
+
+    public function useNavigate(): bool
+    {
+        if ($this->hasWireNavigate()) {
+            return $this->getWireNavigate();
+        }
+
+        return $this->hasRoute() || $this->isAppUrl();
     }
 
     public function getContainer(): mixed

@@ -9,7 +9,6 @@
 }}>
     <nav class="{{ $attributes->classFor('layer') }}">
         @foreach ($group->items as $action)
-        @dd($action)
             <x-wireuse::actions-link :$action />
 
             {{-- @if ($action?->hasComponent())

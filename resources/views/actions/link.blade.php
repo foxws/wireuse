@@ -11,14 +11,13 @@
             'label' => 'line-clamp-2',
             'icon' => 'size-5',
         ])
-        ->mergeAttributes($action->getBladeAttributes())
         ->classMerge([
             'layer',
             'active' => $action->isActive(),
             'inactive' => ! $action->isActive(),
         ])
         ->merge([
-            'wire:navigate' => $action->navigable(),
+            'wire:navigate' => $action->useNavigate(),
             'href' => $action->getUrl(),
             'aria-label' => $action->getLabel(),
             'title' => $action->getLabel(),
