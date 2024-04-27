@@ -9,22 +9,16 @@
 }}>
     <nav class="{{ $attributes->classFor('layer') }}">
         @foreach ($group->items as $action)
-            <x-wireuse::actions-link
-                :$action
-                class="{{ $attributes->classFor('item') }}"
-                class:label="{{ $attributes->classFor('label') }}"
-                class:icon="{{ $attributes->classFor('icon') }}"
-                class:active="{{ $attributes->classFor('active') }}"
-                class:inactive="{{ $attributes->classFor('inactive') }}"
-            />
+        @dd($action)
+            <x-wireuse::actions-link :$action />
 
-            @if ($action?->hasComponent())
+            {{-- @if ($action?->hasComponent())
                 <x-dynamic-component :component="$action->getComponent()" :$action />
             @endif
 
             @if ($action?->hasLivewire())
                 @livewire($action->getLivewire(), ['action' => $action], key($action->getName()))
-            @endif
+            @endif --}}
         @endforeach
     </nav>
 </div>

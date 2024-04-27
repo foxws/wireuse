@@ -40,6 +40,28 @@ class ActionGroup extends Component
         return $this;
     }
 
+    public function action(Action $action, ?Closure $callback = null): self
+    {
+        $action->container = $this;
+
+        if ($callback instanceof Closure) {
+            $callback($action);
+        }
+
+        $this->items[] = $action;
+
+        return $this;
+    }
+
+    public function actionIf(mixed $condition, Action $action, ?Closure $callback = null): self
+    {
+       if (value($condition)) {
+            $this->addAction($action, $callback);
+        }
+
+        return $this;
+    }
+
     public function attributes(?array $attributes = null): static
     {
         $this->attributes = array_merge($this->attributes, $attributes);
