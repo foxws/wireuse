@@ -1,6 +1,4 @@
 <a
-    x-data
-
     @if ($action->getWireModel())
         wire:click="$set('{{ $action->getWireModel() }}', '{{ $action->getName() }}')"
     @endif
@@ -28,24 +26,7 @@
     }}
 >
     @if ($slot->isEmpty())
-        @if ($action->hasIcon())
-            <x-icon
-                x-cloak
-                x-show="'{{ $action->hasActiveState() ? $action->getActive() : $action->isActive() === false }}'"
-                :name="$action->getIcon()"
-                class="{{ $attributes->classFor('icon') }}"
-            />
-        @endif
-
-        @if ($action->hasIconActive())
-            <x-icon
-                x-cloak
-                x-show="'{{ $action->hasActiveState() ? $action->getActive() : $action->isActive() === true }}'"
-                :name="$action->getIconActive()"
-                class="{{ $attributes->classFor('icon') }}"
-            />
-        @endif
-
+        <x-wireuse::actions-icon :$action class="{{ $attributes->classFor('icon') }}" />
         <span class="{{ $attributes->classFor('label') }}">{{ $action->getLabel() }}</span>
     @else
         {{ $slot }}
