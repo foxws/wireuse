@@ -8,19 +8,19 @@
             <x-icon
                 x-show="! {{ $action->getState() }}"
                 :name="$action->getIcon()"
-                {{ $attributes->class('size-5') }}
+                {{ $attributes }}
             />
 
             <x-icon
                 x-show="{{ $action->getState() }}"
                 :name="$action->getIconActive()"
-                {{ $attributes->class('size-5') }}
+                {{ $attributes }}
             />
         </div>
     @elseif ($action->hasIcon())
         <x-icon
             :name="$action->isActive() ? $action->getIconActive() : $action->getIcon()"
-            {{ $attributes->class('size-5') }}
+            {{ $attributes }}
         />
     @endif
 </div>
