@@ -121,4 +121,13 @@ class ActionGroup extends Component
     {
         return [];
     }
+
+    public function toArray()
+    {
+        return [
+            'name' => $this->name,
+            'active' => $this->active,
+            'attributes' => $this->attributes,
+        ];
+    }
 }

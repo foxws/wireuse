@@ -39,8 +39,9 @@ class WireUseServiceProvider extends PackageServiceProvider
     protected function registerFeatures(): static
     {
         foreach ([
-            \Foxws\WireUse\Support\Livewire\ModelStateObjects\SupportModelStateObjects::class,
+            \Foxws\WireUse\Support\Livewire\ActionObjects\SupportActionObjects::class,
             \Foxws\WireUse\Support\Livewire\StateObjects\SupportStateObjects::class,
+            \Foxws\WireUse\Support\Livewire\ModelStateObjects\SupportModelStateObjects::class,
         ] as $feature) {
             app('livewire')->componentHook($feature);
         }

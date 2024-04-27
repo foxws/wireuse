@@ -30,7 +30,7 @@ class Action extends Component
 
     public array $items = [];
 
-    public function __construct(ActionGroup|Action|null $container = null, ?string $name = null)
+    public function __construct(mixed $container = null, ?string $name = null)
     {
         $this->container = $container;
 
