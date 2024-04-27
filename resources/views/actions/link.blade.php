@@ -1,8 +1,7 @@
-@php
-    $icon = $action->isActive() ? $action->getIconActive() : $action->getIcon();
-@endphp
-
 <a
+    x-data="{ active: false }"
+    x-init="active = {{ $action->isActive() || 'false' }}"
+
     @if ($action->getWireModel())
         wire:click="$set('{{ $action->getWireModel() }}', '{{ $action->getName() }}')"
     @endif
@@ -30,8 +29,22 @@
     }}
 >
     @if ($slot->isEmpty())
-        @if ($action->getIcon())
-            <x-icon :name="$icon" class="{{ $attributes->classFor('icon') }}" />
+        @if ($action->hasIcon())
+            <x-icon
+                x-cloak
+                x-show="! {{ $action->hasToggle() ? $action->getToggle() : 'active' }}"
+                :name="$action->getIcon()"
+                class="{{ $attributes->classFor('icon') }}"
+            />
+        @endif
+
+        @if ($action->hasIconActive())
+            <x-icon
+                x-cloak
+                x-show="{{ $action->hasToggle() ? $action->getToggle() : 'active' }}"
+                :name="$action->getIconActive()"
+                class="{{ $attributes->classFor('icon') }}"
+            />
         @endif
 
         <span class="{{ $attributes->classFor('label') }}">{{ $action->getLabel() }}</span>
