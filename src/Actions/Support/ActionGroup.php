@@ -55,7 +55,7 @@ class ActionGroup extends Component
 
     public function actionIf(mixed $condition, Action $action, ?Closure $callback = null): self
     {
-       if (value($condition)) {
+        if (value($condition)) {
             $this->addAction($action, $callback);
         }
 
