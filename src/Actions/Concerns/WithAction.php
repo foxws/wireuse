@@ -4,7 +4,7 @@ namespace Foxws\WireUse\Actions\Concerns;
 
 use Foxws\WireUse\Actions\Support\Action;
 
-trait HasAction
+trait WithAction
 {
     public Action $action;
 }
