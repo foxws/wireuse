@@ -15,13 +15,13 @@
     @endif
 
     @if ($slot->hasActualContent())
-        <div {{ $classFor('center') }}>
+        <div class="{{ $attributes->classFor('center') }}">
             {{ $slot }}
         </div>
     @endif
 
     @if ($end)
-        <div {{ $classFor('end') }}>
+        <div class="{{ $attributes->classFor('end') }}">
             {{ $end }}
         </div>
     @endif
