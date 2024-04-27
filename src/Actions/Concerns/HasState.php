@@ -21,10 +21,10 @@ trait HasState
         return $this->offsetExists('active');
     }
 
-    public function hasActiveState(): mixed
+    public function hasActiveState(): bool
     {
         $active = $this->getActive();
 
-        return is_string($active) && str($active)->startsWith('$');
+        return is_string($active) && str($active)->startsWith('$wire');
     }
 }
