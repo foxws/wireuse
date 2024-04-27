@@ -11,6 +11,7 @@
             'label' => 'line-clamp-2',
             'icon' => 'size-5',
         ])
+        ->mergeAttributes($action->getBladeAttributes())
         ->classMerge([
             'layer',
             'active' => $action->isActive(),
