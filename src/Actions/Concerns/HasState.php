@@ -4,7 +4,7 @@ namespace Foxws\WireUse\Actions\Concerns;
 
 trait HasState
 {
-    public function state(string|null $state = null): static
+    public function state(?string $state = null): static
     {
         $this->state = $state;
 
