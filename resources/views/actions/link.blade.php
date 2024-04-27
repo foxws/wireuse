@@ -26,7 +26,7 @@
     }}
 >
     @if ($slot->isEmpty())
-        <x-wireuse::actions-icon :$action class="{{ $attributes->classFor('icon') }}" />
+        <x-wireuse::actions-icon class="{{ $attributes->classFor('icon') }}" :$action />
         <span class="{{ $attributes->classFor('label') }}">{{ $action->getLabel() }}</span>
     @else
         {{ $slot }}

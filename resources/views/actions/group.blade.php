@@ -12,9 +12,10 @@
             <x-wireuse::actions-link
                 :$action
                 class="{{ $attributes->classFor('item') }}"
+                class:label="{{ $attributes->classFor('label') }}"
+                class:icon="{{ $attributes->classFor('icon') }}"
                 class:active="{{ $attributes->classFor('active') }}"
                 class:inactive="{{ $attributes->classFor('inactive') }}"
-                class:icon="{{ $attributes->classFor('icon') }}"
             />
 
             @if ($action?->hasComponent())
