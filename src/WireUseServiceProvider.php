@@ -41,7 +41,6 @@ class WireUseServiceProvider extends PackageServiceProvider
         foreach ([
             \Foxws\WireUse\Support\Livewire\ActionObjects\SupportActionObjects::class,
             \Foxws\WireUse\Support\Livewire\StateObjects\SupportStateObjects::class,
-            \Foxws\WireUse\Support\Livewire\ModelStateObjects\SupportModelStateObjects::class,
         ] as $feature) {
             app('livewire')->componentHook($feature);
         }
