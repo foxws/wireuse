@@ -19,5 +19,9 @@
         ])
     }}
 >
-    {{ $slot }}
+    @if ($slot->isEmpty())
+        {{ $action->getLabel() }}
+    @else
+        {{ $slot }}
+    @endif
 </a>
