@@ -5,7 +5,6 @@ namespace Foxws\WireUse\Forms\Support;
 use Closure;
 use Foxws\WireUse\Support\Components\Component;
 use Livewire\Component as Livewire;
-use Livewire\Form;
 
 class Schema extends Component
 {
