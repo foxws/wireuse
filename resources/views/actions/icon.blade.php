@@ -2,6 +2,10 @@
     'action',
 ])
 
+@php
+    $icon = $action->isActive() ? $action->getIconActive() : $action->getIcon()
+@endphp
+
 @if ($action->hasIcon() && $action->hasState())
     <div x-cloak>
         <x-icon
@@ -17,8 +21,5 @@
         />
     </div>
 @elseif ($action->hasIcon())
-    <x-icon
-        :name="$action->isActive() ? $action->getIconActive() : $action->getIcon()"
-        {{ $attributes }}
-    />
+    <x-icon :name="$icon" {{ $attributes }} />
 @endif
