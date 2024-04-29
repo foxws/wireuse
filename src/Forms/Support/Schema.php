@@ -3,20 +3,18 @@
 namespace Foxws\WireUse\Forms\Support;
 
 use Closure;
+use Foxws\WireUse\Forms\Support\Field;
 use Foxws\WireUse\Support\Components\Component;
-use Livewire\Component as Livewire;
 
 class Schema extends Component
 {
     public ?string $name = null;
 
-    public ?string $active = null;
-
     public array $items = [];
 
-    public static function make(?Livewire $container, array $attributes = []): static
+    public static function make(?string $name = null, array $attributes = []): static
     {
-        return app(static::class, compact('container', 'attributes'));
+        return app(static::class, compact('name', 'attributes'));
     }
 
     public function add(string $name, ?Closure $callback = null): self
@@ -77,14 +75,6 @@ class Schema extends Component
         return [];
     }
 
-    public function toArray(): array
-    {
-        return [
-            'name' => $this->name,
-            'attributes' => $this->attributes,
-        ];
-    }
-
     protected function filterItems(array $items, Closure $callback): array
     {
         $filtered = [];
@@ -100,5 +90,13 @@ class Schema extends Component
         }
 
         return $filtered;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'attributes' => $this->attributes,
+        ];
     }
 }
