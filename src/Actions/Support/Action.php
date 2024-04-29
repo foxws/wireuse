@@ -4,8 +4,6 @@ namespace Foxws\WireUse\Actions\Support;
 
 use Closure;
 use Foxws\WireUse\Support\Components\Component;
-use Foxws\WireUse\Support\Components\Concerns\HasActive;
-use Foxws\WireUse\Support\Components\Concerns\HasAttributes;
 use Foxws\WireUse\Support\Components\Concerns\HasComponents;
 use Foxws\WireUse\Support\Components\Concerns\HasIcon;
 use Foxws\WireUse\Support\Components\Concerns\HasLivewire;
