@@ -10,14 +10,4 @@ abstract class CreateForm extends Form
     {
         //
     }
-
-    protected function beforeValidate(): void
-    {
-        $this->canCreate(static::modelClass());
-    }
-
-    protected static function modelClass(): ?string
-    {
-        return null;
-    }
 }
