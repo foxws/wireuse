@@ -38,11 +38,6 @@ class Field extends Component
         return app(static::class, compact('name', 'attributes'));
     }
 
-    public function all(): array
-    {
-        return $this->items;
-    }
-
     public function add(string $name, ?Closure $callback = null, ?array $attributes = null): self
     {
         $item = new Field($this, $name);
@@ -67,6 +62,11 @@ class Field extends Component
         }
 
         return $this;
+    }
+
+    public function all(): array
+    {
+        return $this->items;
     }
 
     public function getContainer(): mixed
