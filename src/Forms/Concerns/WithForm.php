@@ -2,7 +2,6 @@
 
 namespace Foxws\WireUse\Forms\Concerns;
 
-use Foxws\WireUse\Forms\Support\Schema;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Fluent;
 use Illuminate\Validation\ValidationException;
@@ -10,11 +9,6 @@ use ReflectionProperty;
 
 trait WithForm
 {
-    public function schema(): Schema
-    {
-        return Schema::make();
-    }
-
     protected function getType(string $property): string
     {
         $instance = new ReflectionProperty(static::class, $property);

@@ -11,6 +11,13 @@ trait HasState
         return $this;
     }
 
+    public function default(mixed $default = null): static
+    {
+        $this->default = $default;
+
+        return $this;
+    }
+
     public function active(bool|string|null $active = null): static
     {
         $this->active = $active;
@@ -26,6 +33,16 @@ trait HasState
     public function hasState(): bool
     {
         return $this->offsetExists('state');
+    }
+
+    public function getDefault(): mixed
+    {
+        return $this->value('default');
+    }
+
+    public function hasDefault(): bool
+    {
+        return $this->offsetExists('default');
     }
 
     public function getActive(): mixed

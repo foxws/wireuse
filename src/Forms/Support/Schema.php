@@ -4,6 +4,8 @@ namespace Foxws\WireUse\Forms\Support;
 
 use Closure;
 use Foxws\WireUse\Support\Components\Component;
+use Livewire\Component as Livewire;
+use Livewire\Form;
 
 class Schema extends Component
 {
@@ -13,9 +15,9 @@ class Schema extends Component
 
     public array $items = [];
 
-    public static function make(?string $name = null, array $attributes = []): static
+    public static function make(?Livewire $container, array $attributes = []): static
     {
-        return app(static::class, compact('name', 'attributes'));
+        return app(static::class, compact('container', 'attributes'));
     }
 
     public function add(string $name, ?Closure $callback = null): self
@@ -50,6 +52,15 @@ class Schema extends Component
     public function all(): array
     {
         return $this->items;
+    }
+
+    public function first(string $name): ?Field
+    {
+        $items = $this->filter(fn (Field $item) => $item->getName() === $name);
+
+        return collect($items)
+            ->sortByDesc(fn (Field $item) => count($item->getContainers()))
+            ->first();
     }
 
     public function filter(Closure $callback): array
