@@ -11,9 +11,11 @@ trait HasLivewire
         return $this;
     }
 
-    public function wireModel(?string $value = null): static
+    public function wireModel(?string $value = null, ?string $modifier = null): static
     {
         $this->wireModel = $value;
+
+        $this->wireModifier = $modifier;
 
         return $this;
     }
@@ -33,6 +35,11 @@ trait HasLivewire
     public function getWireModel(): ?string
     {
         return $this->value('wireModel');
+    }
+
+    public function getWireModifier(): ?string
+    {
+        return $this->value('wireModifier');
     }
 
     public function getWireNavigate(): ?bool
