@@ -4,6 +4,7 @@ namespace Foxws\WireUse\Forms\Support;
 
 use Closure;
 use Foxws\WireUse\Support\Components\Component;
+use Foxws\WireUse\Support\Components\Concerns\HasActions;
 use Foxws\WireUse\Support\Components\Concerns\HasComponents;
 use Foxws\WireUse\Support\Components\Concerns\HasIcon;
 use Foxws\WireUse\Support\Components\Concerns\HasLivewire;
@@ -14,6 +15,7 @@ use Foxws\WireUse\Support\Components\Concerns\HasState;
 
 class Field extends Component
 {
+    use HasActions;
     use HasComponents;
     use HasIcon;
     use HasLivewire;

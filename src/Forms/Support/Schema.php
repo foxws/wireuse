@@ -3,7 +3,6 @@
 namespace Foxws\WireUse\Forms\Support;
 
 use Closure;
-use Foxws\WireUse\Actions\Support\Actions;
 use Foxws\WireUse\Support\Components\Component;
 
 class Schema extends Component
@@ -37,13 +36,6 @@ class Schema extends Component
         if (value($condition)) {
             $this->add($name, $callback);
         }
-
-        return $this;
-    }
-
-    public function actions(Actions $actions): self
-    {
-        // TODO
 
         return $this;
     }
