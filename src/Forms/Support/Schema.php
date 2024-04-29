@@ -3,7 +3,6 @@
 namespace Foxws\WireUse\Forms\Support;
 
 use Closure;
-use Foxws\WireUse\Forms\Support\Field;
 use Foxws\WireUse\Support\Components\Component;
 
 class Schema extends Component
