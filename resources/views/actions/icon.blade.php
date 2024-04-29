@@ -3,7 +3,7 @@
 ])
 
 @php
-    $icon = $action->isActive() ? $action->getIconActive() : $action->getIcon()
+    $icon = $action->isActive() ? $action->getIconActive() : $action->getIcon();
 @endphp
 
 @if ($action->hasIcon() && $action->hasState())
