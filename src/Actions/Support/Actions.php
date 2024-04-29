@@ -5,7 +5,7 @@ namespace Foxws\WireUse\Actions\Support;
 use Closure;
 use Foxws\WireUse\Support\Components\Component;
 
-class ActionGroup extends Component
+class Actions extends Component
 {
     public ?string $name = null;
 
@@ -116,6 +116,16 @@ class ActionGroup extends Component
             ->first();
     }
 
+    public function getContainer(): ?object
+    {
+        return null;
+    }
+
+    public function getContainers(): array
+    {
+        return [];
+    }
+
     protected function filterItems(array $items, Closure $callback): array
     {
         $filtered = [];
@@ -131,16 +141,6 @@ class ActionGroup extends Component
         }
 
         return $filtered;
-    }
-
-    public function getContainer(): ?object
-    {
-        return null;
-    }
-
-    public function getContainers(): array
-    {
-        return [];
     }
 
     public function toArray(): array

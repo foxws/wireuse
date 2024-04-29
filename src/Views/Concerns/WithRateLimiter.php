@@ -1,11 +1,11 @@
 <?php
 
-namespace Foxws\WireUse\Support\Concerns;
+namespace Foxws\WireUse\Views\Concerns;
 
 use Foxws\WireUse\Exceptions\RateLimitedException;
 use Illuminate\Support\Facades\RateLimiter;
 
-trait Ratelimitable
+trait WithRateLimiter
 {
     protected static int $maxAttempts = 0;
 

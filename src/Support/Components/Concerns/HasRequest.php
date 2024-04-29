@@ -1,6 +1,6 @@
 <?php
 
-namespace Foxws\WireUse\Actions\Concerns;
+namespace Foxws\WireUse\Support\Components\Concerns;
 
 trait HasRequest
 {

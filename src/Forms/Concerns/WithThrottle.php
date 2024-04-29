@@ -3,11 +3,11 @@
 namespace Foxws\WireUse\Forms\Concerns;
 
 use Foxws\WireUse\Exceptions\RateLimitedException;
-use Foxws\WireUse\Support\Concerns\Ratelimitable;
+use Foxws\WireUse\Views\Concerns\WithRateLimiter;
 
 trait WithThrottle
 {
-    use Ratelimitable;
+    use WithRateLimiter;
 
     protected function handleThrottle(RateLimitedException $e): void
     {

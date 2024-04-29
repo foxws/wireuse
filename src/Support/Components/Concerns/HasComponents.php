@@ -1,9 +1,16 @@
 <?php
 
-namespace Foxws\WireUse\Actions\Concerns;
+namespace Foxws\WireUse\Support\Components\Concerns;
 
-trait HasView
+trait HasComponents
 {
+    public function component(?string $component = null): static
+    {
+        $this->component = $component;
+
+        return $this;
+    }
+
     public function view(?string $view = null): static
     {
         $this->view = $view;
@@ -16,6 +23,16 @@ trait HasView
         $this->bladeAttributes = $attributes;
 
         return $this;
+    }
+
+    public function getComponent(): ?string
+    {
+        return $this->value('component');
+    }
+
+    public function hasComponent(): bool
+    {
+        return $this->offsetExists('component');
     }
 
     public function getView(): ?string

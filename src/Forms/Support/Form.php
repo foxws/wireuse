@@ -8,14 +8,14 @@ use Foxws\WireUse\Forms\Concerns\WithForm;
 use Foxws\WireUse\Forms\Concerns\WithSession;
 use Foxws\WireUse\Forms\Concerns\WithThrottle;
 use Foxws\WireUse\Forms\Concerns\WithValidation;
-use Foxws\WireUse\Support\Concerns\Hookable;
+use Foxws\WireUse\Support\Concerns\WithHooks;
 use Livewire\Form as BaseForm;
 
 abstract class Form extends BaseForm
 {
-    use Hookable;
     use WithAuthorization;
     use WithForm;
+    use WithHooks;
     use WithSession;
     use WithThrottle;
     use WithValidation;

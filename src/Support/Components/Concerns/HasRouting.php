@@ -1,10 +1,10 @@
 <?php
 
-namespace Foxws\WireUse\Actions\Concerns;
+namespace Foxws\WireUse\Support\Components\Concerns;
 
 use Illuminate\Support\Facades\Route;
 
-trait HasRoute
+trait HasRouting
 {
     public function route(?string $route = null, mixed $parameters = null, bool $absolute = true): static
     {

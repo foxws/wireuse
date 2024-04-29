@@ -1,11 +1,9 @@
 <?php
 
-namespace Foxws\WireUse\Actions\Support;
+namespace Foxws\WireUse\Forms\Support;
 
 use Closure;
 use Foxws\WireUse\Support\Components\Component;
-use Foxws\WireUse\Support\Components\Concerns\HasActive;
-use Foxws\WireUse\Support\Components\Concerns\HasAttributes;
 use Foxws\WireUse\Support\Components\Concerns\HasComponents;
 use Foxws\WireUse\Support\Components\Concerns\HasIcon;
 use Foxws\WireUse\Support\Components\Concerns\HasLivewire;
@@ -14,7 +12,7 @@ use Foxws\WireUse\Support\Components\Concerns\HasRequest;
 use Foxws\WireUse\Support\Components\Concerns\HasRouting;
 use Foxws\WireUse\Support\Components\Concerns\HasState;
 
-class Action extends Component
+class Field extends Component
 {
     use HasComponents;
     use HasIcon;
@@ -45,7 +43,7 @@ class Action extends Component
 
     public function add(string $name, ?Closure $callback = null, ?array $attributes = null): self
     {
-        $item = new Action($this, $name);
+        $item = new Field($this, $name);
 
         if ($callback instanceof Closure) {
             $callback($item);
@@ -67,38 +65,6 @@ class Action extends Component
         }
 
         return $this;
-    }
-
-    public function isActive(): bool
-    {
-        $current = $this->getContainer()?->current();
-
-        return $current?->getName() === $this->getName();
-    }
-
-    public function getUrl(): ?string
-    {
-        if ($this->hasRoute()) {
-            return $this->getRoute();
-        }
-
-        return $this->getRequestUrl();
-    }
-
-    public function isFullUrl(): bool
-    {
-        return $this->isAppUrl() && request()->fullUrlIs(
-            $this->getUrl()
-        );
-    }
-
-    public function useNavigate(): bool
-    {
-        if ($this->hasWireNavigate()) {
-            return $this->getWireNavigate();
-        }
-
-        return $this->hasRoute() || $this->isAppUrl();
     }
 
     public function getContainer(): mixed
