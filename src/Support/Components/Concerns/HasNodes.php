@@ -2,8 +2,11 @@
 
 namespace Foxws\WireUse\Support\Components\Concerns;
 
+use Livewire\Attributes\Locked;
+
 trait HasNodes
 {
+    #[Locked]
     public array $nodes = [];
 
     public function getNodes(): array
@@ -29,7 +32,7 @@ trait HasNodes
         return $this;
     }
 
-    protected function validateNode(mixed $node): void
+    protected function validateNode(mixed $node = null): void
     {
         //
     }

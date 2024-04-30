@@ -36,7 +36,7 @@ trait WithNavigation
         return store($this);
     }
 
-    protected function validateNode(mixed $node): void
+    protected function validateNode(mixed $node = null): void
     {
         abort_unless($node instanceof Action, 500);
     }
