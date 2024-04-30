@@ -3,15 +3,13 @@
 namespace Foxws\WireUse\Navigation\Components;
 
 use Closure;
-use Foxws\WireUse\States\Support\State;
 use Foxws\WireUse\Views\Support\Component;
 use Illuminate\View\View;
 
 class Tabs extends Component
 {
     public function __construct(
-        public State $state,
-        public array $actions,
+        public array $tabs,
     ) {
     }
 
@@ -20,8 +18,8 @@ class Tabs extends Component
         return view('wireuse::navigation.tabs');
     }
 
-    public function tabState(): ?string
+    public function tabPath(): string
     {
-        return implode('.', [$this->state->getPropertyName(), 'tab']);
+        return 'tab';
     }
 }

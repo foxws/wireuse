@@ -1,5 +1,5 @@
 @php
-    $current = $this->getPropertyValue($wireModel() ?? $tabState())
+    $current = $this->getPropertyValue($wireModel())
 @endphp
 
 <nav {{ $attributes
@@ -14,12 +14,11 @@
         'layer',
     ])
     ->merge([
-        'wire:model.live' => $tabState(),
         'x-data' => '{ active: null }',
         'x-modelable' => 'active',
     ])
 }}>
-    @foreach ($actions as $action)
+    @foreach ($tabs as $action)
         <x-wireuse::actions-link
             :$action
             x-on:click="active = '{{ $action->getName() }}'"
