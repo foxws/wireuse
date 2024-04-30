@@ -3,7 +3,6 @@
 namespace Foxws\WireUse\Support\Livewire\ActionObjects;
 
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Actions\Support\Actions;
 use Livewire\Mechanisms\HandleComponents\Synthesizers\Synth;
 
 class ActionObjectSynth extends Synth
@@ -22,17 +21,19 @@ class ActionObjectSynth extends Synth
 
     public function hydrate($value)
     {
-        $container = Actions::make(
-            data_get($value['container'], 'name', null),
-            data_get($value['container'], 'attributes', [])
-        );
+        dd($value);
 
-        $action = new Action($container, $value['name']);
+        // $container = Actions::make(
+        //     data_get($value['container'], 'name', null),
+        //     data_get($value['container'], 'attributes', [])
+        // );
 
-        $action->attributes(
-            collect($value)->except('container', 'name')->toArray()
-        );
+        // $action = new Action($container, $value['name']);
 
-        return $action;
+        // $action->attributes(
+        //     collect($value)->except('container', 'name')->toArray()
+        // );
+
+        return $value;
     }
 }

@@ -4,6 +4,10 @@ namespace Foxws\WireUse\Support\Components\Concerns;
 
 trait HasIcon
 {
+    public ?string $icon = null;
+
+    public ?string $iconActive = null;
+
     public function icon(?string $icon = null): static
     {
         $this->icon = $icon;
@@ -23,18 +27,8 @@ trait HasIcon
         return $this->value('icon');
     }
 
-    public function getIconActive(): ?string
+    public function getActiveIcon(): ?string
     {
         return $this->value('iconActive', $this->getIcon());
-    }
-
-    public function hasIcon(): bool
-    {
-        return $this->offsetExists('icon');
-    }
-
-    public function hasIconActive(): bool
-    {
-        return $this->offsetExists('iconActive');
     }
 }

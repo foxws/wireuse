@@ -6,6 +6,12 @@ use Illuminate\Support\Facades\Route;
 
 trait HasRouting
 {
+    public ?string $route = null;
+
+    public ?bool $routeAbsolute = null;
+
+    public mixed $routeParameters = null;
+
     public function route(?string $route = null, mixed $parameters = null, bool $absolute = true): static
     {
         $this->route = $route;
@@ -41,16 +47,9 @@ trait HasRouting
         return $this->value('routeAbsolute', true);
     }
 
-    public function hasRoute(): bool
-    {
-        return $this->offsetExists('route') && Route::has(
-            $this->getRouteName()
-        );
-    }
-
     public function isRoute(): bool
     {
-        return $this->hasRoute() && request()->routeIs(
+        return Route::has(
             $this->getRouteName()
         );
     }

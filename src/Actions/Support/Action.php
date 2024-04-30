@@ -4,25 +4,27 @@ namespace Foxws\WireUse\Actions\Support;
 
 use Closure;
 use Foxws\WireUse\Support\Components\Component;
-use Foxws\WireUse\Support\Components\Concerns\HasComponents;
+use Foxws\WireUse\Support\Components\Concerns\HasComponent;
 use Foxws\WireUse\Support\Components\Concerns\HasIcon;
+use Foxws\WireUse\Support\Components\Concerns\HasLabel;
 use Foxws\WireUse\Support\Components\Concerns\HasLivewire;
 use Foxws\WireUse\Support\Components\Concerns\HasName;
+use Foxws\WireUse\Support\Components\Concerns\HasNodes;
 use Foxws\WireUse\Support\Components\Concerns\HasRequest;
 use Foxws\WireUse\Support\Components\Concerns\HasRouting;
 use Foxws\WireUse\Support\Components\Concerns\HasState;
 
 class Action extends Component
 {
-    use HasComponents;
+    use HasComponent;
     use HasIcon;
+    use HasLabel;
     use HasLivewire;
     use HasName;
+    use HasNodes;
     use HasRequest;
     use HasRouting;
     use HasState;
-
-    public array $items = [];
 
     public function __construct(mixed $container = null, ?string $name = null)
     {
@@ -38,65 +40,28 @@ class Action extends Component
 
     public function add(string $name, ?Closure $callback = null, ?array $attributes = null): self
     {
-        $item = new Action($this, $name);
+        $node = new Action($this, $name);
 
         if ($callback instanceof Closure) {
-            $callback($item);
+            $callback($node);
         }
 
         if ($attributes) {
-            $item->attributes($attributes);
+            $node->attributes($attributes);
         }
 
-        $this->items[] = $item;
+        $this->addNode($node);
 
         return $this;
     }
 
-    public function addIf(mixed $condition, string $name, ?Closure $callback = null): self
+    public function addIf(mixed $condition, string $name, ?Closure $callback = null, ?array $attributes = null): self
     {
         if (value($condition)) {
-            $this->add($name, $callback);
+            $this->add($name, $callback, $attributes);
         }
 
         return $this;
-    }
-
-    public function isActive(): bool
-    {
-        $current = $this->getContainer()?->current();
-
-        return $current?->getName() === $this->getName();
-    }
-
-    public function getUrl(): ?string
-    {
-        if ($this->hasRoute()) {
-            return $this->getRoute();
-        }
-
-        return $this->getRequestUrl();
-    }
-
-    public function isFullUrl(): bool
-    {
-        return $this->isAppUrl() && request()->fullUrlIs(
-            $this->getUrl()
-        );
-    }
-
-    public function useNavigate(): bool
-    {
-        if ($this->hasWireNavigate()) {
-            return $this->getWireNavigate();
-        }
-
-        return $this->hasRoute() || $this->isAppUrl();
-    }
-
-    public function all(): array
-    {
-        return $this->items;
     }
 
     public function getContainer(): mixed
@@ -120,5 +85,14 @@ class Action extends Component
         }
 
         return count($this->container->getContainers());
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'container' => $this->container,
+            'attributes' => $this->attributes,
+        ];
     }
 }

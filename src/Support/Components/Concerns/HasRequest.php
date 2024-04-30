@@ -4,6 +4,8 @@ namespace Foxws\WireUse\Support\Components\Concerns;
 
 trait HasRequest
 {
+    public ?string $url = null;
+
     public function url(?string $url = null): static
     {
         $this->url = $url;
@@ -11,7 +13,7 @@ trait HasRequest
         return $this;
     }
 
-    public function getRequestUrl(): ?string
+    public function getUrl(): ?string
     {
         return $this->value('url');
     }
@@ -21,10 +23,5 @@ trait HasRequest
         $url = str($this->value('url', ''))->trim();
 
         return $url->is('/') || $url->startsWith(config('app.url'));
-    }
-
-    public function hasUrl(): bool
-    {
-        return $this->offsetExists('url');
     }
 }

@@ -4,7 +4,11 @@ namespace Foxws\WireUse\Support\Components\Concerns;
 
 trait HasState
 {
-    public function state(?string $state = null): static
+    public mixed $state = null;
+
+    public mixed $default = null;
+
+    public function state(mixed $state = null): static
     {
         $this->state = $state;
 
@@ -18,40 +22,13 @@ trait HasState
         return $this;
     }
 
-    public function active(bool|string|null $active = null): static
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    public function getState(): ?string
+    public function getState(): mixed
     {
         return $this->value('state');
-    }
-
-    public function hasState(): bool
-    {
-        return $this->offsetExists('state');
     }
 
     public function getDefault(): mixed
     {
         return $this->value('default');
-    }
-
-    public function hasDefault(): bool
-    {
-        return $this->offsetExists('default');
-    }
-
-    public function getActive(): mixed
-    {
-        return $this->value('active');
-    }
-
-    public function hasActive(): mixed
-    {
-        return $this->offsetExists('active');
     }
 }

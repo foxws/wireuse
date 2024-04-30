@@ -15,7 +15,9 @@ abstract class Component extends Fluent
 
     public function attributes(?array $attributes = null): static
     {
-        $this->attributes = array_merge($this->attributes, $attributes);
+        foreach ($attributes as $key => $value) {
+            $this->attributes[$key] = $value;
+        }
 
         return $this;
     }
