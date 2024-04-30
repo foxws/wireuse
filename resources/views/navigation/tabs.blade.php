@@ -8,6 +8,10 @@
     ->classMerge([
         'layer',
     ])
+    ->merge([
+        'x-data' => '{ active: null }',
+        'x-modelable' => 'active',
+    ])
 }}>
     <nav class="flex items-center px-3 gap-x-5 overflow-x-auto border-b border-secondary-500/50">
         @foreach ($nodes as $action)
@@ -16,7 +20,7 @@
                 class="{{ $attributes->classFor('tab') }}"
                 class:active="{{ $attributes->classFor('tab-active') }}"
                 class:inactive="{{ $attributes->classFor('tab-inactive') }}"
-                wire:click="$set('tab', '{{ $action->getState() }}')"
+                x-on:click="active = '{{ $action->getName() }}'"
             >
                 <x-wireuse::actions-icon
                     :$action
@@ -27,6 +31,8 @@
             </x-wireuse::actions-link>
         @endforeach
     </nav>
+
+    <span x-text="active"></span>
 
     {{-- @if ($current?->hasComponent())
         <x-dynamic-component :component="$current->getComponent()" :$action />

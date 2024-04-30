@@ -13,8 +13,7 @@ trait HasNodes
 
     protected function fillNodes(array $nodes = []): self
     {
-        collect($nodes)
-            ->each(fn (mixed $node) => $this->addNode($node));
+        $this->nodes = $nodes;
 
         return $this;
     }

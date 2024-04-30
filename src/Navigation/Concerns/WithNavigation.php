@@ -10,7 +10,7 @@ trait WithNavigation
 {
     use HasNodes;
 
-    public function mountWithNavigation(): void
+    public function bootedWithNavigation(): void
     {
         $this->fillNodes(
             $this->navigation()
