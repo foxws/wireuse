@@ -46,6 +46,6 @@
     @endif
 
     @if ($current?->getLivewireComponent())
-        @livewire($current->getLivewireComponent(), ['action' => $current, 'attributes' => $this->all()], key($current->getName()))
+        @livewire($current->getLivewireComponent(), ['action' => $current, 'properties' => $this->all()], key($current->getName()))
     @endif
 </div>
