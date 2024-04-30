@@ -36,6 +36,11 @@ trait WithNavigation
         return store($this);
     }
 
+    protected function validateNode(mixed $node): void
+    {
+        abort_unless($node instanceof Action, 500);
+    }
+
     protected function getNodeArgs(): array
     {
         return [

@@ -22,26 +22,24 @@ trait HasNodes
         return $this;
     }
 
-    protected function addNode(mixed $node = null): self
+    public function addNode(mixed $node = null): self
     {
+        $this->validateNode($node);
+
         $this->nodes[] = value($node, $this->getNodeArgs());
 
         return $this;
     }
 
-    protected function addNodeIf(mixed $condition, mixed $node = null): self
+    protected function validateNode(mixed $node): void
     {
-        if (value($condition)) {
-            $this->addNode($node);
-        }
-
-        return $this;
+        //
     }
 
     protected function validateNodes(array $nodes = []): void
     {
         collect($nodes)
-            ->each(fn (mixed $node) => abort_if(! $node instanceof Action, 500));
+            ->each(fn (mixed $node) => $this->validateNode($node));
     }
 
     protected function getNodeArgs(): array
