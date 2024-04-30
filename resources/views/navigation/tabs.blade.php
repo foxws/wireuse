@@ -35,8 +35,6 @@
         @endforeach
     </nav>
 
-
-
     {{-- @if ($current?->hasComponent())
         <x-dynamic-component :component="$current->getComponent()" :$action />
     @endif
