@@ -30,7 +30,7 @@ class Link extends Component
         return $this->action->getRoute() ?: $this->action->getUrl();
     }
 
-    public function navigate(): ?string
+    public function navigate(): bool
     {
         if ($this->action->getWireNavigate() === false) {
             return false;
