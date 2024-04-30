@@ -1,7 +1,8 @@
 <div {{ $attributes
     ->cssClass([
-        'layer' => 'w-full flex shrink-0 cursor-pointer items-center',
-        'tab' => 'border-b pb-3',
+        'layer' => 'flex flex-col w-full gap-y-3',
+        'container' => 'flex items-center gap-x-5 overflow-x-auto border-b border-secondary-500/50',
+        'tab' => 'pb-3 gap-x-1.5 border-b',
         'tab-active' => 'border-primary-400 text-primary-400',
         'tab-inactive' => 'border-secondary-400 text-secondary-400',
     ])
@@ -13,7 +14,7 @@
         'x-modelable' => 'active',
     ])
 }}>
-    <nav class="flex items-center px-3 gap-x-5 overflow-x-auto border-b border-secondary-500/50">
+    <nav class="{{ $attributes->classFor('container') }}">
         @foreach ($nodes as $action)
             <x-wireuse::actions-link
                 :$action
@@ -25,7 +26,6 @@
                 <x-wireuse::actions-icon
                     :$action
                     active="{{ $this->getPropertyValue($wireModel()) }}"
-                    class="size-6 sm:size-7"
                 />
 
                 <span class="line-clamp text-sm font-medium">{{ $action->getLabel() }}</span>
@@ -33,13 +33,13 @@
         @endforeach
     </nav>
 
-    <span x-text="active"></span>
+
 
     {{-- @if ($current?->hasComponent())
         <x-dynamic-component :component="$current->getComponent()" :$action />
     @endif
 
-    @if ($current?->hasLivewire())
-        @livewire($current->getLivewire(), ['action' => $current], key($current->getName()))
+    @if ($current?->hasLivewireComponent())
+        @livewire($current->getLivewireComponent(), ['action' => $current], key($current->getName()))
     @endif --}}
 </div>
