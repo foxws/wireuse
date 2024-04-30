@@ -17,13 +17,14 @@
         @foreach ($nodes as $action)
             <x-wireuse::actions-link
                 :$action
+                x-on:click="active = '{{ $action->getName() }}'"
                 class="{{ $attributes->classFor('tab') }}"
                 class:active="{{ $attributes->classFor('tab-active') }}"
                 class:inactive="{{ $attributes->classFor('tab-inactive') }}"
-                x-on:click="active = '{{ $action->getName() }}'"
             >
                 <x-wireuse::actions-icon
                     :$action
+                    active="{{ $this->getPropertyValue($wireModel()) }}"
                     class="size-6 sm:size-7"
                 />
 
