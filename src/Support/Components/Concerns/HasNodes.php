@@ -2,8 +2,6 @@
 
 namespace Foxws\WireUse\Support\Components\Concerns;
 
-use Foxws\WireUse\Actions\Support\Action;
-
 trait HasNodes
 {
     public array $nodes = [];
