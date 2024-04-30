@@ -22,4 +22,9 @@ trait HasRequest
 
         return $url->is('/') || $url->startsWith(config('app.url'));
     }
+
+    public function fullUrlIs(): bool
+    {
+        return ($url = $this->getUrl()) && request()->fullUrlIs($url);
+    }
 }

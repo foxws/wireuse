@@ -18,4 +18,14 @@ class Link extends Component
     {
         return view('wireuse::actions.link');
     }
+
+    public function url(): ?string
+    {
+        return $this->action->getRoute() ?: $this->action->getUrl();
+    }
+
+    public function isCurrent(): bool
+    {
+        return $this->action->routeIs() || $this->action->fullUrlIs();
+    }
 }

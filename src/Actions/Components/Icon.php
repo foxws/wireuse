@@ -18,4 +18,13 @@ class Icon extends Component
     {
         return view('wireuse::actions.icon');
     }
+
+    public function iconName(): ?string
+    {
+        if ($this->action->routeIs() || $this->action->fullUrlIs()) {
+            return $this->action->getActiveIcon();
+        }
+
+        return $this->action->getIcon();
+    }
 }
