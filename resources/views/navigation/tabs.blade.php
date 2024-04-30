@@ -1,3 +1,7 @@
+@php
+    $current = $this->getCurrentNode();
+@endphp
+
 <div {{ $attributes
     ->cssClass([
         'layer' => 'flex flex-col w-full gap-y-3',
@@ -11,7 +15,7 @@
         'layer',
     ])
     ->merge([
-        'wire:model.live' => 'tab',
+        'wire:model.live' => $this->getNavigationPath(),
         'x-data' => '{ active: null }',
         'x-modelable' => 'active',
     ])
@@ -21,15 +25,15 @@
             <x-wireuse::actions-link
                 :$action
                 x-on:click="active = '{{ $action->getName() }}'"
-                active="{{ $this->getPropertyValue($wireModel()) }}"
+                active="{{ $current?->getName() }}"
                 class="{{ $attributes->classFor('tab') }}"
                 class:active="{{ $attributes->classFor('tab-active') }}"
                 class:inactive="{{ $attributes->classFor('tab-inactive') }}"
             >
                 <x-wireuse::actions-icon
                     :$action
+                    active="{{ $current?->getName() }}"
                     class:icon="{{ $attributes->classFor('tab-icon') }}"
-                    active="{{ $this->getPropertyValue($wireModel()) }}"
                 />
 
                 <span class="line-clamp text-sm font-medium">{{ $action->getLabel() }}</span>
@@ -37,11 +41,11 @@
         @endforeach
     </nav>
 
-    {{-- @if ($current?->hasComponent())
+    @if ($current?->getComponent())
         <x-dynamic-component :component="$current->getComponent()" :$action />
     @endif
 
-    @if ($current?->hasLivewireComponent())
-        @livewire($current->getLivewireComponent(), ['action' => $current], key($current->getName()))
-    @endif --}}
+    @if ($current?->getLivewireComponent())
+        @livewire($current->getLivewireComponent(), ['action' => $current, 'attributes' => $this->all()], key($current->getName()))
+    @endif
 </div>

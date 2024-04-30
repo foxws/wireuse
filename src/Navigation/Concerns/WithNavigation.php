@@ -16,12 +16,16 @@ trait WithNavigation
         $this->fillNodes($this->navigation());
     }
 
-    protected function navigation(): array
+    public function getCurrentNode(): mixed
     {
-        return [];
+        $key = $this->getPropertyValue(
+            $this->getNavigationPath()
+        );
+
+        return $this->getNode($key);
     }
 
-    protected function getNavigation(string $key): mixed
+    public function getNode(string $key): mixed
     {
         return collect($this->getNodes())
             ->first(function (mixed $node) use ($key) {
@@ -29,6 +33,16 @@ trait WithNavigation
                     return $node;
                 }
             });
+    }
+
+    public function getNavigationPath(): string
+    {
+        return 'tab';
+    }
+
+    protected function navigation(): array
+    {
+        return [];
     }
 
     protected function getNavigationStore(): mixed

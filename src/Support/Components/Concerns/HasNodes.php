@@ -14,6 +14,11 @@ trait HasNodes
         return $this->nodes;
     }
 
+    public function getNode(string $key): mixed
+    {
+        return null;
+    }
+
     public function fillNodes(array $nodes = []): self
     {
         $this->validateNodes($nodes);
