@@ -1,8 +1,9 @@
 <div {{ $attributes
     ->cssClass([
         'layer' => 'flex flex-col w-full gap-y-3',
-        'container' => 'flex items-center gap-x-5 overflow-x-auto border-b border-secondary-500/50',
-        'tab' => 'pb-3 gap-x-1.5 border-b',
+        'container' => 'flex items-center px-3 gap-x-5 overflow-x-auto border-b border-secondary-500/50',
+        'tab' => 'py-3 gap-x-1.5 border-b',
+        'tab-icon' => 'size-5 sm:size-6',
         'tab-active' => 'border-primary-400 text-primary-400',
         'tab-inactive' => 'border-secondary-400 text-secondary-400',
     ])
@@ -25,6 +26,7 @@
             >
                 <x-wireuse::actions-icon
                     :$action
+                    class:icon="{{ $attributes->classFor('tab-icon') }}"
                     active="{{ $this->getPropertyValue($wireModel()) }}"
                 />
 
