@@ -11,6 +11,7 @@ class Link extends Component
 {
     public function __construct(
         public Action $action,
+        public ?string $active = null,
     ) {
     }
 
@@ -26,6 +27,10 @@ class Link extends Component
 
     public function isCurrent(): bool
     {
+        if ($this->active === $this->action->getName()) {
+            return true;
+        }
+
         return $this->action->routeIs() || $this->action->fullUrlIs();
     }
 }
