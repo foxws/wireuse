@@ -11,13 +11,6 @@ trait HasComponent
         return $this;
     }
 
-    public function livewire(?string $livewire = null): static
-    {
-        $this->livewire = $livewire;
-
-        return $this;
-    }
-
     public function componentAttributes(?array $attributes = null): static
     {
         $this->componentAttributes = $attributes;
@@ -28,11 +21,6 @@ trait HasComponent
     public function getComponent(): ?string
     {
         return $this->value('component');
-    }
-
-    public function getLivewireComponent(): ?string
-    {
-        return $this->value('livewire');
     }
 
     public function getComponentAttributes(): array

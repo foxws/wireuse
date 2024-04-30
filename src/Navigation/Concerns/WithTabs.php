@@ -6,7 +6,7 @@ use Foxws\WireUse\Actions\Support\Action;
 
 trait WithTabs
 {
-    public function currentTab(): mixed
+    protected function currentTab(): mixed
     {
         $key = $this->getPropertyValue(
             $this->getTabPath()
@@ -15,14 +15,14 @@ trait WithTabs
         return $this->filterTabs($key)->first();
     }
 
-    public function getTabPath(): string
-    {
-        return 'tab';
-    }
-
     protected function tabs(): array
     {
         return [];
+    }
+
+    protected function getTabPath(): string
+    {
+        return 'tab';
     }
 
     protected function filterTabs(string $key): mixed

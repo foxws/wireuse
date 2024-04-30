@@ -69,9 +69,9 @@ class State implements Arrayable
 
     public function fill($values)
     {
-        $publicProperties = array_keys($this->all());
-
         $values = $this->callHook('beforeStateFill', $values);
+
+        $publicProperties = array_keys($this->all());
 
         if ($values instanceof Model) {
             $values = $values->toArray();
