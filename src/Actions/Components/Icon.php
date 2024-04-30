@@ -21,10 +21,15 @@ class Icon extends Component
 
     public function iconName(): ?string
     {
-        if ($this->action->routeIs() || $this->action->fullUrlIs()) {
+        if ($this->isCurrent()) {
             return $this->action->getActiveIcon();
         }
 
         return $this->action->getIcon();
+    }
+
+    public function isCurrent(): bool
+    {
+        return $this->action->routeIs() || $this->action->fullUrlIs();
     }
 }

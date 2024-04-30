@@ -21,19 +21,17 @@ class ActionObjectSynth extends Synth
 
     public function hydrate($value)
     {
-        dd($value);
+        $action = new Action($value['container'], $value['name']);
 
-        // $container = Actions::make(
-        //     data_get($value['container'], 'name', null),
-        //     data_get($value['container'], 'attributes', [])
-        // );
+        $action->attributes($this->getAttributes($value));
 
-        // $action = new Action($container, $value['name']);
+        return $action;
+    }
 
-        // $action->attributes(
-        //     collect($value)->except('container', 'name')->toArray()
-        // );
-
-        return $value;
+    protected function getAttributes(array $values): array
+    {
+        return collect($values)
+            ->except('container', 'name')
+            ->toArray();
     }
 }
