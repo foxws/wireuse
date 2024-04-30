@@ -4,8 +4,6 @@ namespace Foxws\WireUse\Support\Components\Concerns;
 
 trait HasRequest
 {
-    public ?string $url = null;
-
     public function url(?string $url = null): static
     {
         $this->url = $url;

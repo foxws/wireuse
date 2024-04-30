@@ -4,10 +4,6 @@ namespace Foxws\WireUse\Support\Components\Concerns;
 
 trait HasState
 {
-    public mixed $state = null;
-
-    public mixed $default = null;
-
     public function state(mixed $state = null): static
     {
         $this->state = $state;

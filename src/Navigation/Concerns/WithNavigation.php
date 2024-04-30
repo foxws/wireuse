@@ -27,11 +27,6 @@ trait WithNavigation
         return store($this);
     }
 
-    protected function getNavigationStatePath(): string
-    {
-        return 'nodes';
-    }
-
     protected function getNodeArgs(): array
     {
         return [

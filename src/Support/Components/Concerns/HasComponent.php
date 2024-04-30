@@ -4,12 +4,6 @@ namespace Foxws\WireUse\Support\Components\Concerns;
 
 trait HasComponent
 {
-    public ?string $component = null;
-
-    public ?string $livewire = null;
-
-    public ?array $componentAttributes = null;
-
     public function component(?string $component = null): static
     {
         $this->component = $component;

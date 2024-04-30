@@ -4,12 +4,6 @@ namespace Foxws\WireUse\Support\Components\Concerns;
 
 trait HasLivewire
 {
-    public ?string $wireModel = null;
-
-    public ?string $wireModifier = null;
-
-    public ?bool $wireNavigate = null;
-
     public function wireModel(?string $value = null, ?string $modifier = null): static
     {
         $this->wireModel = $value;
