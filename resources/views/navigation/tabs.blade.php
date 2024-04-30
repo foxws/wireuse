@@ -11,6 +11,7 @@
         'layer',
     ])
     ->merge([
+        'wire:model.live' => 'tab',
         'x-data' => '{ active: null }',
         'x-modelable' => 'active',
     ])
@@ -20,6 +21,7 @@
             <x-wireuse::actions-link
                 :$action
                 x-on:click="active = '{{ $action->getName() }}'"
+                active="{{ $this->getPropertyValue($wireModel()) }}"
                 class="{{ $attributes->classFor('tab') }}"
                 class:active="{{ $attributes->classFor('tab-active') }}"
                 class:inactive="{{ $attributes->classFor('tab-inactive') }}"
