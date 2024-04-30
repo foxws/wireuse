@@ -2,6 +2,7 @@
 
 namespace Foxws\WireUse\Navigation\Concerns;
 
+use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Support\Components\Concerns\HasNodes;
 
 use function Livewire\store;
@@ -12,14 +13,22 @@ trait WithNavigation
 
     public function bootedWithNavigation(): void
     {
-        $this->fillNodes(
-            $this->navigation()
-        );
+        $this->fillNodes($this->navigation());
     }
 
     protected function navigation(): array
     {
         return [];
+    }
+
+    protected function getNavigation(string $key): mixed
+    {
+        return collect($this->getNodes())
+            ->first(function (mixed $node) use ($key) {
+                if ($node instanceof Action && $node->getName() === $key) {
+                    return $node;
+                }
+            });
     }
 
     protected function getNavigationStore(): mixed
