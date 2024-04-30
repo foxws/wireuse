@@ -20,9 +20,23 @@ class Link extends Component
         return view('wireuse::actions.link');
     }
 
+    public function label(): ?string
+    {
+        return $this->action->getLabel() ?: $this->action->getName();
+    }
+
     public function url(): ?string
     {
         return $this->action->getRoute() ?: $this->action->getUrl();
+    }
+
+    public function navigate(): ?string
+    {
+        if ($this->action->getWireNavigate() === false) {
+            return false;
+        }
+
+        return $this->action->routeExist() || $this->action->isAppUrl();
     }
 
     public function isCurrent(): bool

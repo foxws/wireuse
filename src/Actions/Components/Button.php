@@ -18,4 +18,9 @@ class Button extends Component
     {
         return view('wireuse::actions.button');
     }
+
+    public function label(): ?string
+    {
+        return $this->action->getLabel() ?: $this->action->getName();
+    }
 }

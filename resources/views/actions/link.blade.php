@@ -11,13 +11,13 @@
         'inactive' => ! $isCurrent(),
     ])
     ->merge([
-        'wire:navigate' => $action->getWireNavigate(),
+        'wire:navigate' => $navigate(),
         'href' => $url(),
-        'aria-label' => $action->getLabel(),
+        'aria-label' => $label(),
     ])
 }}>
     @if ($slot->isEmpty())
-        {{ $action->getLabel() }}
+        {{ $label() }}
     @else
         {{ $slot }}
     @endif

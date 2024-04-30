@@ -2,6 +2,8 @@
 
 namespace Foxws\WireUse\Support\Components\Concerns;
 
+use Illuminate\Support\Facades\Route;
+
 trait HasRouting
 {
     public function route(?string $route = null, mixed $parameters = null, bool $absolute = true): static
@@ -46,5 +48,10 @@ trait HasRouting
     public function routeIs(): bool
     {
         return ($route = $this->getRouteName()) && request()->routeIs($route);
+    }
+
+    public function routeExist(): bool
+    {
+        return ($route = $this->getRouteName()) && Route::has($route);
     }
 }
