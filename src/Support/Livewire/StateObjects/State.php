@@ -2,6 +2,7 @@
 
 namespace Foxws\WireUse\Support\Livewire\StateObjects;
 
+use Foxws\WireUse\Support\Concerns\WithHooks;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
@@ -9,6 +10,8 @@ use Livewire\Drawer\Utils;
 
 class State implements Arrayable
 {
+    use WithHooks;
+
     public function __construct(
         protected Component $component,
         protected $propertyName,
@@ -67,6 +70,8 @@ class State implements Arrayable
     public function fill($values)
     {
         $publicProperties = array_keys($this->all());
+
+        $values = $this->callHook('beforeStateFill', $values);
 
         if ($values instanceof Model) {
             $values = $values->toArray();
