@@ -120,6 +120,12 @@ class WireUseServiceProvider extends PackageServiceProvider
             return $this->get(app(Bladeable::class)::classKeys($key)->first(), $default);
         });
 
+        ComponentAttributeBag::macro('wireModel', function (): mixed {
+            /** @var ComponentAttributeBag $this */
+
+            return $this->whereStartsWith('wire:model')->first();
+        });
+
         return $this;
     }
 
