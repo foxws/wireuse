@@ -10,6 +10,6 @@ trait WithHooks
             return $this->{$hook}(...$args);
         }
 
-        return value($hook, $args);
+        return value($args);
     }
 }

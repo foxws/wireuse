@@ -20,44 +20,16 @@ abstract class Form extends BaseForm
     use WithThrottle;
     use WithValidation;
 
-    public function submit(): void
-    {
-        try {
-            $this->rateLimit();
-
-            $this->callHook('beforeValidate');
-
-            $this->check();
-
-            $this->callHook('afterValidate');
-
-            $this->store();
-
-            $this->callHook('beforeHandle');
-
-            $this->handle();
-
-            $this->callHook('afterHandle');
-        } catch (RateLimitedException $e) {
-            $this->handleThrottle($e);
-        }
-    }
-
-    protected function handle(): void
-    {
-        //
-    }
-
     protected function keys(): array
     {
         return array_keys($this->all());
     }
 
-    public function fill($values): void
+    public function fill($values)
     {
-        $values = $this->callHook('beforeFormFill', $values);
+        $values = $this->callHook('beforeFill', $values);
 
-        parent::fill($values);
+        return parent::fill($values);
     }
 
     public function get(string $property, mixed $default = null): mixed
