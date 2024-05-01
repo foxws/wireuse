@@ -33,6 +33,7 @@ class WireUseServiceProvider extends PackageServiceProvider
         $this
             ->registerFeatures()
             ->registerBladeMacros()
+            ->registerAnonymousComponent()
             ->registerComponents()
             ->registerLivewire();
     }
@@ -137,13 +138,25 @@ class WireUseServiceProvider extends PackageServiceProvider
         return $this;
     }
 
-    protected function registerComponents(): static
+    protected function registerAnonymousComponent(): static
     {
         if (config('wireuse.register_components') === false) {
             return $this;
         }
 
-        Blade::anonymousComponentPath(__DIR__.'/resources/views/components', 'wireuse');
+        Blade::anonymousComponentPath(
+            path: __DIR__.'/resources/views/components',
+            prefix: 'wireuse'
+        );
+
+        return $this;
+    }
+
+    protected function registerComponents(): static
+    {
+        if (config('wireuse.register_components') === false) {
+            return $this;
+        }
 
         WireUse::registerComponents(
             path: __DIR__,
