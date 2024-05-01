@@ -2,6 +2,7 @@
 
 namespace Foxws\WireUse\Auth\Controllers;
 
+use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Auth\Forms\LoginForm;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
@@ -27,13 +28,26 @@ class LoginController extends Page
 
     public function render(): View
     {
-        return view('wireuse::auth.login');
+        return view('wireuse::auth.login')->with([
+            'actions' => $this->actions(),
+        ]);
     }
 
     public function submit(): void
     {
-        $this->form->validate();
+        $this->form->submit();
 
         redirect()->intended();
+    }
+
+    protected function actions(): array
+    {
+        return [
+            Action::make('submit')
+                ->label(__('Login'))
+                ->componentAttributes([
+                    'type' => 'submit',
+                ]),
+        ];
     }
 }

@@ -3,6 +3,7 @@
 namespace Foxws\WireUse;
 
 use Foxws\WireUse\Support\Blade\Bladeable;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\View\ComponentAttributeBag;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -141,6 +142,8 @@ class WireUseServiceProvider extends PackageServiceProvider
         if (config('wireuse.register_components') === false) {
             return $this;
         }
+
+        Blade::anonymousComponentPath(__DIR__.'/resources/views/components', 'wireuse');
 
         WireUse::registerComponents(
             path: __DIR__,
