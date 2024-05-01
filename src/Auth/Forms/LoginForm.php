@@ -42,9 +42,4 @@ class LoginForm extends Form
 
         session()->regenerate();
     }
-
-    protected function afterHandle(): mixed
-    {
-        return redirect()->intended();
-    }
 }

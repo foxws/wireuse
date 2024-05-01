@@ -33,5 +33,7 @@ class RegisterController extends Page
     public function submit(): void
     {
         $this->form->submit();
+
+        redirect()->to('/');
     }
 }

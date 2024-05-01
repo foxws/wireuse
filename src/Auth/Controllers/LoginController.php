@@ -32,6 +32,8 @@ class LoginController extends Page
 
     public function submit(): void
     {
-        $this->form->submit();
+        $this->form->validate();
+
+        redirect()->intended();
     }
 }

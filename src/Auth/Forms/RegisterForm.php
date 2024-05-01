@@ -51,11 +51,6 @@ class RegisterForm extends Form
         event(new Registered($user));
     }
 
-    protected function afterHandle(): mixed
-    {
-        return redirect()->to('/');
-    }
-
     protected function getUserModel(): User
     {
         return app(config('auth.providers.users.model'));
