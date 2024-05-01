@@ -3,7 +3,6 @@
 namespace Foxws\WireUse\Forms\Support;
 
 use Foxws\WireUse\Auth\Concerns\WithAuthorization;
-use Foxws\WireUse\Exceptions\RateLimitedException;
 use Foxws\WireUse\Forms\Concerns\WithSession;
 use Foxws\WireUse\Forms\Concerns\WithThrottle;
 use Foxws\WireUse\Forms\Concerns\WithValidation;
