@@ -9,7 +9,6 @@
         'primary' => $attributes->get('type') === 'submit',
     ])
     ->merge([
-        'wire:model' => $action->getWireModel(),
         'aria-label' => $label(),
     ])
 }}>
