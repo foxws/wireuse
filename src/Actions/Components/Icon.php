@@ -37,4 +37,9 @@ class Icon extends Component
 
         return $this->action->routeIs() || $this->action->fullUrlIs();
     }
+
+    public function hasActiveIcon(): bool
+    {
+        return $this->action->getActiveIcon() !== $this->iconName();
+    }
 }
