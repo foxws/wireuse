@@ -13,6 +13,7 @@ use Foxws\WireUse\Support\Components\Concerns\HasNodes;
 use Foxws\WireUse\Support\Components\Concerns\HasRequest;
 use Foxws\WireUse\Support\Components\Concerns\HasRouting;
 use Foxws\WireUse\Support\Components\Concerns\HasState;
+use Foxws\WireUse\Support\Components\Concerns\HasVisibility;
 
 class Action extends Component
 {
@@ -25,6 +26,7 @@ class Action extends Component
     use HasRequest;
     use HasRouting;
     use HasState;
+    use HasVisibility;
 
     public function __construct(mixed $container = null, ?string $name = null)
     {
