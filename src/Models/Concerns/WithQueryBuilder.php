@@ -12,8 +12,6 @@ use Laravel\Scout\Builder as ScoutBuilder;
  */
 trait WithQueryBuilder
 {
-    protected static ?int $limit = 16;
-
     public function bootWithQueryBuilder(): void
     {
         throw_if(! is_subclass_of($this->getModelClass(), Model::class));
@@ -33,18 +31,11 @@ trait WithQueryBuilder
 
     protected static function getQuery(): Builder
     {
-        return static::getModel()
-            ->newQuery();
+        return static::getModel()->newQuery();
     }
 
     protected static function getScout(string $query = '*', ?Closure $callback = null): ScoutBuilder
     {
-        return static::getModel()
-            ->search($query, $callback);
-    }
-
-    protected static function getLimit(): ?int
-    {
-        return static::$limit;
+        return static::getModel()->search($query, $callback);
     }
 }

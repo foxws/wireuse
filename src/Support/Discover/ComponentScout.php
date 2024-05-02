@@ -35,7 +35,7 @@ class ComponentScout extends StructureScout
 
     public function prefix(string $prefix): static
     {
-        $this->prefix = $prefix;
+        $this->prefix = trim($prefix, '-');
 
         return $this;
     }

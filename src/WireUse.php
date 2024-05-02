@@ -3,15 +3,28 @@
 namespace Foxws\WireUse;
 
 use Closure;
+use Foxws\WireUse\Auth\Controllers\LoginController;
+use Foxws\WireUse\Auth\Controllers\LogoutController;
+use Foxws\WireUse\Auth\Controllers\RegisterController;
 use Foxws\WireUse\Support\Discover\ComponentScout;
 use Foxws\WireUse\Support\Discover\LivewireScout;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Stringable;
 use Livewire\Livewire;
 use Spatie\StructureDiscoverer\Data\DiscoveredClass;
 
 class WireUse
 {
+    public static function routes(): void
+    {
+        Route::name('auth.')->group(function () {
+            Route::get('/login', LoginController::class)->middleware('guest')->name('login');
+            Route::get('/register', RegisterController::class)->middleware('guest')->name('register');
+            Route::post('/logout', LogoutController::class)->name('logout');
+        });
+    }
+
     public static function registerComponents(
         string $path,
         string $namespace = 'App\\',

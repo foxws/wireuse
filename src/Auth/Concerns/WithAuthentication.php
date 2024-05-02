@@ -25,4 +25,14 @@ trait WithAuthentication
     {
         return static::getAuthUser()?->getRouteKey();
     }
+
+    protected static function can(string $ability, mixed $arguments = []): bool
+    {
+        return static::getAuthUser()->can($ability, $arguments);
+    }
+
+    protected static function cannot(string $ability, mixed $arguments = []): bool
+    {
+        return static::getAuthUser()->cannot($ability, $arguments);
+    }
 }

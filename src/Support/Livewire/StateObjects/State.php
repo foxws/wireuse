@@ -2,7 +2,7 @@
 
 namespace Foxws\WireUse\Support\Livewire\StateObjects;
 
-use Foxws\WireUse\Auth\Concerns\WithAuthorization;
+use Foxws\WireUse\Support\Concerns\WithHooks;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
@@ -10,7 +10,7 @@ use Livewire\Drawer\Utils;
 
 class State implements Arrayable
 {
-    use WithAuthorization;
+    use WithHooks;
 
     public function __construct(
         protected Component $component,

@@ -3,6 +3,7 @@
 namespace Foxws\WireUse;
 
 use Foxws\WireUse\Support\Blade\Bladeable;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\View\ComponentAttributeBag;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -15,6 +16,7 @@ class WireUseServiceProvider extends PackageServiceProvider
         $package
             ->name('wireuse')
             ->hasConfigFile()
+            ->hasViews()
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publishConfigFile();
@@ -30,13 +32,16 @@ class WireUseServiceProvider extends PackageServiceProvider
     {
         $this
             ->registerFeatures()
-            ->registerBladeMacros();
+            ->registerBladeMacros()
+            ->registerAnonymousComponent()
+            ->registerComponents()
+            ->registerLivewire();
     }
 
     protected function registerFeatures(): static
     {
         foreach ([
-            \Foxws\WireUse\Support\Livewire\ModelStateObjects\SupportModelStateObjects::class,
+            \Foxws\WireUse\Support\Livewire\ActionObjects\SupportActionObjects::class,
             \Foxws\WireUse\Support\Livewire\StateObjects\SupportStateObjects::class,
         ] as $feature) {
             app('livewire')->componentHook($feature);
@@ -54,7 +59,7 @@ class WireUseServiceProvider extends PackageServiceProvider
         ComponentAttributeBag::macro('cssClass', function (array $values = []): ComponentAttributeBag {
             /** @var ComponentAttributeBag $this */
             foreach ($values as $key => $value) {
-                $key = app(Bladeable::class)->cssClassKey($key)->first();
+                $key = app(Bladeable::class)::classKeys($key)->first();
 
                 if (! $this->has($key)) {
                     $this->offsetSet($key, $value);
@@ -66,69 +71,113 @@ class WireUseServiceProvider extends PackageServiceProvider
 
         ComponentAttributeBag::macro('classMerge', function (?array $values = null): ComponentAttributeBag {
             /** @var ComponentAttributeBag $this */
-            $values ??= str($this->whereStartsWith('class:'))->matchAll('/class:(.*?)\=/s');
-
-            $classList = collect($values)
-                ->map(function (mixed $value, int|string $key) {
-                    if (is_bool($value) && $value === false) {
-                        return;
-                    }
-
-                    $key = app(Bladeable::class)->cssClassKey(
-                        is_numeric($key) ? $value : $key
-                    );
-
-                    return $this->get($key->first(), '');
-                })
+            $classes = app(Bladeable::class)::classMerged($this, $values)
                 ->merge($this->get('class'))
                 ->join(' ');
 
-            $this->offsetSet('class', $classList);
+            $this->offsetSet('class', $classes);
 
             return $this
-                ->classSort()
-                ->classWithout();
+                ->sortClass()
+                ->withoutClass();
         });
 
-        ComponentAttributeBag::macro('classFor', function (string $key, ?string $default = null): ComponentAttributeBag {
+        ComponentAttributeBag::macro('sortClass', function (): ComponentAttributeBag {
             /** @var ComponentAttributeBag $this */
-            $value = $this->get(app(Bladeable::class)->cssClassKey($key)->first(), $default ?? '');
-
-            $this->offsetSet('class', $value);
-
-            return $this
-                ->classSort()
-                ->classWithout();
-        });
-
-        ComponentAttributeBag::macro('classAny', function (...$keys): ComponentAttributeBag {
-            /** @var ComponentAttributeBag $this */
-            $value = $this->only(app(Bladeable::class)->cssClassKey($keys));
-
-            $this->offsetSet('class', $value->join(' '));
-
-            return $this
-                ->classSort()
-                ->classWithout();
-        });
-
-        ComponentAttributeBag::macro('classSort', function (): ComponentAttributeBag {
-            /** @var ComponentAttributeBag $this */
-            $classList = app(Bladeable::class)->classSort(
+            $value = app(Bladeable::class)->sortClass(
                 $this->get('class', '')
             );
 
-            $this->offsetSet('class', $classList);
+            $this->offsetSet('class', $value);
 
             return $this;
         });
 
-        ComponentAttributeBag::macro('classWithout', function (): ComponentAttributeBag {
+        ComponentAttributeBag::macro('withoutClass', function (): ComponentAttributeBag {
             /** @var ComponentAttributeBag $this */
 
             return $this
                 ->whereDoesntStartWith('class:');
         });
+
+        ComponentAttributeBag::macro('withoutWireModel', function (): ComponentAttributeBag {
+            /** @var ComponentAttributeBag $this */
+
+            return $this
+                ->whereDoesntStartWith('wire:model');
+        });
+
+        ComponentAttributeBag::macro('mergeAttributes', function (array $values = []): ComponentAttributeBag {
+            /** @var ComponentAttributeBag $this */
+            foreach ($values as $key => $value) {
+                $this->offsetSet($key, $value);
+            }
+
+            return $this;
+        });
+
+        ComponentAttributeBag::macro('classFor', function (string $key, string $default = ''): string {
+            /** @var ComponentAttributeBag $this */
+            $class = app(Bladeable::class)::classKeys($key)->first();
+
+            return $this->get($class, $default);
+        });
+
+        ComponentAttributeBag::macro('wireModel', function (): mixed {
+            /** @var ComponentAttributeBag $this */
+
+            return $this->whereStartsWith('wire:model')->first();
+        });
+
+        ComponentAttributeBag::macro('wireKey', function (): mixed {
+            /** @var ComponentAttributeBag $this */
+
+            return $this->wireModel() ?: $this->first('id');
+        });
+
+        return $this;
+    }
+
+    protected function registerAnonymousComponent(): static
+    {
+        if (config('wireuse.register_components') === false) {
+            return $this;
+        }
+
+        Blade::anonymousComponentPath(
+            path: __DIR__.'/resources/views/components',
+            prefix: 'wireuse'
+        );
+
+        return $this;
+    }
+
+    protected function registerComponents(): static
+    {
+        if (config('wireuse.register_components') === false) {
+            return $this;
+        }
+
+        WireUse::registerComponents(
+            path: __DIR__,
+            namespace: 'Foxws\\WireUse\\',
+            prefix: config('wireuse.view_prefix'),
+        );
+
+        return $this;
+    }
+
+    protected function registerLivewire(): static
+    {
+        if (config('wireuse.register_components') === false) {
+            return $this;
+        }
+
+        WireUse::registerLivewireComponents(
+            path: __DIR__,
+            namespace: 'Foxws\\WireUse\\',
+            prefix: config('wireuse.view_prefix'),
+        );
 
         return $this;
     }

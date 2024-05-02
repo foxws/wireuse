@@ -14,7 +14,7 @@ trait WithLivewire
 
     public function wireModel(): ?string
     {
-        return $this->attributes->whereStartsWith('wire:model')->first();
+        return $this->attributes->wireModel();
     }
 
     public function uuid(): UuidInterface|string
