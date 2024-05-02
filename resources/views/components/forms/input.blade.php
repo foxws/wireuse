@@ -7,7 +7,7 @@
 
 <div {{ $attributes
     ->cssClass([
-        'layer' => 'flex flex-col gap-1.5',
+        'layer' => 'flex flex-col gap-1.5 w-full',
         'input' => 'p-3 h-10 w-full text-base bg-secondary-800/90 border-secondary-500/50 focus:border-secondary-500 focus:border-2 focus:ring-0',
         'label' => 'flex items-center',
         'error' => '!border-red-500',

@@ -57,7 +57,7 @@ class Action extends Component
         return $this;
     }
 
-    public function addIf(mixed $condition, string $name, ?Closure $callback = null, ?array $attributes = null): self
+    public function addIf(string $name, mixed $condition = false, ?Closure $callback = null, ?array $attributes = null): self
     {
         if (value($condition)) {
             $this->add($name, $callback, $attributes);
