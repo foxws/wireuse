@@ -7,3 +7,4 @@ Because there are many breaking changes an upgrade is not that easy. There are m
 - It now includes a basic set of components. It can optionally be disabled in `config/wireuse.php`.
 - The `classFor` behavior has been changed. You now need to specify the class attribute: `<label class="{{ $attributes->classFor('label') }}" />`.
 - The `spatie/laravel-model-states` package is now not registered by default. You now need to register `ModelStateObjectSynth::class` manually in a `Service Provider`.
+- The `CreateForm` and `UpdateForm` classes have been removed.
