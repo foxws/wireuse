@@ -26,20 +26,22 @@
         {{ $label }}
     </label>
 
-    {{ $prepend }}
+    <div class="flex flex-row flex-nowrap gap-3 items-center">
+        {{ $prepend }}
 
-    <input {{ $attributes
-        ->classMerge([
-            'input',
-            'error' => $errors->has($attributes->wireModel()),
-        ])
-        ->merge([
-            ...['id' => $attributes->wireKey(), 'type' => 'text'],
-            ...$attributes->whereStartsWith('wire:model')
-        ])
-    }} />
+        <input {{ $attributes
+            ->classMerge([
+                'input',
+                'error' => $errors->has($attributes->wireModel()),
+            ])
+            ->merge([
+                ...['id' => $attributes->wireKey(), 'type' => 'text'],
+                ...$attributes->whereStartsWith('wire:model')
+            ])
+        }} />
 
-    {{ $append }}
+        {{ $append }}
+    </div>
 
     @if ($hint)
         <p class="{{ $attributes->classFor('hint') }}">{{ $hint }}</p>
