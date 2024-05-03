@@ -2,8 +2,6 @@
 
 namespace Foxws\WireUse\Forms\Concerns;
 
-use Foxws\WireUse\Views\Concerns\WithHash;
-
 trait WithSession
 {
     protected static bool $store = false;
