@@ -145,7 +145,7 @@ class WireUseServiceProvider extends PackageServiceProvider
         }
 
         Blade::anonymousComponentPath(
-            path: __DIR__.'/resources/views/components',
+            path: __DIR__.'/../resources/views/components',
             prefix: 'wireuse'
         );
 
