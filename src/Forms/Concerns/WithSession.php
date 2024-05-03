@@ -6,8 +6,6 @@ use Foxws\WireUse\Views\Concerns\WithHash;
 
 trait WithSession
 {
-    use WithHash;
-
     protected static bool $store = false;
 
     public function restore(): void

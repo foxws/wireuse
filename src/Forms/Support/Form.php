@@ -8,6 +8,7 @@ use Foxws\WireUse\Forms\Concerns\WithSession;
 use Foxws\WireUse\Forms\Concerns\WithThrottle;
 use Foxws\WireUse\Forms\Concerns\WithValidation;
 use Foxws\WireUse\Support\Concerns\WithHooks;
+use Foxws\WireUse\Views\Concerns\WithHash;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Fluent;
 use Livewire\Form as BaseForm;
@@ -15,6 +16,7 @@ use Livewire\Form as BaseForm;
 abstract class Form extends BaseForm
 {
     use WithAuthorization;
+    use WithHash;
     use WithHooks;
     use WithSession;
     use WithThrottle;

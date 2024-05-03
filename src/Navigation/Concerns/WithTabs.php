@@ -6,7 +6,7 @@ use Foxws\WireUse\Actions\Support\Action;
 
 trait WithTabs
 {
-    protected function currentTab(): mixed
+    protected function currentTab(): ?Action
     {
         $key = $this->getPropertyValue(
             $this->getTabPath()
