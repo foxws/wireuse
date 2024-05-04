@@ -1,7 +1,7 @@
 <a {{ $attributes
     ->cssClass([
         'layer' => 'inline-flex shrink-0 cursor-pointer items-center justify-center',
-        'label' => 'text-sm',
+        'label' => 'text-inherit',
         'active' => 'text-primary-400 hover:text-primary-300',
         'inactive' => 'text-secondary-400 hover:text-primary-400',
     ])
