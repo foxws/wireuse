@@ -3,10 +3,10 @@
 namespace Foxws\WireUse\States\Concerns;
 
 use Foxws\WireUse\Support\Livewire\StateObjects\State;
-use Livewire\Attributes\Locked;
+use Livewire\Attributes\Reactive;
 
 trait WithState
 {
-    #[Locked]
+    #[Reactive]
     public State $state;
 }
