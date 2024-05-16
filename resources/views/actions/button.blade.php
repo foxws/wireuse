@@ -10,6 +10,7 @@
         'primary' => $attributes->get('type') === 'submit',
     ])
     ->merge([
+        'type' => 'button',
         'aria-label' => $label(),
     ])
 }}>
