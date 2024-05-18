@@ -3,6 +3,8 @@
     'append' => null,
     'label' => null,
     'hint' => null,
+    'placeholder' => null,
+    'options' => null,
 ])
 
 <div {{ $attributes
@@ -31,7 +33,7 @@
     <div class="flex flex-row flex-nowrap gap-3 items-center">
         {{ $prepend }}
 
-        <input {{ $attributes
+        <select {{ $attributes
             ->classMerge([
                 'input',
                 'error' => $errors->has($attributes->wireModel()),
@@ -40,7 +42,15 @@
                 ...['id' => $attributes->wireKey(), 'type' => 'text'],
                 ...$attributes->whereStartsWith('wire:model')
             ])
-        }} />
+        }}>
+            @if ($placeholder)
+                <option value="">{{ $placeholder }}</option>
+            @endif
+
+            @foreach ($options as $option)
+                <option value="{{ $option->value }}">{{ $option->name }}</option>
+            @endforeach
+        </select>
 
         {{ $append }}
     </div>
