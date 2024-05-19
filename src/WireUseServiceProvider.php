@@ -57,10 +57,10 @@ class WireUseServiceProvider extends PackageServiceProvider
         }
 
         ComponentAttributeBag::macro('cssClass', function (array $values = []): mixed {
-            /** @var ComponentAttributeBag $this */
             foreach ($values as $key => $value) {
                 $key = app(Bladeable::class)::classKeys($key)->first();
 
+                /** @var ComponentAttributeBag $this */
                 if (! $this->has($key)) {
                     $this->offsetSet($key, $value);
                 }
@@ -83,21 +83,19 @@ class WireUseServiceProvider extends PackageServiceProvider
 
         ComponentAttributeBag::macro('withoutClass', function (): mixed {
             /** @var ComponentAttributeBag $this */
-
             return $this
                 ->whereDoesntStartWith('class:');
         });
 
         ComponentAttributeBag::macro('withoutWireModel', function (): mixed {
             /** @var ComponentAttributeBag $this */
-
             return $this
                 ->whereDoesntStartWith('wire:model');
         });
 
         ComponentAttributeBag::macro('mergeAttributes', function (array $values = []): mixed {
-            /** @var ComponentAttributeBag $this */
             foreach ($values as $key => $value) {
+                /** @var ComponentAttributeBag $this */
                 $this->offsetSet($key, $value);
             }
 
@@ -113,13 +111,11 @@ class WireUseServiceProvider extends PackageServiceProvider
 
         ComponentAttributeBag::macro('wireModel', function (): mixed {
             /** @var ComponentAttributeBag $this */
-
             return $this->whereStartsWith('wire:model')->first();
         });
 
         ComponentAttributeBag::macro('wireKey', function (): mixed {
             /** @var ComponentAttributeBag $this */
-
             return $this->wireModel() ?: $this->first('id');
         });
 

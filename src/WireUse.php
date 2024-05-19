@@ -2,7 +2,6 @@
 
 namespace Foxws\WireUse;
 
-use Closure;
 use Foxws\WireUse\Auth\Controllers\LoginController;
 use Foxws\WireUse\Auth\Controllers\LogoutController;
 use Foxws\WireUse\Auth\Controllers\RegisterController;
@@ -29,7 +28,6 @@ class WireUse
         string $path,
         string $namespace = 'App\\',
         string $prefix = '',
-        ?Closure $callback = null,
     ): void {
         $scout = ComponentScout::create()
             ->path($path)
@@ -37,10 +35,8 @@ class WireUse
             ->get();
 
         collect($scout)
-            ->each(function (DiscoveredClass $class) use ($namespace, $prefix, $callback) {
-                $name = $callback instanceof Closure
-                    ? $callback($class, $namespace)
-                    : static::componentName($class, $namespace, $prefix);
+            ->each(function (DiscoveredClass $class) use ($namespace, $prefix) {
+                $name = static::componentName($class, $namespace, $prefix);
 
                 Blade::component($class->getFcqn(), $name->value());
             });
@@ -50,7 +46,6 @@ class WireUse
         string $path,
         string $namespace = 'App\\',
         string $prefix = '',
-        ?Closure $callback = null,
     ): void {
         $scout = LivewireScout::create()
             ->path($path)
@@ -58,10 +53,8 @@ class WireUse
             ->get();
 
         collect($scout)
-            ->each(function (DiscoveredClass $class) use ($namespace, $prefix, $callback) {
-                $name = $callback instanceof Closure
-                    ? $callback($class, $namespace)
-                    : static::componentName($class, $namespace, $prefix);
+            ->each(function (DiscoveredClass $class) use ($namespace, $prefix) {
+                $name = static::componentName($class, $namespace, $prefix);
 
                 Livewire::component($name->value(), $class->getFcqn());
             });
