@@ -56,7 +56,7 @@ class WireUseServiceProvider extends PackageServiceProvider
             return $this;
         }
 
-        ComponentAttributeBag::macro('cssClass', function (array $values = []): ComponentAttributeBag {
+        ComponentAttributeBag::macro('cssClass', function (array $values = []): mixed {
             /** @var ComponentAttributeBag $this */
             foreach ($values as $key => $value) {
                 $key = app(Bladeable::class)::classKeys($key)->first();
@@ -69,7 +69,7 @@ class WireUseServiceProvider extends PackageServiceProvider
             return $this;
         });
 
-        ComponentAttributeBag::macro('classMerge', function (?array $values = null): ComponentAttributeBag {
+        ComponentAttributeBag::macro('classMerge', function (?array $values = null): mixed {
             /** @var ComponentAttributeBag $this */
             $classes = app(Bladeable::class)::classMerged($this, $values)
                 ->merge($this->get('class'))
@@ -82,7 +82,7 @@ class WireUseServiceProvider extends PackageServiceProvider
                 ->withoutClass();
         });
 
-        ComponentAttributeBag::macro('sortClass', function (): ComponentAttributeBag {
+        ComponentAttributeBag::macro('sortClass', function (): mixed {
             /** @var ComponentAttributeBag $this */
             $value = app(Bladeable::class)->sortClass(
                 $this->get('class', '')
@@ -93,21 +93,21 @@ class WireUseServiceProvider extends PackageServiceProvider
             return $this;
         });
 
-        ComponentAttributeBag::macro('withoutClass', function (): ComponentAttributeBag {
+        ComponentAttributeBag::macro('withoutClass', function (): mixed {
             /** @var ComponentAttributeBag $this */
 
             return $this
                 ->whereDoesntStartWith('class:');
         });
 
-        ComponentAttributeBag::macro('withoutWireModel', function (): ComponentAttributeBag {
+        ComponentAttributeBag::macro('withoutWireModel', function (): mixed {
             /** @var ComponentAttributeBag $this */
 
             return $this
                 ->whereDoesntStartWith('wire:model');
         });
 
-        ComponentAttributeBag::macro('mergeAttributes', function (array $values = []): ComponentAttributeBag {
+        ComponentAttributeBag::macro('mergeAttributes', function (array $values = []): mixed {
             /** @var ComponentAttributeBag $this */
             foreach ($values as $key => $value) {
                 $this->offsetSet($key, $value);
@@ -116,7 +116,7 @@ class WireUseServiceProvider extends PackageServiceProvider
             return $this;
         });
 
-        ComponentAttributeBag::macro('classFor', function (string $key, string $default = ''): string {
+        ComponentAttributeBag::macro('classFor', function (string $key, string $default = ''): mixed {
             /** @var ComponentAttributeBag $this */
             $class = app(Bladeable::class)::classKeys($key)->first();
 
