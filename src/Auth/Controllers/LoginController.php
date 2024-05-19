@@ -16,7 +16,7 @@ class LoginController extends Page
     public function boot(): void
     {
         if (static::isAuthenticated()) {
-            redirect()->intended();
+            $this->redirectIntended();
         }
     }
 
@@ -37,7 +37,7 @@ class LoginController extends Page
     {
         $this->form->submit();
 
-        redirect()->intended();
+        $this->redirectIntended();
     }
 
     protected function actions(): array

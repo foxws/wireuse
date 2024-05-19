@@ -15,7 +15,7 @@ class RegisterController extends Page
     public function boot(): void
     {
         if (static::isAuthenticated()) {
-            redirect()->intended();
+            $this->redirectIntended();
         }
     }
 
@@ -34,6 +34,6 @@ class RegisterController extends Page
     {
         $this->form->submit();
 
-        redirect()->to('/');
+        $this->redirect('/');
     }
 }

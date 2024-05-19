@@ -5,7 +5,6 @@ namespace Foxws\WireUse\Auth\Controllers;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
-use Livewire\Features\SupportRedirects\Redirector;
 
 #[Layout('components.layouts.auth')]
 class LogoutController extends Page
@@ -23,7 +22,7 @@ class LogoutController extends Page
         return view('wireuse::auth.logout');
     }
 
-    public function submit(): Redirector
+    public function submit(): void
     {
         auth()->logout();
 
@@ -31,6 +30,6 @@ class LogoutController extends Page
 
         request()->session()->regenerateToken();
 
-        return redirect('/');
+        $this->redirect('/');
     }
 }
