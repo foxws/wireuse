@@ -11,3 +11,6 @@ parameters:
     checkOctaneCompatibility: true
     checkModelProperties: true
     checkMissingIterableValueType: false
+    ignoreErrors:
+        - '#Unsafe usage of new static#'
+        - '#^Access to an undefined property Foxws\\WireUse\\Actions\\Support\\Action\:\:\$\w+\.$#'

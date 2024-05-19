@@ -78,19 +78,7 @@ class WireUseServiceProvider extends PackageServiceProvider
             $this->offsetSet('class', $classes);
 
             return $this
-                ->sortClass()
                 ->withoutClass();
-        });
-
-        ComponentAttributeBag::macro('sortClass', function (): mixed {
-            /** @var ComponentAttributeBag $this */
-            $value = app(Bladeable::class)->sortClass(
-                $this->get('class', '')
-            );
-
-            $this->offsetSet('class', $value);
-
-            return $this;
         });
 
         ComponentAttributeBag::macro('withoutClass', function (): mixed {
