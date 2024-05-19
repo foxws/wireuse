@@ -14,7 +14,7 @@ trait WithSession
 
         rescue(
             fn () => $this->fill($this->getStore()) && $this->validate(),
-            fn () => $this->resetStore(),
+            fn () => $this->forget(),
         );
     }
 
