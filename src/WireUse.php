@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Stringable;
 use Livewire\Livewire;
-use Spatie\StructureDiscoverer\Data\DiscoveredClass;
+use Spatie\StructureDiscoverer\Data\DiscoveredStructure;
 
 class WireUse
 {
@@ -35,7 +35,7 @@ class WireUse
             ->get();
 
         collect($scout)
-            ->each(function (DiscoveredClass $class) use ($namespace, $prefix) {
+            ->each(function (DiscoveredStructure $class) use ($namespace, $prefix) {
                 $name = static::componentName($class, $namespace, $prefix);
 
                 Blade::component($class->getFcqn(), $name->value());
@@ -53,14 +53,14 @@ class WireUse
             ->get();
 
         collect($scout)
-            ->each(function (DiscoveredClass $class) use ($namespace, $prefix) {
+            ->each(function (DiscoveredStructure $class) use ($namespace, $prefix) {
                 $name = static::componentName($class, $namespace, $prefix);
 
                 Livewire::component($name->value(), $class->getFcqn());
             });
     }
 
-    public static function componentName(DiscoveredClass $class, string $namespace, string $prefix): Stringable
+    public static function componentName(DiscoveredStructure $class, string $namespace, string $prefix): Stringable
     {
         return str($class->name)
             ->kebab()
@@ -77,7 +77,7 @@ class WireUse
             ->finish('::');
     }
 
-    public static function componentNamespace(DiscoveredClass $class, string $namespace): Stringable
+    public static function componentNamespace(DiscoveredStructure $class, string $namespace): Stringable
     {
         return str($class->namespace)
             ->after($namespace)
