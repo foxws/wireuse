@@ -116,7 +116,7 @@ class WireUseServiceProvider extends PackageServiceProvider
 
         ComponentAttributeBag::macro('wireKey', function (): mixed {
             /** @var ComponentAttributeBag $this */
-            return $this->wireModel() ?: $this->first('id');
+            return $this->wireModel() ?: $this->first('id') ?: $this->first('name');
         });
 
         return $this;
