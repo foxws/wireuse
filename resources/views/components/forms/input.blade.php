@@ -34,7 +34,7 @@
         <input {{ $attributes
             ->classMerge([
                 'input',
-                'error' => $errors->has($attributes->wireModel()),
+                'error' => $errors->has($attributes->wireKey()),
             ])
             ->merge([
                 ...['id' => $attributes->wireKey(), 'type' => 'text'],
