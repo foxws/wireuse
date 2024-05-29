@@ -4,6 +4,7 @@
         'label' => 'text-inherit',
         'active' => 'text-primary-400 hover:text-primary-300',
         'inactive' => 'text-secondary-400 hover:text-primary-400',
+        'icon' => 'size-6 text-secondary-400',
     ])
     ->mergeAttributes($action->getComponentAttributes())
     ->classMerge([
@@ -18,7 +19,10 @@
     ])
 }}>
     @if ($slot->isEmpty())
-        <x-wireuse::actions-icon :$action />
+        <x-wireuse::actions-icon
+            :$action
+            class:icon="{{ $attributes->classFor('icon') }}"
+        />
 
         <span class="{{ $attributes->classFor('label') }}">
             {{ $label() }}
