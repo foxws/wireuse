@@ -15,4 +15,9 @@ trait HasLabel
     {
         return $this->value('label');
     }
+
+    public function hasLabel(): bool
+    {
+        return $this->offsetExists('label');
+    }
 }

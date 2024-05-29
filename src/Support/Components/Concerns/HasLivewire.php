@@ -25,6 +25,11 @@ trait HasLivewire
         return $this->value('wireModel');
     }
 
+    public function hasWireModel(): bool
+    {
+        return $this->offsetExists('wireModel');
+    }
+
     public function getWireModifier(): ?string
     {
         return $this->value('wireModifier');

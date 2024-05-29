@@ -23,6 +23,11 @@ trait HasComponent
         return $this->value('component');
     }
 
+    public function hasComponent(): bool
+    {
+        return $this->offsetExists('component');
+    }
+
     public function getComponentAttributes(): array
     {
         return $this->value('componentAttributes', []);

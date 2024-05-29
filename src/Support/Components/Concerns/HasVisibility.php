@@ -23,6 +23,11 @@ trait HasVisibility
         return $this->value('visible');
     }
 
+    public function hasVisible(): bool
+    {
+        return $this->offsetExists('visible');
+    }
+
     public function getHidden(): ?bool
     {
         return $this->value('hidden');

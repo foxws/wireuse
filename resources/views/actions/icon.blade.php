@@ -7,7 +7,7 @@
         'layer',
     ])
 }}>
-    @if ($iconName() && filled($action->getState()))
+    @if ($iconName() && $action->hasState())
         <x-icon
             x-cloak
             x-show="! {{ $action->getState() }}"

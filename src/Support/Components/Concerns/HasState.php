@@ -23,6 +23,11 @@ trait HasState
         return $this->value('state');
     }
 
+    public function hasState(): bool
+    {
+        return $this->offsetExists('state');
+    }
+
     public function getDefault(): mixed
     {
         return $this->value('default');

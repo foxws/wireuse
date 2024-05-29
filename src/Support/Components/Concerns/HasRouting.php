@@ -30,6 +30,11 @@ trait HasRouting
         );
     }
 
+    public function hasRoute(): bool
+    {
+        return $this->offsetExists('route');
+    }
+
     public function getRouteName(): ?string
     {
         return $this->value('route');

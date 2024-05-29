@@ -15,4 +15,9 @@ trait HasName
     {
         return $this->value('name');
     }
+
+    public function hasName(): bool
+    {
+        return $this->offsetExists('name');
+    }
 }

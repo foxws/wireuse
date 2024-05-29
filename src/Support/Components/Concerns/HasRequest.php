@@ -16,6 +16,11 @@ trait HasRequest
         return $this->value('url');
     }
 
+    public function hasUrl(): bool
+    {
+        return $this->offsetExists('url');
+    }
+
     public function isAppUrl(): bool
     {
         $url = str($this->value('url', ''))->trim();
