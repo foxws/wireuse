@@ -5,7 +5,19 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/foxws/wireuse/fix-php-code-style-issues.yml?branch=3.x&label=code%20style&style=flat-square)](https://github.com/foxws/wireuse/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3A3.x)
 [![Total Downloads](https://img.shields.io/packagist/dt/foxws/wireuse.svg?style=flat-square)](https://packagist.org/packages/foxws/wireuse)
 
-Collection of essential Livewire Utilities.
+This packages offers a collection of useful [Livewire](https://livewire.laravel.com/) utilities and components. :)
+
+It is made to assemble your Livewire and Blade components yourself, rather than extending from an existing framework or baseset.
+
+It shares the same idea as [VueUse](https://vueuse.org/), but for Laravel Livewire.
+
+If you have a suggestion, idea or feedback, please feel free to send a PR or create a discussion. :)
+
+## Documentation
+
+You will find full documentation on the dedicated [documentation](https://foxws.nl/projects/wireuse) site.
+
+> NOTE: The documentation is far from complete, see [discussion](https://github.com/foxws/wireuse/discussions/3) for progress and ideas.
 
 ## Installation
 
@@ -21,11 +33,11 @@ You can publish the config file with:
 php artisan vendor:publish --tag="wireuse-config"
 ```
 
-## Documentation
+Optionally, you can publish the views using:
 
-You will find full documentation on the dedicated [documentation](https://foxws.nl/projects/wireuse) site.
-
-> NOTE: The documentation is far from complete, see [this discussion](https://github.com/foxws/wireuse/discussions/3) for progress.
+```bash
+php artisan vendor:publish --tag="wireuse-views"
+```
 
 ## Testing
 
