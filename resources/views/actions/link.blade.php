@@ -2,6 +2,7 @@
     ->cssClass([
         'layer' => 'inline-flex shrink-0 cursor-pointer items-center justify-center',
         'label' => 'text-inherit',
+        'button' => 'py-1.5 px-3 gap-1 border border-primary-500 no-underline',
         'active' => 'text-primary-400 hover:text-primary-300',
         'inactive' => 'text-secondary-400 hover:text-primary-400',
         'icon' => 'size-6 text-secondary-400',
@@ -9,6 +10,7 @@
     ->mergeAttributes($action->getComponentAttributes())
     ->classMerge([
         'layer',
+        'button' => $isButton(),
         'active' => $isCurrent(),
         'inactive' => ! $isCurrent(),
     ])

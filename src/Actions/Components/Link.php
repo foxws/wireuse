@@ -12,6 +12,7 @@ class Link extends Component
     public function __construct(
         public Action $action,
         public ?string $active = null,
+        public ?bool $button = null,
     ) {}
 
     public function render(): View|Closure|string
@@ -45,5 +46,10 @@ class Link extends Component
         }
 
         return $this->action->routeIs() || $this->action->fullUrlIs();
+    }
+
+    public function isButton(): bool
+    {
+        return boolval($this->button);
     }
 }
