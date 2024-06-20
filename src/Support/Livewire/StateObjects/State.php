@@ -15,8 +15,7 @@ class State implements Arrayable
     public function __construct(
         protected Component $component,
         protected $propertyName,
-    ) {
-    }
+    ) {}
 
     public function getComponent()
     {

@@ -12,8 +12,7 @@ class Icon extends Component
     public function __construct(
         public Action $action,
         public ?string $active = null,
-    ) {
-    }
+    ) {}
 
     public function render(): View|Closure|string
     {
