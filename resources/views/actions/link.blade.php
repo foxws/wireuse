@@ -24,9 +24,11 @@
             class:icon="{{ $attributes->classFor('icon') }}"
         />
 
-        <span class="{{ $attributes->classFor('label') }}">
-            {{ $label() }}
-        </span>
+        @if ($action->hasLabel())
+            <span class="{{ $attributes->classFor('label') }}">
+                {{ $label() }}
+            </span>
+        @endif
     @else
         {{ $slot }}
     @endif

@@ -1,3 +1,4 @@
+import colors from 'tailwindcss/colors';
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 
@@ -7,6 +8,9 @@ export default {
   plugins: [forms, typography],
   theme: {
     extend: {
+      colors: {
+        primary: colors.slate,
+      },
       container: {
         center: true,
         padding: '2rem',
