@@ -21,10 +21,12 @@
     ])
 }}>
     @if ($slot->isEmpty())
-        <x-wireuse::actions-icon
-            :$action
-            class:icon="{{ $attributes->classFor('icon') }}"
-        />
+        @if ($action->hasIcon())
+            <x-wireuse::actions-icon
+                :$action
+                class:icon="{{ $attributes->classFor('icon') }}"
+            />
+        @endif
 
         @if ($action->hasLabel())
             <span class="{{ $attributes->classFor('label') }}">
