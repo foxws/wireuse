@@ -8,10 +8,10 @@ class LinkElementMixin
 {
     public function route(): mixed
     {
-        return function (string $route, mixed $parameters = null, bool $absolute = true) {
+        return function (string $route, ...$parameters) {
             /** @var A $this */
 
-            return $this->href(route($route, $parameters, $absolute));
+            return $this->href(route($route, ...$parameters));
         };
     }
 }
