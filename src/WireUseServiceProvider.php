@@ -3,8 +3,8 @@
 namespace Foxws\WireUse;
 
 use Foxws\WireUse\Support\Blade\Bladeable;
-use Foxws\WireUse\Support\Html\Mixins\BaseElementMixin;
 use Foxws\WireUse\Support\Html\HtmlExtended;
+use Foxws\WireUse\Support\Html\Mixins\BaseElementMixin;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\ComponentAttributeBag;
 use Spatie\Html\BaseElement;

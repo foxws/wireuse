@@ -10,8 +10,7 @@ class Container extends Component
 {
     public function __construct(
         public bool $fluid = false,
-    ) {
-    }
+    ) {}
 
     public function render(): View|Closure|string
     {

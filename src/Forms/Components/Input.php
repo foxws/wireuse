@@ -14,8 +14,7 @@ class Input extends Component
         public ?Html $append = null,
         public ?Html $label = null,
         public ?Html $hint = null,
-    ) {
-    }
+    ) {}
 
     public function render(): View|Closure|string
     {

@@ -31,7 +31,6 @@ class BaseElementMixin
     {
         return function (string $key, ?string $modifiers = null) {
             /** @var BaseElement $this */
-
             $directive = str('wire:model')
                 ->when($modifiers, fn (Stringable $str) => $str->append(".{$modifiers}"))
                 ->squish();
