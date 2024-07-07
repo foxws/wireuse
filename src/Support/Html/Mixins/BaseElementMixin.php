@@ -9,7 +9,8 @@ class BaseElementMixin
 {
     public function wireKey(): mixed
     {
-        return function (?string $value = null) {
+        return function (?string $value = null): BaseElement
+        {
             /** @var BaseElement $this */
 
             return $this->attribute('wire:key', $value);
@@ -18,7 +19,8 @@ class BaseElementMixin
 
     public function wireIgnore(): mixed
     {
-        return function (?bool $self = false) {
+        return function (?bool $self = false): BaseElement
+        {
             /** @var BaseElement $this */
 
             return $self
@@ -29,7 +31,8 @@ class BaseElementMixin
 
     public function wireNavigate(): mixed
     {
-        return function () {
+        return function (): BaseElement
+        {
             /** @var BaseElement $this */
 
             return $this->attribute('wire:navigate');
@@ -38,7 +41,8 @@ class BaseElementMixin
 
     public function wireSubmit(): mixed
     {
-        return function (?string $action = null) {
+        return function (?string $action = null): BaseElement
+        {
             /** @var BaseElement $this */
 
             return $this->attribute('wire:submit', $action);
@@ -47,8 +51,10 @@ class BaseElementMixin
 
     public function wireModel(): mixed
     {
-        return function (string $key, ?string $modifiers = null) {
+        return function (string $key, ?string $modifiers = null): BaseElement
+        {
             /** @var BaseElement $this */
+
             $directive = str('wire:model')
                 ->when($modifiers, fn (Stringable $str) => $str->append(".{$modifiers}"))
                 ->squish();

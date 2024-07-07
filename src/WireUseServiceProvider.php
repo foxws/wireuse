@@ -3,8 +3,8 @@
 namespace Foxws\WireUse;
 
 use Foxws\WireUse\Support\Blade\Bladeable;
-use Foxws\WireUse\Support\Html\HtmlExtended;
 use Foxws\WireUse\Support\Html\Mixins\BaseElementMixin;
+use Foxws\WireUse\Support\Html\Mixins\HtmlExtendedMixin;
 use Foxws\WireUse\Support\Html\Mixins\LinkElementMixin;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\ComponentAttributeBag;
@@ -175,8 +175,7 @@ class WireUseServiceProvider extends PackageServiceProvider
 
     protected function registerHtml(): static
     {
-        $this->app->singleton(Html::class, HtmlExtended::class);
-
+        Html::mixin(new HtmlExtendedMixin);
         BaseElement::mixin(new BaseElementMixin);
         A::mixin(new LinkElementMixin);
 
