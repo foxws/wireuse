@@ -5,9 +5,11 @@ namespace Foxws\WireUse;
 use Foxws\WireUse\Support\Blade\Bladeable;
 use Foxws\WireUse\Support\Html\HtmlExtended;
 use Foxws\WireUse\Support\Html\Mixins\BaseElementMixin;
+use Foxws\WireUse\Support\Html\HtmlExtended;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\ComponentAttributeBag;
 use Spatie\Html\BaseElement;
+use Spatie\Html\Elements\A;
 use Spatie\Html\Html;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -176,6 +178,7 @@ class WireUseServiceProvider extends PackageServiceProvider
         $this->app->singleton(Html::class, HtmlExtended::class);
 
         BaseElement::mixin(new BaseElementMixin);
+        A::mixin(new LinkElementMixin);
 
         return $this;
     }
