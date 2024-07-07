@@ -2,7 +2,9 @@
 
 namespace Foxws\WireUse\Support\Html;
 
+use Illuminate\Support\HtmlString;
 use Livewire\Form;
+use Spatie\Html\Attributes;
 use Spatie\Html\Elements\Element;
 use Spatie\Html\Html;
 
@@ -17,10 +19,13 @@ class HtmlExtended extends Html
         return $this;
     }
 
-    public function icon(string $name): Element
+    public function icon(string $name)
     {
-        return $this
-            ->element('x-icon')
-            ->attribute('name', $name);
+        return $this->div(svg($name, 'fill-white size-5 text-white'));
+
+        // return $this
+        //     ->element('svg')
+        //     ->attribute('name', $name)
+        //     ->toHtml();
     }
 }
