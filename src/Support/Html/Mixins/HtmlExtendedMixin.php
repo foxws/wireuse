@@ -11,8 +11,7 @@ class HtmlExtendedMixin
 
     public function wireForm(): mixed
     {
-        return function (?Form $value = null): static
-        {
+        return function (?Form $value = null): static {
             $this->form = $value;
 
             return $this;
@@ -21,8 +20,7 @@ class HtmlExtendedMixin
 
     public function icon(): mixed
     {
-        return function (string $name, ?string $class = null, ?array $attributes = []): Div
-        {
+        return function (string $name, ?string $class = null, ?array $attributes = []): Div {
             /** @var Div $this */
 
             return $this->div(svg($name, $class, $attributes));
