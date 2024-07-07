@@ -18,7 +18,7 @@ class BaseElementMixin
 
     public function wireIgnore(): mixed
     {
-        return function (?bool $self = null) {
+        return function (?bool $self = false) {
             /** @var BaseElement $this */
 
             return $self
@@ -41,7 +41,7 @@ class BaseElementMixin
         return function (?string $action = null) {
             /** @var BaseElement $this */
 
-            return $this->attributeIfNotNull($action, 'wire:submit', $action);
+            return $this->attribute('wire:submit', $action);
         };
     }
 
