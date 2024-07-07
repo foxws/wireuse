@@ -2,9 +2,7 @@
 
 namespace Foxws\WireUse\Support\Html;
 
-use Illuminate\Support\HtmlString;
 use Livewire\Form;
-use Spatie\Html\Attributes;
 use Spatie\Html\Elements\Element;
 use Spatie\Html\Html;
 
