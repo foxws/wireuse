@@ -3,8 +3,12 @@
 namespace Foxws\WireUse;
 
 use Foxws\WireUse\Support\Blade\Bladeable;
+use Foxws\WireUse\Support\Html\Mixins\BaseElementMixin;
+use Foxws\WireUse\Support\Html\HtmlExtended;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\ComponentAttributeBag;
+use Spatie\Html\BaseElement;
+use Spatie\Html\Html;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -35,7 +39,8 @@ class WireUseServiceProvider extends PackageServiceProvider
             ->registerBladeMacros()
             ->registerAnonymousComponent()
             ->registerComponents()
-            ->registerLivewire();
+            ->registerLivewire()
+            ->registerHtml();
     }
 
     protected function registerFeatures(): static
@@ -162,6 +167,15 @@ class WireUseServiceProvider extends PackageServiceProvider
             namespace: 'Foxws\\WireUse\\',
             prefix: config('wireuse.view_prefix'),
         );
+
+        return $this;
+    }
+
+    protected function registerHtml(): static
+    {
+        $this->app->singleton(Html::class, HtmlExtended::class);
+
+        BaseElement::mixin(new BaseElementMixin);
 
         return $this;
     }
