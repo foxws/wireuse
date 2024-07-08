@@ -13,10 +13,11 @@ class LinkElementMixin
             $href = route($route, ...$parameters);
 
             return $this
+                ->navigate()
                 ->href($href)
                 ->class([
                     'link',
-                    'link-active' => request()->routeIs($route) || request()->fullUrlIs($href),
+                    'link-active' => request()->routeIs($route, "{$route}.*") || request()->fullUrlIs($href),
                 ]);
         };
     }

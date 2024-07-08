@@ -7,16 +7,16 @@ use Spatie\Html\BaseElement;
 
 class BaseElementMixin
 {
-    public function wireKey(): mixed
+    public function navigate(): mixed
     {
-        return function (?string $value = null): BaseElement {
+        return function (): BaseElement {
             /** @var BaseElement $this */
 
-            return $this->attribute('wire:key', $value);
+            return $this->attribute('wire:navigate');
         };
     }
 
-    public function wireIgnore(): mixed
+    public function ignore(): mixed
     {
         return function (?bool $self = false): BaseElement {
             /** @var BaseElement $this */
@@ -27,21 +27,21 @@ class BaseElementMixin
         };
     }
 
-    public function wireNavigate(): mixed
-    {
-        return function (): BaseElement {
-            /** @var BaseElement $this */
-
-            return $this->attribute('wire:navigate');
-        };
-    }
-
-    public function wireSubmit(): mixed
+    public function submit(): mixed
     {
         return function (?string $action = null): BaseElement {
             /** @var BaseElement $this */
 
             return $this->attribute('wire:submit', $action);
+        };
+    }
+
+    public function wireKey(): mixed
+    {
+        return function (?string $value = null): BaseElement {
+            /** @var BaseElement $this */
+
+            return $this->attribute('wire:key', $value);
         };
     }
 
