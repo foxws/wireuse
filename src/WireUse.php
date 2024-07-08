@@ -37,7 +37,6 @@ class WireUse
         collect($scout)
             ->each(function (DiscoveredStructure $class) use ($namespace, $prefix) {
                 $name = static::componentName($class, $namespace, $prefix);
-                logger($name);
 
                 Blade::component($class->getFcqn(), $name->value());
             });
