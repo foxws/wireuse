@@ -15,6 +15,7 @@ class LinkElementMixin
             return $this
                 ->href($href)
                 ->class([
+                    'link',
                     'link-active' => request()->routeIs($route) || request()->fullUrlIs($href),
                 ]);
         };
