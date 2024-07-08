@@ -10,7 +10,6 @@ class LinkElementMixin
     {
         return function (string $route, ...$parameters) {
             /** @var A $this */
-
             $href = route($route, ...$parameters);
 
             return $this
