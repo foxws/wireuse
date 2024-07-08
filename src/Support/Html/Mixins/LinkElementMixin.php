@@ -11,7 +11,13 @@ class LinkElementMixin
         return function (string $route, ...$parameters) {
             /** @var A $this */
 
-            return $this->href(route($route, ...$parameters));
+            $href = route($route, ...$parameters);
+
+            return $this
+                ->href($href)
+                ->class([
+                    'link-active' => request()->routeIs($route) || request()->fullUrlIs($href),
+                ]);
         };
     }
 }
