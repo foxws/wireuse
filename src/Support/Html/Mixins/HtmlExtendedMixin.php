@@ -4,7 +4,6 @@ namespace Foxws\WireUse\Support\Html\Mixins;
 
 use Foxws\WireUse\Support\Html\Elements\Icon;
 use Livewire\Form;
-use Spatie\Html\Elements\Div;
 
 class HtmlExtendedMixin
 {
@@ -12,8 +11,7 @@ class HtmlExtendedMixin
 
     public function wireForm(): mixed
     {
-        return function (?Form $value = null): static
-        {
+        return function (?Form $value = null): static {
             $this->form = $value;
 
             return $this;
@@ -22,8 +20,7 @@ class HtmlExtendedMixin
 
     public function icon()
     {
-        return function (): Icon
-        {
+        return function (): Icon {
             return Icon::create();
         };
     }
