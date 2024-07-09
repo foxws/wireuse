@@ -62,9 +62,11 @@ abstract class Form extends BaseForm
         return parent::fill($values);
     }
 
-    public function get(string $property, mixed $default = null): mixed
+    public function get(string $key, mixed $default = null): mixed
     {
-        return $this->getPropertyValue($property) ?: $default;
+        $validated = $this->validate();
+
+        return $validated[$key] ?: $default;
     }
 
     public function has(...$properties): bool
