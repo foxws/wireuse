@@ -7,7 +7,6 @@ use Foxws\WireUse\Support\Html\Mixins\BaseElementMixin;
 use Foxws\WireUse\Support\Html\Mixins\HtmlExtendedMixin;
 use Foxws\WireUse\Support\Html\Mixins\ImgElementMixin;
 use Foxws\WireUse\Support\Html\Mixins\LinkElementMixin;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\View\ComponentAttributeBag;
 use Spatie\Html\BaseElement;
 use Spatie\Html\Elements\A;
