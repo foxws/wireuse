@@ -7,6 +7,15 @@ use Spatie\Html\BaseElement;
 
 class BaseElementMixin
 {
+    public function crossorigin(): mixed
+    {
+        return function (?string $value = 'use-credentials') {
+            /** @var BaseElement $this */
+
+            return $this->attribute('crossorigin', $value);
+        };
+    }
+
     public function navigate(): mixed
     {
         return function (): BaseElement {
