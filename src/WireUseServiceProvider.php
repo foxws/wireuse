@@ -2,15 +2,12 @@
 
 namespace Foxws\WireUse;
 
+use Foxws\WireUse\Navigation\Components\Input;
 use Foxws\WireUse\Support\Blade\Bladeable;
-use Foxws\WireUse\Support\Html\Mixins\BaseElementMixin;
-use Foxws\WireUse\Support\Html\Mixins\HtmlExtendedMixin;
-use Foxws\WireUse\Support\Html\Mixins\ImgElementMixin;
-use Foxws\WireUse\Support\Html\Mixins\LinkElementMixin;
+use Foxws\WireUse\Support\Html\Mixins;
 use Illuminate\View\ComponentAttributeBag;
 use Spatie\Html\BaseElement;
-use Spatie\Html\Elements\A;
-use Spatie\Html\Elements\Img;
+use Spatie\Html\Elements;
 use Spatie\Html\Html;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -161,10 +158,13 @@ class WireUseServiceProvider extends PackageServiceProvider
 
     protected function registerHtml(): static
     {
-        Html::mixin(new HtmlExtendedMixin);
-        BaseElement::mixin(new BaseElementMixin);
-        Img::mixin(new ImgElementMixin);
-        A::mixin(new LinkElementMixin);
+        // Extend BaseElement
+        Html::mixin(new Mixins\HtmlExtendedMixin);
+        BaseElement::mixin(new Mixins\BaseElementMixin);
+
+        // Extend Elements
+        Elements\A::mixin(new Mixins\LinkElementMixin);
+        Elements\Img::mixin(new Mixins\ImgElementMixin);
 
         return $this;
     }

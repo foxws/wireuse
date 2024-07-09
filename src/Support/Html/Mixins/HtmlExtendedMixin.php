@@ -3,6 +3,8 @@
 namespace Foxws\WireUse\Support\Html\Mixins;
 
 use Foxws\WireUse\Support\Html\Elements\Icon;
+use Foxws\WireUse\Support\Html\Elements\Validate;
+use Illuminate\Contracts\Support\Htmlable;
 use Livewire\Form as Livewire;
 use Spatie\Html\Elements\Form;
 
@@ -12,20 +14,36 @@ class HtmlExtendedMixin
 
     public function wireForm(): mixed
     {
-        return function (?Livewire $value = null, ?string $action = null): Form {
-            $this->form = $value;
+        return function (?Livewire $form = null, ?string $action = null): Form {
+            $this->form = $form;
 
-            $form = Form::create();
+            $element = Form::create();
 
-            return $form
+            return $element
                 ->attributeIf($action, 'wire:submit', $action);
         };
+    }
+
+    public function closeWireForm(): Htmlable
+    {
+        // $this->form = null;
+
+        $element = Form::create();
+
+        return $element->close();
     }
 
     public function icon()
     {
         return function (): Icon {
             return Icon::create();
+        };
+    }
+
+    public function validate()
+    {
+        return function (): Validate {
+            return Validate::create();
         };
     }
 }
