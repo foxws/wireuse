@@ -10,7 +10,7 @@ return [
     |
     */
 
-    'register_macros' => true,
+    'register_macros' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ return [
     |
     */
 
-    'register_components' => true,
+    'register_components' => false,
 
     /*
     |--------------------------------------------------------------------------
