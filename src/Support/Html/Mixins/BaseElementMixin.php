@@ -36,15 +36,6 @@ class BaseElementMixin
         };
     }
 
-    public function submit(): mixed
-    {
-        return function (?string $action = null): BaseElement {
-            /** @var BaseElement $this */
-
-            return $this->attribute('wire:submit', $action);
-        };
-    }
-
     public function wireKey(): mixed
     {
         return function (?string $value = null): BaseElement {

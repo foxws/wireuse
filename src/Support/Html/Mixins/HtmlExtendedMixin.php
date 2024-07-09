@@ -3,18 +3,22 @@
 namespace Foxws\WireUse\Support\Html\Mixins;
 
 use Foxws\WireUse\Support\Html\Elements\Icon;
-use Livewire\Form;
+use Livewire\Form as Livewire;
+use Spatie\Html\Elements\Form;
 
 class HtmlExtendedMixin
 {
-    protected ?Form $form = null;
+    protected ?Livewire $form = null;
 
     public function wireForm(): mixed
     {
-        return function (?Form $value = null): static {
+        return function (?Livewire $value = null, ?string $action = null): Form {
             $this->form = $value;
 
-            return $this;
+            $form = Form::create();
+
+            return $form
+                ->attributeIf($action, 'wire:submit', $action);
         };
     }
 
