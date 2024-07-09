@@ -2,7 +2,6 @@
 
 namespace Foxws\WireUse;
 
-use Foxws\WireUse\Navigation\Components\Input;
 use Foxws\WireUse\Support\Blade\Bladeable;
 use Foxws\WireUse\Support\Html\Mixins;
 use Illuminate\View\ComponentAttributeBag;
