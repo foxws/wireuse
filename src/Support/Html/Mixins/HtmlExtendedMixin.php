@@ -44,15 +44,13 @@ class HtmlExtendedMixin
     public function validate()
     {
         return function (?string $field = null, ?string $message = null): Validate {
-            $element = Validate::create();
-
             try {
                 $this->form?->validate();
             } catch (ValidationException $e) {
                 $message ??= $e->validator->errors()->first($field);
             }
 
-            return $element
+            return Validate::create()
                 ->classUnless($message, 'hidden')
                 ->classIfNotNull($message, 'block py-1 text-sm')
                 ->error($message);

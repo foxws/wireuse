@@ -29,6 +29,8 @@ trait WithValidation
         } catch (ValidationException $e) {
             return $e->validator->fails();
         }
+
+        return false;
     }
 
     protected static function isRecoverable(): bool
