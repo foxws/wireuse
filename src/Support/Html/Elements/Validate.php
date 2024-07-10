@@ -9,7 +9,7 @@ class Validate extends BaseElement
 {
     protected $tag = 'div';
 
-    public function error(?string $message = null): static
+    public function message(?string $message = null): static
     {
         return $this
             ->addChildIfNotNull($message, Span::create()

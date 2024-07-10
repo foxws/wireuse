@@ -5,6 +5,7 @@ namespace Foxws\WireUse\Support\Html\Mixins;
 use Foxws\WireUse\Support\Html\Elements\Icon;
 use Foxws\WireUse\Support\Html\Elements\Validate;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\MessageBag;
 use Illuminate\Validation\ValidationException;
 use Livewire\Form as Livewire;
 use Spatie\Html\Elements\Form;
@@ -13,14 +14,22 @@ class HtmlExtendedMixin
 {
     protected ?Livewire $form = null;
 
+    protected ?MessageBag $messages = null;
+
     public function wireForm(): mixed
     {
-        return function (?Livewire $form = null, ?string $action = null): Form {
+        return function (Livewire $form, ?string $action = null): Form {
             $this->form = $form;
 
-            $element = Form::create();
+            $this->messages = null;
 
-            return $element
+            try {
+                $this->form->validate();
+            } catch (ValidationException $e) {
+                $this->messages = $e->validator->getMessageBag();
+            }
+
+            return Form::create()
                 ->attributeIf($action, 'wire:submit', $action);
         };
     }
@@ -29,9 +38,9 @@ class HtmlExtendedMixin
     {
         $this->form = null;
 
-        $element = Form::create();
+        $this->messages = null;
 
-        return $element->close();
+        return Form::create()->close();
     }
 
     public function icon()
@@ -43,17 +52,13 @@ class HtmlExtendedMixin
 
     public function validate()
     {
-        return function (?string $field = null, ?string $message = null): Validate {
-            try {
-                $this->form?->validate();
-            } catch (ValidationException $e) {
-                $message ??= $e->validator->errors()->first($field);
-            }
+        return function (string $field, ?string $message = null): Validate {
+            $message ??= $this->messages?->first($field);
 
             return Validate::create()
                 ->classUnless($message, 'hidden')
                 ->classIfNotNull($message, 'block py-1 text-sm')
-                ->error($message);
+                ->messageIf($this->messages?->has($field), $message);
         };
     }
 }
