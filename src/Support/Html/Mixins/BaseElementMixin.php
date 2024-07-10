@@ -44,7 +44,9 @@ class BaseElementMixin
                 ->when($modifiers, fn (Stringable $str) => $str->append(".{$modifiers}"))
                 ->squish();
 
-            return $this->attribute($directive->value(), $key);
+            return $this
+                ->attribute($directive->value(), $key)
+                ->attribute('id', $key);
         };
     }
 }
