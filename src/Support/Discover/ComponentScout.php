@@ -3,7 +3,6 @@
 namespace Foxws\WireUse\Support\Discover;
 
 use Illuminate\View\Component;
-use Spatie\StructureDiscoverer\Cache\FileDiscoverCacheDriver;
 use Spatie\StructureDiscoverer\Cache\LaravelDiscoverCacheDriver;
 use Spatie\StructureDiscoverer\Discover;
 use Spatie\StructureDiscoverer\StructureScout;
