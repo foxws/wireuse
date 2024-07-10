@@ -8,7 +8,7 @@ class LinkElementMixin
 {
     public function route(): mixed
     {
-        return function (string $route, ...$parameters) {
+        return function (string $route, ...$parameters): A {
             /** @var A $this */
             $href = route($route, ...$parameters);
 
@@ -19,6 +19,15 @@ class LinkElementMixin
                     'link',
                     'link-active' => request()->routeIs($route, "{$route}.*") || request()->fullUrlIs($href),
                 ]);
+        };
+    }
+
+    public function navigate(): mixed
+    {
+        return function (): A {
+            /** @var A $this */
+
+            return $this->attribute('wire:navigate');
         };
     }
 }

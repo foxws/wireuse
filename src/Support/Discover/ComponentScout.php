@@ -4,6 +4,7 @@ namespace Foxws\WireUse\Support\Discover;
 
 use Illuminate\View\Component;
 use Spatie\StructureDiscoverer\Cache\FileDiscoverCacheDriver;
+use Spatie\StructureDiscoverer\Cache\LaravelDiscoverCacheDriver;
 use Spatie\StructureDiscoverer\Discover;
 use Spatie\StructureDiscoverer\StructureScout;
 
@@ -12,6 +13,8 @@ class ComponentScout extends StructureScout
     public ?string $path = null;
 
     public ?string $prefix = null;
+
+    public ?string $store = null;
 
     protected function definition(): Discover
     {
@@ -26,10 +29,11 @@ class ComponentScout extends StructureScout
         return $this->prefix ?? static::class;
     }
 
-    public function cacheDriver(): FileDiscoverCacheDriver
+    public function cacheDriver(): LaravelDiscoverCacheDriver
     {
-        return new FileDiscoverCacheDriver(
-            $this->cacheDirectory()
+        return new LaravelDiscoverCacheDriver(
+            prefix: $this->identifier(),
+            store: $this->store,
         );
     }
 
@@ -45,10 +49,5 @@ class ComponentScout extends StructureScout
         $this->path = $path;
 
         return $this;
-    }
-
-    protected function cacheDirectory(): string
-    {
-        return realpath(config('wireuse.cache-path', storage_path('framework/cache')));
     }
 }

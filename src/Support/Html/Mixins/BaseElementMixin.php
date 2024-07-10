@@ -16,15 +16,6 @@ class BaseElementMixin
         };
     }
 
-    public function navigate(): mixed
-    {
-        return function (): BaseElement {
-            /** @var BaseElement $this */
-
-            return $this->attribute('wire:navigate');
-        };
-    }
-
     public function ignore(): mixed
     {
         return function (?bool $self = false): BaseElement {
