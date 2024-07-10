@@ -64,9 +64,7 @@ abstract class Form extends BaseForm
 
     public function get(string $key, mixed $default = null): mixed
     {
-        $validated = $this->validate();
-
-        return $validated[$key] ?: $default;
+        return $this->getPropertyValue($key) ?: $default;
     }
 
     public function has(...$properties): bool

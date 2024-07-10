@@ -3,6 +3,7 @@
 namespace Foxws\WireUse\Support\Html\Elements;
 
 use Spatie\Html\BaseElement;
+use Spatie\Html\Elements\Span;
 
 class Validate extends BaseElement
 {
@@ -10,8 +11,6 @@ class Validate extends BaseElement
 
     public function message(?string $message = null): static
     {
-        return $this;
-
-        // return $this->html("@error('{$name}') {{ $message }} @enderror");
+        return $this->addChildIfNotNull($message, Span::create()->text($message));
     }
 }
