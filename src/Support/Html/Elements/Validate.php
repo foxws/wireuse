@@ -9,9 +9,12 @@ class Validate extends BaseElement
 {
     protected $tag = 'div';
 
-    public function message(?string $message = null): static
+    public function error(?string $message = null): static
     {
         return $this
-            ->addChildIfNotNull($message, Span::create()->text($message));
+            ->addChildIfNotNull($message, Span::create()
+                ->class('text-error-500')
+                ->text($message)
+            );
     }
 }

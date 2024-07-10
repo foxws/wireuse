@@ -9,12 +9,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: colors.slate,
+        base: colors.white,
+        primary: colors.pink,
+        secondary: colors.gray,
+        error: colors.red,
       },
       container: {
         center: true,
         padding: '2rem',
-      }
+      },
+      safelist: [
+        'text-error-500',
+      ],
     }
   }
 };

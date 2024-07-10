@@ -18,12 +18,6 @@ class HtmlExtendedMixin
         return function (?Livewire $form = null, ?string $action = null): Form {
             $this->form = $form;
 
-            try {
-                $this->form->validate();
-            } catch (ValidationException $e) {
-
-            }
-
             $element = Form::create();
 
             return $element
@@ -49,16 +43,19 @@ class HtmlExtendedMixin
 
     public function validate()
     {
-        return function (?string $field = null): Validate {
+        return function (?string $field = null, ?string $message = null): Validate {
             $element = Validate::create();
 
-            $errorBag = $this->form?->getErrorBag();
-
-            if ($errorBag && ($message = $errorBag->first($field))) {
-                return $element->message($message);
+            try {
+                $this->form?->validate();
+            } catch (ValidationException $e) {
+                $message ??= $e->validator->errors()->first($field);
             }
 
-            return $element;
+            return $element
+                ->classUnless($message, 'hidden')
+                ->classIfNotNull($message, 'block py-1 text-sm')
+                ->error($message);
         };
     }
 }
