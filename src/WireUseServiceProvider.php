@@ -4,7 +4,6 @@ namespace Foxws\WireUse;
 
 use Foxws\WireUse\Support\Blade\Bladeable;
 use Foxws\WireUse\Support\Html\Mixins;
-use Illuminate\View\ComponentAttributeBag;
 use Spatie\Html\BaseElement;
 use Spatie\Html\Elements;
 use Spatie\Html\Html;
