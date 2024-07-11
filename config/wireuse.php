@@ -5,8 +5,8 @@ use Foxws\WireUse\Support\Html\Mixins\HtmlExtendedMixin;
 use Foxws\WireUse\Support\Html\Mixins\ImgElementMixin;
 use Foxws\WireUse\Support\Html\Mixins\LinkElementMixin;
 use Spatie\Html\BaseElement;
-use Spatie\Html\Html;
 use Spatie\Html\Elements;
+use Spatie\Html\Html;
 
 return [
 
