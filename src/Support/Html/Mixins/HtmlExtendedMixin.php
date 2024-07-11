@@ -4,7 +4,6 @@ namespace Foxws\WireUse\Support\Html\Mixins;
 
 use Foxws\WireUse\Support\Html\Elements\Icon;
 use Foxws\WireUse\Support\Html\Elements\Validate;
-use Illuminate\Contracts\Support\Htmlable;
 use Livewire\Form as Livewire;
 use Spatie\Html\Elements\Form;
 
