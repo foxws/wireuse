@@ -9,6 +9,7 @@ use Spatie\Html\Html;
 use Spatie\Html\Elements;
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Laravel HTML
