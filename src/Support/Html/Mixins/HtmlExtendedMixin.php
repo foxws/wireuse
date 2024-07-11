@@ -22,21 +22,23 @@ class HtmlExtendedMixin
         };
     }
 
-    public function closeWireForm(): Htmlable
+    public function closeWireForm(): mixed
     {
-        $this->form = null;
+        return function (): Form {
+            $this->form = null;
 
-        return Form::create()->close();
+            return Form::create()->close();
+        };
     }
 
-    public function icon()
+    public function icon(): mixed
     {
         return function (): Icon {
             return Icon::create();
         };
     }
 
-    public function validate()
+    public function validate(): mixed
     {
         return function (string $field, ?string $message = null): Validate {
             $messageBag = $this->form?->getErrorBag();
