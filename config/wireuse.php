@@ -15,7 +15,7 @@ return [
     | Laravel HTML
     |--------------------------------------------------------------------------
     |
-    | This controls Laravel HTML.
+    | This extends Laravel HTML.
     |
     | @doc https://spatie.be/docs/laravel-html/v3
     |
