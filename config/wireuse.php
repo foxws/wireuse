@@ -3,34 +3,13 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Directives
+    | Scout Finder
     |--------------------------------------------------------------------------
     |
-    | This controls components registration.
+    | This controls component scout registration.
     |
     */
 
-    'register_macros' => false,
+    'cache_store' => null,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Components
-    |--------------------------------------------------------------------------
-    |
-    | This controls components registration.
-    |
-    */
-
-    'register_components' => false,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Views
-    |--------------------------------------------------------------------------
-    |
-    | This controls views registration.
-    |
-    */
-
-    'view_prefix' => 'wireuse',
 ];
