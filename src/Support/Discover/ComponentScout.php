@@ -23,19 +23,6 @@ class ComponentScout extends StructureScout
             ->full();
     }
 
-    public function identifier(): string
-    {
-        return $this->prefix ?? static::class;
-    }
-
-    public function cacheDriver(): LaravelDiscoverCacheDriver
-    {
-        return new LaravelDiscoverCacheDriver(
-            prefix: $this->identifier(),
-            store: $this->store ?? config('structure-discoverer.cache.store'),
-        );
-    }
-
     public function prefix(string $prefix): static
     {
         $this->prefix = trim($prefix, '-');
@@ -48,5 +35,23 @@ class ComponentScout extends StructureScout
         $this->path = $path;
 
         return $this;
+    }
+
+    public function identifier(): string
+    {
+        return $this->prefix ?? static::class;
+    }
+
+    public function cacheStore(): ?string
+    {
+        return $this->store ?? config('structure-discoverer.cache.store');
+    }
+
+    public function cacheDriver(): LaravelDiscoverCacheDriver
+    {
+        return new LaravelDiscoverCacheDriver(
+            prefix: $this->identifier(),
+            store: $this->cacheStore(),
+        );
     }
 }
