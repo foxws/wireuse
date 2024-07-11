@@ -32,7 +32,7 @@ class ComponentScout extends StructureScout
     {
         return new LaravelDiscoverCacheDriver(
             prefix: $this->identifier(),
-            store: $this->store,
+            store: $this->store ?? config('structure-discoverer.cache.store'),
         );
     }
 
