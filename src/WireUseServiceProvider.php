@@ -3,10 +3,6 @@
 namespace Foxws\WireUse;
 
 use Foxws\WireUse\Support\Blade\Bladeable;
-use Foxws\WireUse\Support\Html\Mixins;
-use Spatie\Html\BaseElement;
-use Spatie\Html\Elements;
-use Spatie\Html\Html;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -34,7 +30,7 @@ class WireUseServiceProvider extends PackageServiceProvider
     {
         $this
             ->registerFeatures()
-            ->registerHtml();
+            ->registerMixins();
     }
 
     protected function registerFeatures(): static
@@ -48,15 +44,11 @@ class WireUseServiceProvider extends PackageServiceProvider
         return $this;
     }
 
-    protected function registerHtml(): static
+    protected function registerMixins(): static
     {
-        // Extend BaseElement
-        Html::mixin(new Mixins\HtmlExtendedMixin);
-        BaseElement::mixin(new Mixins\BaseElementMixin);
-
-        // Extend Elements
-        Elements\A::mixin(new Mixins\LinkElementMixin);
-        Elements\Img::mixin(new Mixins\ImgElementMixin);
+        foreach (config('wireuse.html.mixins', []) as $element => $mixin) {
+            $element::mixin(new $mixin);
+        }
 
         return $this;
     }

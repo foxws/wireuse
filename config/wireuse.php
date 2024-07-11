@@ -1,15 +1,32 @@
 <?php
 
+use Foxws\WireUse\Support\Html\Mixins\BaseElementMixin;
+use Foxws\WireUse\Support\Html\Mixins\HtmlExtendedMixin;
+use Foxws\WireUse\Support\Html\Mixins\ImgElementMixin;
+use Foxws\WireUse\Support\Html\Mixins\LinkElementMixin;
+use Spatie\Html\BaseElement;
+use Spatie\Html\Html;
+use Spatie\Html\Elements;
+
 return [
     /*
     |--------------------------------------------------------------------------
-    | Scout Finder
+    | Laravel HTML
     |--------------------------------------------------------------------------
     |
-    | This controls component scout registration.
+    | This controls Laravel HTML.
+    |
+    | @doc https://spatie.be/docs/laravel-html/v3
     |
     */
 
-    'cache_store' => null,
+    'html' => [
+        'mixins' => [
+            Html::class => HtmlExtendedMixin::class,
+            BaseElement::class => BaseElementMixin::class,
+            Elements\A::class => LinkElementMixin::class,
+            Elements\Img::class => ImgElementMixin::class,
+        ],
+    ],
 
 ];
