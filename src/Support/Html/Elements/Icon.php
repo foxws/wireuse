@@ -10,6 +10,6 @@ class Icon extends BaseElement
 
     public function svg(?string $name = null, ?string $class = null): static
     {
-        return $this->html(svg($name, $class));
+        return $this->html(svg($name, $class)->toHtml());
     }
 }
