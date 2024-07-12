@@ -11,7 +11,6 @@ class BaseElementMixin
     {
         return function (?string $value = 'use-credentials') {
             /** @var BaseElement $this */
-
             return $this->attribute('crossorigin', $value);
         };
     }
@@ -20,7 +19,6 @@ class BaseElementMixin
     {
         return function (?bool $self = false): BaseElement {
             /** @var BaseElement $this */
-
             return $self
                 ? $this->attribute('wire:ignore.self')
                 : $this->attribute('wire:ignore');
@@ -31,7 +29,6 @@ class BaseElementMixin
     {
         return function (?string $value = null): BaseElement {
             /** @var BaseElement $this */
-
             return $this->attribute('wire:key', $value);
         };
     }
