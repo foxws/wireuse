@@ -2,8 +2,6 @@
 
 namespace Foxws\WireUse\Forms\Concerns;
 
-use Illuminate\Validation\ValidationException;
-
 trait WithValidation
 {
     protected static bool $recoverable = false;
