@@ -2,7 +2,6 @@
 
 namespace Foxws\WireUse;
 
-use Foxws\WireUse\Support\Blade\Bladeable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -19,11 +18,6 @@ class WireUseServiceProvider extends PackageServiceProvider
                 $command
                     ->publishConfigFile();
             });
-    }
-
-    public function packageRegistered()
-    {
-        $this->app->singleton(Bladeable::class);
     }
 
     public function bootingPackage(): void
