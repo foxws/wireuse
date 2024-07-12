@@ -5,6 +5,7 @@ import theme from './resources/css/presets/tailwind.config.preset';
 /** @type {import('tailwindcss').Config} */
 export default {
   presets: [theme],
-  content: ['./resources/**/*.blade.php'],
+  relative: true,
+  content: ['./resources/**/*.blade.php', './src/**/*.php'],
   plugins: [forms, typography],
 };
