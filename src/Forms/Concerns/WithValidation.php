@@ -20,6 +20,11 @@ trait WithValidation
         );
     }
 
+    public function hasMessages(): bool
+    {
+        return $this->getErrorBag()->isNotEmpty();
+    }
+
     protected static function isRecoverable(): bool
     {
         return static::$recoverable;

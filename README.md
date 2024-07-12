@@ -5,19 +5,9 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/foxws/wireuse/fix-php-code-style-issues.yml?branch=3.x&label=code%20style&style=flat-square)](https://github.com/foxws/wireuse/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3A3.x)
 [![Total Downloads](https://img.shields.io/packagist/dt/foxws/wireuse.svg?style=flat-square)](https://packagist.org/packages/foxws/wireuse)
 
-This packages offers a collection of useful [Livewire](https://livewire.laravel.com/) utilities and components. :)
+This packages offers a collection of useful [Livewire](https://livewire.laravel.com/) utilities and components.
 
-It is made to assemble your Livewire and Blade components yourself, rather than extending from an existing framework or baseset.
-
-It shares the same idea as [VueUse](https://vueuse.org/), but for Laravel Livewire.
-
-If you have a suggestion, idea or feedback, please feel free to send a PR or create a discussion. :)
-
-## Documentation
-
-You will find full documentation on the dedicated [documentation](https://foxws.nl/projects/wireuse) site.
-
-> NOTE: The documentation is far from complete, see [discussion](https://github.com/foxws/wireuse/discussions/3) for progress and ideas.
+The full documentation and more information about WireUse, is on our dedicated [documentation](https://foxws.nl/projects/wireuse) website.
 
 ## Installation
 
@@ -27,17 +17,24 @@ You can install the package via composer:
 composer require foxws/wireuse
 ```
 
-You can publish the config file with:
+Optionally, you can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="wireuse-config"
 ```
 
-Optionally, you can publish the views using:
+## Usage
 
-```bash
-php artisan vendor:publish --tag="wireuse-views"
-```
+This is a selection of the available features:
+
+- [Property Synthesizers](https://foxws.nl/posts/wireuse/property-synthesizers) - Force usage of model route-keys, instead of model ids.
+- [Components](https://foxws.nl/posts/wireuse/components) - Components like `Page` and useful traits.
+- [HTML](https://foxws.nl/posts/wireuse/laravel-html) - Extends Spatie's [laravel-html](https://spatie.be/docs/laravel-html/v3/introduction) to generate HTML using a clean, simple and easy to read API.
+- [State Objects](https://foxws.nl/posts/wireuse/state-objects) - State objects are based on states that you find, for example, in a VueJS Store.
+- [Forms](https://foxws.nl/posts/wireuse/forms) - Traits and extensions for [Livewire Forms](https://livewire.laravel.com/docs/forms).
+- [Structure Scout](https://foxws.nl/posts/wireuse/structure-scout) - Supported by [spatie/php-structure-discoverer](https://github.com/spatie/php-structure-discoverer) package, it provides a scout to discover and register components, which also offers benefits such as caching.
+
+Please checkout our [documentation](https://foxws.nl/projects/wireuse) for more information.
 
 ## Testing
 

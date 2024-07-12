@@ -9,15 +9,9 @@ class BladeComponent extends Component
     public function render(): string
     {
         return <<<'blade'
-        <div {{ $attributes
-            ->cssClass([
-                'layer' => 'flex flex-nowrap',
-                'color' => 'bg-gray-300 opacity-50',
-            ])
-            ->classMerge()
-        }}>
-            {{-- wow, such great content here --}}
-        </div>
+        {{ html()->div()->class('text-center')->open() }}
+            {{-- wow, such great article content here --}}
+        {{ html()->div()->close() }}
         blade;
     }
 }

@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \Foxws\WireUse\WireUse
  *
- * @method static void routes()
  * @method static void registerComponents(string $name, string $namespace, string $prefix, ?Closure $callback = null)
  * @method static void registerLivewireComponents(string $name, string $namespace, string $prefix, ?Closure $callback = null)
  * @method static Stringable componentName(DiscoveredClass $class, string $namespace, string $prefix)

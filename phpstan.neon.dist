@@ -10,7 +10,6 @@ parameters:
     tmpDir: build/phpstan
     checkOctaneCompatibility: true
     checkModelProperties: true
-    checkMissingIterableValueType: false
     ignoreErrors:
         - '#Unsafe usage of new static#'
-        - '#^Access to an undefined property Foxws\\WireUse\\Actions\\Support\\Action\:\:\$\w+\.$#'
+        - '#Call to an undefined method [a-zA-Z0-9\\_]+::wireModel\(\)#'

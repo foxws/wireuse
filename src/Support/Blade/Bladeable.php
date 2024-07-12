@@ -12,7 +12,7 @@ class Bladeable
         $values ??= static::classAttributes($attributeBag);
 
         return collect($values)
-            ->map(function (mixed $value, int|string $key) use ($attributeBag) {
+            ->map(function (mixed $value = null, int|string $key) use ($attributeBag) {
                 if (is_bool($value) && $value === false) {
                     return;
                 }
@@ -27,8 +27,7 @@ class Bladeable
 
     public static function classAttributes(ComponentAttributeBag $attributeBag): Collection
     {
-        return str($attributeBag->whereStartsWith('class:'))
-            ->matchAll('/class:(.*?)\=/s');
+        return str($attributeBag->whereStartsWith('class:'))->matchAll('/class:(.*?)\=/s');
     }
 
     public static function classKeys(...$keys): Collection
