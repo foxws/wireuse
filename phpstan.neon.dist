@@ -10,7 +10,6 @@ parameters:
     tmpDir: build/phpstan
     checkOctaneCompatibility: true
     checkModelProperties: true
-    checkMissingIterableValueType: false
     ignoreErrors:
         - '#Unsafe usage of new static#'
         - '#Call to an undefined method [a-zA-Z0-9\\_]+::wireModel\(\)#'
