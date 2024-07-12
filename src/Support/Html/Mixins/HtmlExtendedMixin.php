@@ -13,7 +13,7 @@ class HtmlExtendedMixin
 
     public function wireForm(): mixed
     {
-        return function (Livewire $form, ?string $action = null): Form {
+        return function (Livewire $form, ?string $action = null) {
             $this->form = $form;
 
             return Form::create()
@@ -23,7 +23,7 @@ class HtmlExtendedMixin
 
     public function closeWireForm(): mixed
     {
-        return function (): Form {
+        return function () {
             $this->form = null;
 
             return Form::create()->close();
@@ -39,7 +39,7 @@ class HtmlExtendedMixin
 
     public function validate(): mixed
     {
-        return function (string $field, ?string $message = null): mixed {
+        return function (string $field, ?string $message = null) {
             $messageBag = $this->form?->getErrorBag();
 
             $hasMessage = $messageBag?->has($field);

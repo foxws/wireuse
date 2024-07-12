@@ -17,7 +17,7 @@ class BaseElementMixin
 
     public function ignore(): mixed
     {
-        return function (?bool $self = false): BaseElement {
+        return function (?bool $self = false) {
             /** @var BaseElement $this */
             return $self
                 ? $this->attribute('wire:ignore.self')
@@ -27,7 +27,7 @@ class BaseElementMixin
 
     public function wireKey(): mixed
     {
-        return function (?string $value = null): BaseElement {
+        return function (?string $value = null) {
             /** @var BaseElement $this */
             return $this->attribute('wire:key', $value);
         };
@@ -35,7 +35,7 @@ class BaseElementMixin
 
     public function wireModel(): mixed
     {
-        return function (string $key, ?string $modifiers = null): BaseElement {
+        return function (string $key, ?string $modifiers = null) {
             /** @var BaseElement $this */
             $directive = str('wire:model')
                 ->when($modifiers, fn (Stringable $str) => $str->append(".{$modifiers}"))

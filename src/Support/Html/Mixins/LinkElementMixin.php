@@ -8,7 +8,7 @@ class LinkElementMixin
 {
     public function route(): mixed
     {
-        return function (string $route, ...$parameters): A {
+        return function (string $route, ...$parameters) {
             /** @var A $this */
             $href = route($route, ...$parameters);
 
@@ -24,7 +24,7 @@ class LinkElementMixin
 
     public function navigate(): mixed
     {
-        return function (): A {
+        return function () {
             /** @var A $this */
             return $this->attribute('wire:navigate');
         };
