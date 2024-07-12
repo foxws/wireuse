@@ -39,7 +39,7 @@ class HtmlExtendedMixin
 
     public function validate(): mixed
     {
-        return function (string $field, ?string $message = null): Validate {
+        return function (string $field, ?string $message = null): mixed {
             $messageBag = $this->form?->getErrorBag();
 
             $hasMessage = $messageBag?->has($field);
