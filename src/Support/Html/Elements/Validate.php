@@ -12,7 +12,7 @@ class Validate extends BaseElement
     public function message(?string $message = null): static
     {
         return $this
-            ->addChildIfNotNull($message, Span::create()
+            ->addChild($message, Span::create()
                 ->class('text-error-500')
                 ->text($message)
             );
