@@ -69,7 +69,7 @@ trait WithBladeMacros
 
         ComponentAttributeBag::macro('wireKey', function (): mixed {
             /** @var ComponentAttributeBag $this */
-            return $this->wireModel() ?: $this->first('id') ?: $this->first('name'); // @phpstan-ignore-line
+            return $this->wireModel() ?: $this->first('id') ?: $this->first('name');
         });
 
         return $this;
