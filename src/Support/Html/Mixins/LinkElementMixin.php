@@ -26,7 +26,6 @@ class LinkElementMixin
     {
         return function (): A {
             /** @var A $this */
-
             return $this->attribute('wire:navigate');
         };
     }
