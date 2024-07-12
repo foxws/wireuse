@@ -22,15 +22,9 @@ trait WithValidation
         );
     }
 
-    public function fails(): bool
+    public function hasMessages(): bool
     {
-        try {
-            $this->validate();
-        } catch (ValidationException $e) {
-            return $e->validator->fails();
-        }
-
-        return false;
+        return $this->getErrorBag()->isNotEmpty();
     }
 
     protected static function isRecoverable(): bool
