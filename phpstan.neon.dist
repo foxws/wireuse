@@ -13,4 +13,4 @@ parameters:
     checkMissingIterableValueType: false
     ignoreErrors:
         - '#Unsafe usage of new static#'
-        - Call to an undefined method Illuminate\View\ComponentAttributeBag::wireModel()
+        - 'Call to an undefined method Illuminate\View\ComponentAttributeBag::wireModel()'
