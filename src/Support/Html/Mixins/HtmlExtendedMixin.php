@@ -5,6 +5,7 @@ namespace Foxws\WireUse\Support\Html\Mixins;
 use Foxws\WireUse\Support\Html\Elements\Icon;
 use Foxws\WireUse\Support\Html\Elements\Validate;
 use Illuminate\Support\MessageBag;
+use Illuminate\Validation\ValidationException;
 use Livewire\Form as Livewire;
 use Spatie\Html\Elements\Form;
 
@@ -16,10 +17,16 @@ class HtmlExtendedMixin
 
     public function wireForm(): mixed
     {
-        return function (Livewire $form, ?string $action = null) {
+        return function (Livewire $form, ?string $action = null): Form {
             $this->form = $form;
 
-            $this->errorBag = $form->getErrorBag();
+            $this->errorBag = null;
+
+            try {
+                $this->form->validate();
+            } catch (ValidationException $e) {
+                $this->errorBag = $e->validator->errors();
+            }
 
             return Form::create()
                 ->attributeIf($action, 'wire:submit', $action);
@@ -28,7 +35,7 @@ class HtmlExtendedMixin
 
     public function closeWireForm(): mixed
     {
-        return function () {
+        return function (): Form {
             $this->form = null;
 
             $this->errorBag = null;
@@ -46,7 +53,7 @@ class HtmlExtendedMixin
 
     public function validate(): mixed
     {
-        return function (string $field, ?string $message = null) {
+        return function (string $field, ?string $message = null): Validate {
             $hasMessage = $this->errorBag?->has($field);
 
             $message ??= $this->errorBag?->first($field);
