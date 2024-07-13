@@ -11,10 +11,9 @@ class Validate extends BaseElement
 
     public function message(?string $message = null): static
     {
+        $element = Span::create();
+
         return $this
-            ->addChild($message, Span::create()
-                ->class('text-error-500')
-                ->text($message)
-            );
+            ->addChild($element->class('text-error-500')->text($message));
     }
 }
