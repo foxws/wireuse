@@ -9,14 +9,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        base: colors.white,
         primary: colors.pink,
         secondary: colors.gray,
+        info: colors.blue,
+        success: colors.gray,
         error: colors.red,
+        warning: colors.yellow,
       },
       container: {
         center: true,
-        padding: '2rem',
+        padding: '1rem',
       },
       safelist: [
         'text-error-500',
