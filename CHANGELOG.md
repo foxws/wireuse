@@ -2,6 +2,14 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.1.0 - 2024-07-16
+
+### Upgrade Notice
+
+The package `laravel-html:^3.11` has introduced methods we previously provided. You should replace `html()->a()->route('name')` with  `html()->a()->link('name')` if you want to use our route builder logic.
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.0.2...v2.1.0
+
 ## v2.0.2 - 2024-07-13
 
 **Full Changelog**: https://github.com/foxws/wireuse/compare/v2.0.1...v2.0.2
