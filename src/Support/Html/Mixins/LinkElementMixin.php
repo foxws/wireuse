@@ -6,7 +6,7 @@ use Spatie\Html\Elements\A;
 
 class LinkElementMixin
 {
-    public function route(): mixed
+    public function link(): mixed
     {
         return function (string $route, ...$parameters) {
             /** @var A $this */
