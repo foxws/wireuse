@@ -2,6 +2,7 @@
 
 namespace Foxws\WireUse;
 
+use Spatie\Html\Html;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -40,6 +41,10 @@ class WireUseServiceProvider extends PackageServiceProvider
 
     protected function registerMixins(): static
     {
+        if (! class_exists(Html::class)) {
+            return $this;
+        }
+
         foreach (config('wireuse.html.mixins', []) as $element => $mixin) {
             $element::mixin(new $mixin);
         }
