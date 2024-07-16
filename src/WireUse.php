@@ -6,7 +6,6 @@ use Foxws\WireUse\Support\Discover\ComponentScout;
 use Foxws\WireUse\Support\Discover\LivewireScout;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Stringable;
-use Livewire\Livewire;
 use Livewire\LivewireManager;
 use Spatie\StructureDiscoverer\Data\DiscoveredStructure;
 
@@ -40,14 +39,16 @@ class WireUse
             ->prefix("livewire-components-{$prefix}")
             ->get();
 
+        $manager = app(LivewireManager::class);
+
         collect($scout)
-            ->each(function (DiscoveredStructure $class) use ($namespace, $prefix) {
+            ->each(function (DiscoveredStructure $class) use ($manager, $namespace, $prefix) {
                 $name = static::componentName($class, $namespace, $prefix);
 
                 $fcqn = $class->getFcqn();
 
-                if (app(LivewireManager::class)->isDiscoverable($fcqn)) {
-                    Livewire::component($name->value(), $fcqn);
+                if ($manager->isDiscoverable($fcqn)) {
+                    $manager->component($name->value(), $fcqn);
                 }
             });
     }
