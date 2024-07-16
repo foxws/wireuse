@@ -2,6 +2,14 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.1.1 - 2024-07-16
+
+### What's Changed
+
+* [use LivewireManager for component discovery](https://github.com/foxws/wireuse/commit/d0664901b317e3ab7da556668896b598fa8f73ec)
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.1.0...v2.1.1
+
 ## v2.1.0 - 2024-07-16
 
 ### Upgrade Notice
