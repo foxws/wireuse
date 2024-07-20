@@ -29,6 +29,11 @@ trait WithScroll
         }
     }
 
+    public function updatedPage(): void
+    {
+        unset($this->items);
+    }
+
     #[Computed(persist: true)]
     public function items(): array
     {
@@ -46,18 +51,11 @@ trait WithScroll
         );
     }
 
-    public function refresh(): void
-    {
-        unset($this->items);
-
-        $this->dispatch('$refresh');
-    }
-
     public function clear(): void
     {
         $this->reset('models');
 
-        $this->refresh();
+        unset($this->items);
 
         $this->resetPage();
     }
@@ -79,6 +77,6 @@ trait WithScroll
     {
         $page ??= $this->getPage() ?? 1;
 
-        return Number::clamp($page, 1, 32);
+        return Number::clamp($page, min: 1, max: 32);
     }
 }
