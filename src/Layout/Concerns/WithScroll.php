@@ -29,7 +29,7 @@ trait WithScroll
         }
     }
 
-    #[Computed]
+    #[Computed(persist: true)]
     public function items(): array
     {
         return $this->models;
@@ -37,6 +37,8 @@ trait WithScroll
 
     public function fetch(): void
     {
+        unset($this->items);
+
         $this->nextPage();
 
         $this->mergePageItems(
@@ -44,11 +46,18 @@ trait WithScroll
         );
     }
 
+    public function refresh(): void
+    {
+        unset($this->items);
+
+        $this->dispatch('$refresh');
+    }
+
     public function clear(): void
     {
         $this->reset('models');
 
-        unset($this->items);
+        $this->refresh();
 
         $this->resetPage();
     }
