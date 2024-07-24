@@ -60,6 +60,11 @@ trait WithScroll
         $this->resetPage();
     }
 
+    public function hasMorePages(): bool
+    {
+        return $this->getPageItems()->hasMorePages();
+    }
+
     protected function getPageItems(?int $page = null): LengthAwarePaginator
     {
         $page ??= $this->getPage();
@@ -77,6 +82,6 @@ trait WithScroll
     {
         $page ??= $this->getPage() ?? 1;
 
-        return Number::clamp($page, min: 1, max: 32);
+        return Number::clamp($page, min: 1, max: 24);
     }
 }
