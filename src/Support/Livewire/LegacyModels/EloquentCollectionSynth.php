@@ -76,6 +76,6 @@ class EloquentCollectionSynth extends Synth
             );
         }
 
-        return new $meta['class']();
+        return new $meta['class'];
     }
 }

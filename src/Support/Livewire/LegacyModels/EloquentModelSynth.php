@@ -82,7 +82,7 @@ class EloquentModelSynth extends Synth
 
             $model = $query->first();
         } else {
-            $model = new $class();
+            $model = new $class;
         }
 
         return $model;

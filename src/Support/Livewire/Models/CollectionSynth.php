@@ -23,7 +23,7 @@ class CollectionSynth extends Synth
         $keys = $meta['keys'] ?? [];
 
         if (count($keys) === 0) {
-            return new $class();
+            return new $class;
         }
 
         // We are using Laravel's method here for restoring the collection, which ensures
