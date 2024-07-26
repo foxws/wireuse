@@ -63,7 +63,7 @@ class WireUse
             );
     }
 
-    public static function componentPrefix(string $prefix): string
+    public static function componentPrefix(string $prefix): Stringable
     {
         return str($prefix)
             ->kebab()
