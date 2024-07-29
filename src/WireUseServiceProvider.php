@@ -26,7 +26,7 @@ class WireUseServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         $this->app->singleton(ComponentScout::class, fn () => new ComponentScout);
-        $this->app->singleton(LivewireScout::class, fn () => new LivewireScout());
+        $this->app->singleton(LivewireScout::class, fn () => new LivewireScout);
     }
 
     protected function registerFeatures(): static
