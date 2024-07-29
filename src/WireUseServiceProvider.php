@@ -32,7 +32,7 @@ class WireUseServiceProvider extends PackageServiceProvider
 
         $this->app->singleton(
             LivewireScout::class,
-            fn () => new LivewireScout()
+            fn () => new LivewireScout
         );
     }
 
