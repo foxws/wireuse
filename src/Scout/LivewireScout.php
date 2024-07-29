@@ -4,6 +4,7 @@ namespace Foxws\WireUse\Scout;
 
 use Foxws\WireUse\Support\Discover\LivewireStructureScout;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Livewire;
 use Spatie\StructureDiscoverer\Data\DiscoveredStructure;
 
@@ -29,12 +30,19 @@ class LivewireScout
 
     public function register(): void
     {
-        $components = $this->get();
-
-        $components->each(fn (array $component) => Livewire::component(...$component));
+        $this->get()->each(fn (array $component) => Livewire::component(...$component));
     }
 
     public function get(): Collection
+    {
+        return Cache::store($this->getCacheStore())->remember(
+            $this->getCacheKey(),
+            $this->getCacheLifetime(),
+            fn () => $this->get()
+        );
+    }
+
+    protected function buildCollection(): Collection
     {
         $scout = $this->getLivewireStructures();
 
@@ -77,5 +85,20 @@ class LivewireScout
         return LivewireStructureScout::create()
             ->path($this->path)
             ->prefix("livewire-structures-{$this->prefix}");
+    }
+
+    protected function getCacheKey(): string
+    {
+        return "wireuse.scout.livewire.{$this->prefix}";
+    }
+
+    protected function getCacheStore(): ?string
+    {
+        return config('wireuse.scout.cache_store');
+    }
+
+    protected function getCacheLifetime(): ?int
+    {
+        return config('wireuse.scout.cache_lifetime');
     }
 }
