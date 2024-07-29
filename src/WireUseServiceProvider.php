@@ -3,6 +3,7 @@
 namespace Foxws\WireUse;
 
 use Foxws\WireUse\Scout\ComponentScout;
+use Foxws\WireUse\Scout\LivewireScout;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -27,6 +28,11 @@ class WireUseServiceProvider extends PackageServiceProvider
         $this->app->singleton(
             ComponentScout::class,
             fn () => new ComponentScout
+        );
+
+        $this->app->singleton(
+            LivewireScout::class,
+            fn () => new LivewireScout()
         );
     }
 
