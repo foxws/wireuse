@@ -2,7 +2,8 @@
 
 namespace Foxws\WireUse;
 
-use Spatie\LaravelPackageTools\Commands\InstallCommand;
+use Foxws\WireUse\Scout\ComponentScout;
+use Foxws\WireUse\Scout\LivewireScout;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -12,19 +13,20 @@ class WireUseServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('wireuse')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasInstallCommand(function (InstallCommand $command) {
-                $command
-                    ->publishConfigFile();
-            });
+            ->hasConfigFile();
     }
 
-    public function bootingPackage(): void
+    public function packageBooted(): void
     {
         $this
             ->registerFeatures()
             ->registerMixins();
+    }
+
+    public function packageRegistered(): void
+    {
+        $this->app->singleton(ComponentScout::class, fn () => new ComponentScout);
+        $this->app->singleton(LivewireScout::class, fn () => new LivewireScout);
     }
 
     protected function registerFeatures(): static

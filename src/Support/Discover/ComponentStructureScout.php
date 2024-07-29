@@ -7,7 +7,7 @@ use Spatie\StructureDiscoverer\Cache\LaravelDiscoverCacheDriver;
 use Spatie\StructureDiscoverer\Discover;
 use Spatie\StructureDiscoverer\StructureScout;
 
-class ComponentScout extends StructureScout
+class ComponentStructureScout extends StructureScout
 {
     public ?string $path = null;
 

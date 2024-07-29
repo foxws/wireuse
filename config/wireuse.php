@@ -28,4 +28,21 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Structure Discovery
+    |--------------------------------------------------------------------------
+    |
+    | This controls structure discovery.
+    |
+    | @doc https://github.com/spatie/php-structure-discoverer
+    |
+    */
+
+    'scout' => [
+        'cache_store' => null,
+
+        'cache_lifetime' => 60 * 60 * 24 * 7,
+    ],
+
 ];
