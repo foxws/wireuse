@@ -26,7 +26,7 @@ class WireUseServiceProvider extends PackageServiceProvider
     {
         $this->app->singleton(
             ComponentScout::class,
-            fn () => new ComponentScout()
+            fn () => new ComponentScout
         );
     }
 

@@ -18,8 +18,7 @@ class ComponentScout
         string $path,
         string $namespace = 'App\\',
         ?string $prefix = null,
-    ): self
-    {
+    ): self {
         return new self(
             path: $path,
             namespace: $namespace,
