@@ -19,7 +19,7 @@ abstract class Scout
         string $path,
         string $namespace = 'App\\',
         ?string $prefix = null,
-    ): self {
+    ): static {
         return new static(
             path: $path,
             namespace: $namespace,
