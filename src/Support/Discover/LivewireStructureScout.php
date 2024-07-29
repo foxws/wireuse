@@ -5,7 +5,7 @@ namespace Foxws\WireUse\Support\Discover;
 use Livewire\Component;
 use Spatie\StructureDiscoverer\Discover;
 
-class LivewireScout extends ComponentScout
+class LivewireStructureScout extends ComponentStructureScout
 {
     protected function definition(): Discover
     {
