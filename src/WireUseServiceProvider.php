@@ -16,17 +16,17 @@ class WireUseServiceProvider extends PackageServiceProvider
             ->hasConfigFile();
     }
 
+    public function packageRegistered(): void
+    {
+        $this->app->singleton(ComponentScout::class, fn () => new ComponentScout);
+        $this->app->singleton(LivewireScout::class, fn () => new LivewireScout);
+    }
+
     public function packageBooted(): void
     {
         $this
             ->registerFeatures()
             ->registerMixins();
-    }
-
-    public function packageRegistered(): void
-    {
-        $this->app->singleton(ComponentScout::class, fn () => new ComponentScout);
-        $this->app->singleton(LivewireScout::class, fn () => new LivewireScout);
     }
 
     protected function registerFeatures(): static
