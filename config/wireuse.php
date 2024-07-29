@@ -42,7 +42,7 @@ return [
     'scout' => [
         'cache_store' => null,
 
-        'cache_lifetime' => 60 * 24,
+        'cache_lifetime' => 60 * 60 * 24 * 7,
     ],
 
 ];
