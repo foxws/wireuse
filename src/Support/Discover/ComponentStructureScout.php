@@ -39,7 +39,7 @@ class ComponentStructureScout extends StructureScout
 
     public function identifier(): string
     {
-        return $this->prefix ?? static::class;
+        return $this->prefix ?? class_basename(static::class);
     }
 
     public function cacheStore(): ?string
