@@ -38,6 +38,8 @@ abstract class Scout
 
     public function clear(): void
     {
+        $this->getComponentStructures()->clear();
+
         Cache::store($this->getCacheStore())->forget($this->getCacheKey());
     }
 
