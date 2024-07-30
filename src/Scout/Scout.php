@@ -36,6 +36,11 @@ abstract class Scout
         );
     }
 
+    public function clear(): void
+    {
+        Cache::store($this->getCacheStore())->forget($this->getCacheKey());
+    }
+
     abstract protected function getComponentStructures(): ComponentStructureScout;
 
     protected function buildCollection(): Collection
