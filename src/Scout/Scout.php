@@ -16,8 +16,8 @@ abstract class Scout
     ) {}
 
     public static function create(
-        string $path,
-        string $namespace = 'App\\',
+        ?string $path = null,
+        ?string $namespace = 'App\\',
         ?string $prefix = null,
     ): static {
         return new static(
