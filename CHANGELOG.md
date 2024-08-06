@@ -2,6 +2,20 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.3.0 - 2024-08-06
+
+### Upgrade Notice
+
+Optional package features are now behind a feature flag, can be configured in `config/wireuse.php`.
+
+Please adjust the configuration when you depend on those features.
+
+### What's Changed
+
+* feat: check package installation by @francoism90 in https://github.com/foxws/wireuse/pull/12
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.2.1...v2.3.0
+
 ## v2.2.1 - 2024-07-30
 
 **Full Changelog**: https://github.com/foxws/wireuse/compare/v2.2.0...v2.2.1
