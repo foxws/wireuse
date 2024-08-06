@@ -23,14 +23,14 @@ class ComponentStructureScout extends StructureScout
             ->full();
     }
 
-    public function prefix(string $prefix): static
+    public function prefix(?string $prefix = null): static
     {
         $this->prefix = trim($prefix, '-');
 
         return $this;
     }
 
-    public function path(string $path): static
+    public function path(?string $path = null): static
     {
         $this->path = $path;
 
@@ -39,7 +39,7 @@ class ComponentStructureScout extends StructureScout
 
     public function identifier(): string
     {
-        return $this->prefix ?? static::class;
+        return $this->prefix ?? class_basename(static::class);
     }
 
     public function cacheStore(): ?string

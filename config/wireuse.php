@@ -1,13 +1,22 @@
 <?php
 
-use Foxws\WireUse\Support\Html\Mixins\BaseElementMixin;
-use Foxws\WireUse\Support\Html\Mixins\HtmlExtendedMixin;
-use Foxws\WireUse\Support\Html\Mixins\LinkElementMixin;
-use Spatie\Html\BaseElement;
-use Spatie\Html\Elements;
-use Spatie\Html\Html;
-
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Livewire Features
+    |--------------------------------------------------------------------------
+    |
+    | This controls Livewire component features.
+    |
+    | @doc https://foxws.nl/posts/wireuse/property-synthesizers
+    |
+    */
+
+    'features' => [
+        // \Foxws\WireUse\Support\Livewire\StateObjects\SupportStateObjects::class,
+        // \Foxws\WireUse\Support\Livewire\ModelStateObjects\SupportModelStateObjects::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -16,16 +25,13 @@ return [
     |
     | This extends Laravel HTML.
     |
+    | @doc https://foxws.nl/posts/wireuse/laravel-html
     | @doc https://spatie.be/docs/laravel-html/v3
     |
     */
 
     'html' => [
-        'mixins' => [
-            Html::class => HtmlExtendedMixin::class,
-            BaseElement::class => BaseElementMixin::class,
-            Elements\A::class => LinkElementMixin::class,
-        ],
+        'mixins' => false,
     ],
 
     /*
@@ -35,11 +41,14 @@ return [
     |
     | This controls structure discovery.
     |
+    | @doc https://foxws.nl/posts/wireuse/structure-scout
     | @doc https://github.com/spatie/php-structure-discoverer
     |
     */
 
     'scout' => [
+        'enabled' => false,
+
         'cache_store' => null,
 
         'cache_lifetime' => 60 * 60 * 24 * 7,
