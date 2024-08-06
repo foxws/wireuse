@@ -13,7 +13,7 @@ class LinkElementMixin
             $href = route($route, ...$parameters);
 
             return $this
-                ->navigate()
+                ->attribute('wire:navigate')
                 ->href($href)
                 ->class([
                     'link',
