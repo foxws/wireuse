@@ -16,8 +16,8 @@ abstract class Scout
     ) {}
 
     public static function create(
-        string $path,
-        string $namespace = 'App\\',
+        ?string $path = null,
+        ?string $namespace = 'App\\',
         ?string $prefix = null,
     ): static {
         return new static(
@@ -38,6 +38,8 @@ abstract class Scout
 
     public function clear(): void
     {
+        $this->getComponentStructures()->clear();
+
         Cache::store($this->getCacheStore())->forget($this->getCacheKey());
     }
 
