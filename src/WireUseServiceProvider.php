@@ -57,7 +57,7 @@ class WireUseServiceProvider extends PackageServiceProvider
     protected function registerStructureDiscovery(): static
     {
         if (! InstalledVersions::isInstalled('spatie/php-structure-discoverer')) {
-            abort(500, 'The spatie/php-structure-discoverer package is required to use the Strucute Scout.');
+            abort(500, 'The spatie/php-structure-discoverer package is required to use the Structure Discovery.');
         }
 
         $this->app->singleton(ComponentScout::class, fn () => new ComponentScout);
