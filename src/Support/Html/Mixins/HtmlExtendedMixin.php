@@ -9,6 +9,7 @@ use Illuminate\Validation\ValidationException;
 use Livewire\Form as Livewire;
 use Spatie\Html\Elements\Form;
 
+#[\AllowDynamicProperties]
 class HtmlExtendedMixin
 {
     protected ?Livewire $form = null;
