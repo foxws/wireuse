@@ -12,14 +12,12 @@ class LinkElementMixin
             /** @var A $this */
             $href = route($route, ...$parameters);
 
-            $name = str($route)->before('.')->value();
-
             return $this
                 ->attribute('wire:navigate')
                 ->href($href)
                 ->class([
                     'link',
-                    'link-active' => request()->routeIs($name, "{$name}.*") || request()->fullUrlIs($href),
+                    'link-active' => request()->routeIs($route, "{$route}.*") || request()->fullUrlIs($href),
                 ]);
         };
     }
