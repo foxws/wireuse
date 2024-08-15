@@ -17,7 +17,7 @@ trait WithSeo
     protected function seoValue(mixed $value, mixed $default = null): mixed
     {
         if ($value instanceof Closure) {
-            return value($value) ?? $default;
+            return value($value);
         }
 
         if (method_exists(static::class, $value)) {
