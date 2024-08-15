@@ -2,6 +2,10 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.3.4 - 2024-08-15
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.3.3...v2.3.4
+
 ## v2.3.3 - 2024-08-13
 
 **Full Changelog**: https://github.com/foxws/wireuse/compare/v2.3.2...v2.3.3
