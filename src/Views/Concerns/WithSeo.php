@@ -2,6 +2,8 @@
 
 namespace Foxws\WireUse\Views\Concerns;
 
+use Artesaos\SEOTools\Facades\SEOMeta;
+
 trait WithSeo
 {
     public function bootWithSeo(): void
