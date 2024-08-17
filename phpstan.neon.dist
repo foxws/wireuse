@@ -13,6 +13,6 @@ parameters:
     ignoreErrors:
         - '#Unsafe usage of new static#'
         - '#Call to an undefined method [a-zA-Z0-9\\_]+::wireModel\(\)#'
-        - '#Call to an undefined method Foxws\\WireUse\\Views\\Support\\Page::getTitle()\(\)#'
-        - '#Call to an undefined method Foxws\\WireUse\\Views\\Support\\Page::getDescription()\(\)#'
-        - '#Call to an undefined method Foxws\\WireUse\\Views\\Support\\Page::getRobots()\(\)#'
+        - '#Call to an undefined method Foxws\\WireUse\\Views\\Support\\Page::getTitle\(\)#'
+        - '#Call to an undefined method Foxws\\WireUse\\Views\\Support\\Page::getDescription\(\)#'
+        - '#Call to an undefined method Foxws\\WireUse\\Views\\Support\\Page::getRobots\(\)#'
