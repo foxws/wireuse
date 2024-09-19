@@ -2,6 +2,17 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.4.0 - 2024-09-19
+
+### Upgrade Notice
+
+Form validation has been improved:
+
+- Replace `html()->validate('form.name')` with `html()->error('form.name')`
+- Form classes have been converted into generic classes: `label`, `label-error`, `input-error`
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.3.4...v2.4.0
+
 ## v2.3.4 - 2024-08-15
 
 **Full Changelog**: https://github.com/foxws/wireuse/compare/v2.3.3...v2.3.4
