@@ -3,8 +3,9 @@
 namespace Foxws\WireUse\Support\Html\Mixins;
 
 use Spatie\Html\Elements\A;
+use stdClass;
 
-class LinkElementMixin
+class LinkElementMixin extends stdClass
 {
     public function link(): mixed
     {

@@ -4,8 +4,9 @@ namespace Foxws\WireUse\Support\Html\Mixins;
 
 use Illuminate\Support\Stringable;
 use Spatie\Html\BaseElement;
+use stdClass;
 
-class BaseElementMixin
+class BaseElementMixin extends stdClass
 {
     public function crossorigin(): mixed
     {

@@ -17,6 +17,7 @@ trait WithValidation
         rescue(
             fn () => $this->validate(),
             fn () => $this->reset(),
+            report: false,
         );
     }
 

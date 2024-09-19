@@ -14,6 +14,6 @@ class Validate extends BaseElement
         $element = Span::create();
 
         return $this
-            ->addChild($element->class('text-error-500')->text($message));
+            ->addChild($element->class('label-error')->text($message));
     }
 }

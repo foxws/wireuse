@@ -8,25 +8,26 @@ use Illuminate\Support\MessageBag;
 use Illuminate\Validation\ValidationException;
 use Livewire\Form as Livewire;
 use Spatie\Html\Elements\Form;
+use stdClass;
 
 #[\AllowDynamicProperties]
-class HtmlExtendedMixin
+class HtmlExtendedMixin extends stdClass
 {
     protected ?Livewire $form = null;
 
-    protected ?MessageBag $errorBag = null;
+    protected ?MessageBag $messageBag = null;
 
     public function wireForm(): mixed
     {
         return function (Livewire $form, ?string $action = null): Form {
             $this->form = $form;
 
-            $this->errorBag = null;
+            $this->messageBag = null;
 
             try {
                 $this->form->validate();
             } catch (ValidationException $e) {
-                $this->errorBag = $e->validator->errors();
+                $this->messageBag = $e->validator->errors();
             }
 
             return Form::create()
@@ -39,9 +40,21 @@ class HtmlExtendedMixin
         return function (): Form {
             $this->form = null;
 
-            $this->errorBag = null;
+            $this->messageBag = null;
 
             return Form::create()->close();
+        };
+    }
+
+    public function error(): mixed
+    {
+        return function (string $field, ?string $message = null, ?string $format = null): Validate {
+            $hasMessage = $this->messageBag?->has($field) ?? false;
+
+            return Validate::create()
+                ->classUnless($hasMessage, 'hidden')
+                ->classIf($hasMessage, 'label')
+                ->messageIf($hasMessage, $message ?: $this->messageBag?->first($field, $format));
         };
     }
 
@@ -49,20 +62,6 @@ class HtmlExtendedMixin
     {
         return function (): Icon {
             return Icon::create();
-        };
-    }
-
-    public function validate(): mixed
-    {
-        return function (string $field, ?string $message = null): Validate {
-            $hasMessage = $this->errorBag?->has($field);
-
-            $message ??= $this->errorBag?->first($field);
-
-            return Validate::create()
-                ->classUnless($hasMessage, 'hidden')
-                ->classIfNotNull($hasMessage, 'block py-1 text-sm')
-                ->messageIf($hasMessage, $message);
         };
     }
 }
