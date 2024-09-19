@@ -4,8 +4,6 @@ namespace Foxws\WireUse\Support\Html\Mixins;
 
 use Foxws\WireUse\Support\Html\Elements\Icon;
 use Foxws\WireUse\Support\Html\Elements\Validate;
-use Illuminate\Support\MessageBag;
-use Illuminate\Validation\ValidationException;
 use Livewire\Form as Livewire;
 use Spatie\Html\Elements\Form;
 use stdClass;
@@ -15,20 +13,10 @@ class HtmlExtendedMixin extends stdClass
 {
     protected ?Livewire $form = null;
 
-    protected ?MessageBag $messageBag = null;
-
     public function wireForm(): mixed
     {
         return function (Livewire $form, ?string $action = null): Form {
             $this->form = $form;
-
-            $this->messageBag = null;
-
-            try {
-                $this->form->validate();
-            } catch (ValidationException $e) {
-                $this->messageBag = $e->validator->errors();
-            }
 
             return Form::create()
                 ->attributeIf($action, 'wire:submit', $action);
@@ -40,8 +28,6 @@ class HtmlExtendedMixin extends stdClass
         return function (): Form {
             $this->form = null;
 
-            $this->messageBag = null;
-
             return Form::create()->close();
         };
     }
@@ -49,12 +35,14 @@ class HtmlExtendedMixin extends stdClass
     public function error(): mixed
     {
         return function (string $field, ?string $message = null, ?string $format = null): Validate {
-            $hasMessage = $this->messageBag?->has($field) ?? false;
+            $messageBag = $this->form?->getComponent()->getErrorBag();
+
+            $hasMessage = $messageBag?->has($field) ?? false;
 
             return Validate::create()
                 ->classUnless($hasMessage, 'hidden')
                 ->classIf($hasMessage, 'label')
-                ->messageIf($hasMessage, $message ?: $this->messageBag?->first($field, $format));
+                ->messageIf($hasMessage, $message ?: $messageBag?->first($field, $format));
         };
     }
 
