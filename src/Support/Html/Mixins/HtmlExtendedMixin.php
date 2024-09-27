@@ -8,15 +8,12 @@ use Livewire\Form as Livewire;
 use Spatie\Html\Elements\Form;
 use stdClass;
 
-#[\AllowDynamicProperties]
 class HtmlExtendedMixin extends stdClass
 {
-    protected ?Livewire $form = null;
-
     public function wireForm(): mixed
     {
         return function (Livewire $form, ?string $action = null): Form {
-            $this->form = $form;
+            $this->request->attributes->set('form', $form);
 
             return Form::create()
                 ->attributeIf($action, 'wire:submit', $action);
@@ -26,7 +23,7 @@ class HtmlExtendedMixin extends stdClass
     public function closeWireForm(): mixed
     {
         return function (): Form {
-            $this->form = null;
+            $this->request->attributes->remove('form');
 
             return Form::create()->close();
         };
@@ -35,7 +32,7 @@ class HtmlExtendedMixin extends stdClass
     public function error(): mixed
     {
         return function (string $field, ?string $message = null, ?string $format = null): Validate {
-            $messageBag = $this->form?->getComponent()->getErrorBag();
+            $messageBag = $this->request->get('form')?->getComponent()->getErrorBag();
 
             $hasMessage = $messageBag?->has($field) ?? false;
 
