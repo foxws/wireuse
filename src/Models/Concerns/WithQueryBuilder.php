@@ -14,7 +14,7 @@ trait WithQueryBuilder
 {
     public function bootWithQueryBuilder(): void
     {
-        throw_if(! is_subclass_of($this->getModelClass(), Model::class));
+        throw_unless(is_subclass_of($this->getModelClass(), Model::class));
 
         $this->authorize('viewAny', $this->getModelClass());
     }
