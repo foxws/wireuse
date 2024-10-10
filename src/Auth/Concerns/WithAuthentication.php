@@ -6,33 +6,33 @@ use Illuminate\Foundation\Auth\User;
 
 trait WithAuthentication
 {
-    protected static function isAuthenticated(): bool
+    protected function isAuthenticated(): bool
     {
         return auth()->check();
     }
 
-    protected static function getAuthUser(): ?User
+    protected function getAuthUser(): ?User
     {
         return auth()->user();
     }
 
-    protected static function getAuthId(): int|string|null
+    protected function getAuthId(): int|string|null
     {
         return auth()->id();
     }
 
-    protected static function getAuthKey(): int|string|null
+    protected function getAuthKey(): int|string|null
     {
-        return static::getAuthUser()?->getRouteKey();
+        return $this->getAuthUser()?->getRouteKey();
     }
 
-    protected static function can(string $ability, mixed $arguments = []): bool
+    protected function can(string $ability, mixed $arguments = []): bool
     {
-        return static::getAuthUser()->can($ability, $arguments);
+        return $this->getAuthUser()->can($ability, $arguments);
     }
 
-    protected static function cannot(string $ability, mixed $arguments = []): bool
+    protected function cannot(string $ability, mixed $arguments = []): bool
     {
-        return static::getAuthUser()->cannot($ability, $arguments);
+        return $this->getAuthUser()->cannot($ability, $arguments);
     }
 }
