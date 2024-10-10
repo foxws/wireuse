@@ -23,16 +23,16 @@ trait WithAuthentication
 
     protected function getAuthKey(): int|string|null
     {
-        return $this->getAuthUser()?->getRouteKey();
+        return $this->getAuthModel()?->getRouteKey();
     }
 
     protected function can(string $ability, mixed $arguments = []): bool
     {
-        return $this->getAuthUser()?->can($ability, $arguments);
+        return $this->getAuthModel()?->can($ability, $arguments);
     }
 
     protected function cannot(string $ability, mixed $arguments = []): bool
     {
-        return $this->getAuthUser()?->cannot($ability, $arguments);
+        return $this->getAuthModel()?->cannot($ability, $arguments);
     }
 }
