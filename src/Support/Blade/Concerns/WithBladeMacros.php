@@ -7,7 +7,7 @@ use Illuminate\View\ComponentAttributeBag;
 
 trait WithBladeMacros
 {
-    protected function registerBladeMacros(): static
+    protected function cssClass(): void
     {
         ComponentAttributeBag::macro('cssClass', function (array $values = []): mixed {
             foreach ($values as $key => $value) {
@@ -21,7 +21,10 @@ trait WithBladeMacros
 
             return $this;
         });
+    }
 
+    protected function classMerge(): void
+    {
         ComponentAttributeBag::macro('classMerge', function (?array $values = null): mixed {
             /** @var ComponentAttributeBag $this */
             $classes = Bladeable::classMerged($this, $values)
@@ -33,19 +36,28 @@ trait WithBladeMacros
             return $this
                 ->withoutClass();
         });
+    }
 
+    protected function withoutClass(): void
+    {
         ComponentAttributeBag::macro('withoutClass', function (): mixed {
             /** @var ComponentAttributeBag $this */
             return $this
                 ->whereDoesntStartWith('class:');
         });
+    }
 
+    protected function withoutWireModel(): void
+    {
         ComponentAttributeBag::macro('withoutWireModel', function (): mixed {
             /** @var ComponentAttributeBag $this */
             return $this
                 ->whereDoesntStartWith('wire:model');
         });
+    }
 
+    protected function mergeAttributes(): void
+    {
         ComponentAttributeBag::macro('mergeAttributes', function (array $values = []): mixed {
             foreach ($values as $key => $value) {
                 /** @var ComponentAttributeBag $this */
@@ -54,7 +66,10 @@ trait WithBladeMacros
 
             return $this;
         });
+    }
 
+    protected function classFor(): void
+    {
         ComponentAttributeBag::macro('classFor', function (string $key, string $default = ''): mixed {
             /** @var ComponentAttributeBag $this */
             $class = Bladeable::classKeys($key)->first();
@@ -62,16 +77,21 @@ trait WithBladeMacros
             return $this->get($class, $default);
         });
 
+    }
+
+    protected function wireModel(): void
+    {
         ComponentAttributeBag::macro('wireModel', function (): mixed {
             /** @var ComponentAttributeBag $this */
             return $this->whereStartsWith('wire:model')->first();
         });
+    }
 
+    protected function wireKey(): void
+    {
         ComponentAttributeBag::macro('wireKey', function (): mixed {
             /** @var ComponentAttributeBag $this */
             return $this->wireModel() ?: $this->first('id') ?: $this->first('name');
         });
-
-        return $this;
     }
 }
