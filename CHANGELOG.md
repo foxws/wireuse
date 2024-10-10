@@ -2,6 +2,15 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.5.0 - 2024-10-10
+
+### Upgrade Notice
+
+- Most methods have been converted into non-static, this makes it easier to call Livewire methods.
+- The method `getAuthUser()` has been renamed to  `getAuthModel()`
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.4.1...v2.5.0
+
 ## v2.4.1 - 2024-09-27
 
 **Full Changelog**: https://github.com/foxws/wireuse/compare/v2.4.0...v2.4.1
