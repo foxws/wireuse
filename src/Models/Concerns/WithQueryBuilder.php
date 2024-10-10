@@ -19,23 +19,23 @@ trait WithQueryBuilder
         $this->authorize('viewAny', $this->getModelClass());
     }
 
-    protected static function getModelClass(): ?string
+    protected function getModelClass(): ?string
     {
         return static::$model;
     }
 
-    protected static function getModel(): Model
+    protected function getModel(): Model
     {
-        return app(static::getModelClass());
+        return app($this->getModelClass());
     }
 
-    protected static function getQuery(): Builder
+    protected function getQuery(): Builder
     {
-        return static::getModel()->newQuery();
+        return $this->getModel()->newQuery();
     }
 
-    protected static function getScout(string $query = '*', ?Closure $callback = null): ScoutBuilder
+    protected function getScout(string $query = '*', ?Closure $callback = null): ScoutBuilder
     {
-        return static::getModel()->search($query, $callback);
+        return $this->getModel()->search($query, $callback);
     }
 }
