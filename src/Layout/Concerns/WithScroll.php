@@ -19,13 +19,7 @@ trait WithScroll
     public function mountWithScroll(): void
     {
         if (blank($this->models)) {
-            $range = range(1, $this->getScrollLimit());
-
-            foreach ($range as $page) {
-                $this->mergePageItems($this->getPageItems($page)->all());
-
-                Sleep::for(100)->milliseconds();
-            }
+            $this->fillPageItems();
         }
     }
 
@@ -71,6 +65,17 @@ trait WithScroll
 
         return $this->getQuery()
             ->paginate(perPage: 16, page: $page);
+    }
+
+    protected function fillPageItems(): void
+    {
+        $range = range(1, $this->getScrollLimit());
+
+        foreach ($range as $page) {
+            $this->mergePageItems($this->getPageItems($page)->all());
+
+            Sleep::for(100)->milliseconds();
+        }
     }
 
     protected function mergePageItems(array $models = []): void
