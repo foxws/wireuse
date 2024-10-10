@@ -28,11 +28,11 @@ trait WithAuthentication
 
     protected function can(string $ability, mixed $arguments = []): bool
     {
-        return $this->getAuthUser()->can($ability, $arguments);
+        return $this->getAuthUser()?->can($ability, $arguments);
     }
 
     protected function cannot(string $ability, mixed $arguments = []): bool
     {
-        return $this->getAuthUser()->cannot($ability, $arguments);
+        return $this->getAuthUser()?->cannot($ability, $arguments);
     }
 }
