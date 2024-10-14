@@ -2,6 +2,14 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.5.1 - 2024-10-14
+
+### Upgrade Notice
+
+- The HTML `wireModel()` method, doesn't set the ID anymore.
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.5.0...v2.5.1
+
 ## v2.5.0 - 2024-10-10
 
 ### Upgrade Notice
