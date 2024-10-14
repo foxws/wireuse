@@ -38,13 +38,11 @@ class BaseElementMixin extends stdClass
     {
         return function (string $key, ?string $modifiers = null) {
             /** @var BaseElement $this */
-            $directive = str('wire:model')
+            $attribute = str('wire:model')
                 ->when($modifiers, fn (Stringable $str) => $str->append(".{$modifiers}"))
                 ->squish();
 
-            return $this
-                ->attribute($directive->value(), $key)
-                ->attribute('id', $key);
+            return $this->attribute($attribute->value(), $key);
         };
     }
 }
