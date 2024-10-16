@@ -59,6 +59,16 @@ trait WithScroll
         return $this->getPageItems()->hasMorePages();
     }
 
+    public function onFirstPage(): bool
+    {
+        return $this->getPageItems()->onFirstPage();
+    }
+
+    public function onLastPage(): bool
+    {
+        return $this->getPageItems()->onLastPage();
+    }
+
     protected function getPageItems(?int $page = null): LengthAwarePaginator
     {
         $page ??= $this->getPage();
