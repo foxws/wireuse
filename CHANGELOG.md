@@ -2,6 +2,12 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.5.4 - 2024-10-17
+
+- Improve WithScroll trait
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.5.3...v2.5.4
+
 ## v2.5.3 - 2024-10-17
 
 **Full Changelog**: https://github.com/foxws/wireuse/compare/v2.5.2...v2.5.3
