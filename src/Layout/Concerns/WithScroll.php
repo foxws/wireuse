@@ -26,11 +26,7 @@ trait WithScroll
     public function mountWithScroll(): void
     {
         if ($this->items->isEmpty()) {
-            // Make sure to be back on the first page
-            $this->clear();
-
-            // Fetch the first page
-            $this->fetch();
+            $this->fillPageItems();
         }
     }
 
@@ -53,7 +49,7 @@ trait WithScroll
 
         $this->nextPage();
 
-        $this->fillPageItems();
+        $this->fillCurrentPageItems();
     }
 
     public function clear(): void
@@ -82,17 +78,33 @@ trait WithScroll
 
     protected function fillPageItems(): void
     {
-        $range = range(1, $this->getScrollLimit());
+        $range = range(1, $this->getPageFillLimit());
 
         foreach ($range as $page) {
             $items = $this->getPageItems($page);
 
-            if ($items->isNotEmpty()) {
-                $this->models = $this->models->merge($items->all())->unique('id');
+            $this->mergePageItems($items);
 
-                Sleep::for(100)->milliseconds();
-            }
+            Sleep::for(100)->milliseconds();
         }
+    }
+
+    protected function fillCurrentPageItems(): void
+    {
+        $items = $this->getPageItems();
+
+        $this->mergePageItems($items);
+    }
+
+    protected function mergePageItems(Paginator|Collection $items): void
+    {
+        if ($items->isEmpty()) {
+            return;
+        }
+
+        $this->models = $this->models
+            ->merge($items->filter()->all())
+            ->unique($this->getPageItemKey());
     }
 
     protected function getPageItems(?int $page = null): Paginator|LengthAwarePaginator
@@ -101,13 +113,18 @@ trait WithScroll
 
         return $this
             ->getQuery()
-            ->simplePaginate(perPage: 12, page: $page);
+            ->simplePaginate(perPage: 16, page: $page);
     }
 
-    protected function getScrollLimit(?int $page = null): int
+    protected function getPageFillLimit(?int $page = null): int
     {
         $page ??= $this->getPage() ?? 1;
 
         return Number::clamp($page, min: 1, max: 12);
+    }
+
+    protected function getPageItemKey(): ?string
+    {
+        return 'id';
     }
 }
