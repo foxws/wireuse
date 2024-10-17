@@ -36,8 +36,6 @@ trait WithScroll
 
     public function fetch(): void
     {
-        unset($this->items);
-
         $this->nextPage();
 
         $this->mergePageItems(
