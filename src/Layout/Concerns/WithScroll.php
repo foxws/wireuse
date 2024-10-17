@@ -3,6 +3,8 @@
 namespace Foxws\WireUse\Layout\Concerns;
 
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Number;
 use Illuminate\Support\Sleep;
 use Livewire\Attributes\Computed;
@@ -14,12 +16,21 @@ trait WithScroll
     use WithPagination;
 
     #[Locked]
-    public array $models = [];
+    public Collection $models;
+
+    public function bootWithScroll(): void
+    {
+        data_set($this, 'models', collect(), false);
+    }
 
     public function mountWithScroll(): void
     {
-        if (blank($this->models)) {
-            $this->fillPageItems();
+        if ($this->items->isEmpty()) {
+            // Make sure to be back on the first page
+            $this->clear();
+
+            // Fetch the first page
+            $this->fetch();
         }
     }
 
@@ -28,24 +39,26 @@ trait WithScroll
         unset($this->items);
     }
 
-    #[Computed(persist: true)]
-    public function items(): array
+    #[Computed(persist: true, seconds: 3600)]
+    public function items(): Collection
     {
         return $this->models;
     }
 
     public function fetch(): void
     {
+        if (! $this->hasMorePages()) {
+            return;
+        }
+
         $this->nextPage();
 
-        $this->mergePageItems(
-            $this->getPageItems()->all()
-        );
+        $this->fillPageItems();
     }
 
     public function clear(): void
     {
-        $this->reset('models');
+        $this->models = collect();
 
         unset($this->items);
 
@@ -67,34 +80,34 @@ trait WithScroll
         return $this->getPageItems()->onLastPage();
     }
 
-    protected function getPageItems(?int $page = null): LengthAwarePaginator
-    {
-        $page ??= $this->getPage();
-
-        return $this->getQuery()
-            ->paginate(perPage: 16, page: $page);
-    }
-
     protected function fillPageItems(): void
     {
         $range = range(1, $this->getScrollLimit());
 
         foreach ($range as $page) {
-            $this->mergePageItems($this->getPageItems($page)->all());
+            $items = $this->getPageItems($page);
 
-            Sleep::for(100)->milliseconds();
+            if ($items->isNotEmpty()) {
+                $this->models = $this->models->merge($items->all())->unique('id');
+
+                Sleep::for(100)->milliseconds();
+            }
         }
     }
 
-    protected function mergePageItems(array $models = []): void
+    protected function getPageItems(?int $page = null): Paginator|LengthAwarePaginator
     {
-        $this->models = array_merge_recursive($this->models, $models);
+        $page ??= $this->getPage() ?? 1;
+
+        return $this
+            ->getQuery()
+            ->simplePaginate(perPage: 12, page: $page);
     }
 
     protected function getScrollLimit(?int $page = null): int
     {
         $page ??= $this->getPage() ?? 1;
 
-        return Number::clamp($page, min: 1, max: 24);
+        return Number::clamp($page, min: 1, max: 12);
     }
 }
