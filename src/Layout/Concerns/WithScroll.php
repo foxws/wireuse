@@ -23,7 +23,7 @@ trait WithScroll
         }
     }
 
-    public function updatedPage(): void
+    public function updatingPage(): void
     {
         unset($this->items);
     }
