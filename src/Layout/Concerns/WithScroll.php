@@ -25,7 +25,7 @@ trait WithScroll
 
     public function mountWithScroll(): void
     {
-        if ($this->items->isEmpty()) {
+        if ($this->models->isEmpty()) {
             $this->fillPageItems();
         }
     }
