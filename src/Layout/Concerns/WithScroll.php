@@ -2,11 +2,9 @@
 
 namespace Foxws\WireUse\Layout\Concerns;
 
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Number;
-use Illuminate\Support\Sleep;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 use Livewire\WithPagination;
@@ -20,19 +18,16 @@ trait WithScroll
 
     public function bootWithScroll(): void
     {
+        throw_if(! method_exists($this, 'getBuilder') || ! $this->getBuilder() instanceof Builder);
+
         data_set($this, 'models', collect(), false);
     }
 
     public function mountWithScroll(): void
     {
         if ($this->models->isEmpty()) {
-            $this->fillPageItems();
+            $this->fillScrollItems();
         }
-    }
-
-    public function updatingPage(): void
-    {
-        unset($this->items);
     }
 
     #[Computed(persist: true, seconds: 3600)]
@@ -43,13 +38,17 @@ trait WithScroll
 
     public function fetch(): void
     {
-        if (! $this->hasMorePages()) {
+        $page = $this->getScrollPage();
+
+        $limit =  $this->getScrollPageLimit();
+
+        if (! $this->hasMorePages() || (is_numeric($limit) && $page > $limit)) {
             return;
         }
 
-        $this->nextPage();
+        $this->nextPage(pageName: $this->getScrollPageName());
 
-        $this->fillCurrentPageItems();
+        $this->fillPageScrollItems();
     }
 
     public function clear(): void
@@ -61,70 +60,94 @@ trait WithScroll
         $this->resetPage();
     }
 
+    public function getScrollPage(): ?int
+    {
+        return $this->getPage();
+    }
+
     public function hasMorePages(): bool
     {
-        return $this->getPageItems()->hasMorePages();
+        return $this->getScrollBuilder()->hasMorePages();
     }
 
     public function onFirstPage(): bool
     {
-        return $this->getPageItems()->onFirstPage();
+        return $this->getScrollBuilder()->onFirstPage();
     }
 
     public function onLastPage(): bool
     {
-        return $this->getPageItems()->onLastPage();
+        return $this->getScrollBuilder()->onLastPage();
     }
 
-    protected function fillPageItems(): void
+    protected function fillPageScrollItems(): void
     {
-        $range = range(1, $this->getPageFillLimit());
+        $items = $this->getScrollBuilder()->getCollection();
 
-        foreach ($range as $page) {
-            $items = $this->getPageItems($page);
-
-            $this->mergePageItems($items);
-
-            Sleep::for(100)->milliseconds();
-        }
+        $this->mergeScrollItems($items);
     }
 
-    protected function fillCurrentPageItems(): void
+    protected function fillScrollItems(?int $page = null): void
     {
-        $items = $this->getPageItems();
+        $builder = $this->getScrollBuilder();
 
-        $this->mergePageItems($items);
+        $pages = $this->getScrollPages($page);
+
+        $limit =  $this->getScrollPageLimit();
+
+        $pages->each(function (int $page) use ($builder, $limit) {
+            if (! $this->hasMorePages() || (is_numeric($limit) && $page > $limit)) {
+                return false;
+            }
+
+            $this->mergeScrollItems(
+                $builder->getCollection()
+            );
+
+            $this->nextPage(pageName: $this->getScrollPageName());
+        });
     }
 
-    protected function mergePageItems(Paginator|Collection $items): void
+    protected function mergeScrollItems(Collection $items): void
     {
-        if ($items->isEmpty()) {
-            return;
-        }
-
         $this->models = $this->models
             ->merge($items->filter()->all())
-            ->unique($this->getPageItemKey());
+            ->unique($this->getScrollPageUniqueKey());
+
+        unset($this->items);
     }
 
-    protected function getPageItems(?int $page = null): Paginator|LengthAwarePaginator
+    protected function getScrollBuilder(): Paginator
     {
-        $page ??= $this->getPage() ?? 1;
+        $perPage = $this->getScrollPerPage();
 
-        return $this
-            ->getQuery()
-            ->simplePaginate(perPage: 16, page: $page);
+        return $this->getBuilder()->simplePaginate(perPage: $perPage);
     }
 
-    protected function getPageFillLimit(?int $page = null): int
+    protected function getScrollPages(?int $page = null): Collection
     {
-        $page ??= $this->getPage() ?? 1;
+        $page ??= $this->getScrollPage();
 
-        return Number::clamp($page, min: 1, max: 12);
+        return collect(range(1, $page ?? 1));
     }
 
-    protected function getPageItemKey(): ?string
+    protected function getScrollPerPage(): int
+    {
+        return 16;
+    }
+
+    protected function getScrollPageLimit(): ?int
+    {
+        return null;
+    }
+
+    protected function getScrollPageUniqueKey(): ?string
     {
         return 'id';
+    }
+
+    protected function getScrollPageName(): string
+    {
+        return 'page';
     }
 }
