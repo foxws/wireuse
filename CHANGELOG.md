@@ -2,6 +2,14 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.6.0 - 2024-10-18
+
+### Upgrade Notice
+
+- The `WithScroll` trait has changed method names, but does introduce more features.
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.5.4...v2.6.0
+
 ## v2.5.4 - 2024-10-17
 
 - Improve WithScroll trait
