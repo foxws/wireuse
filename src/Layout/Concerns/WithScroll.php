@@ -62,7 +62,7 @@ trait WithScroll
 
     public function getScrollPage(): ?int
     {
-        return $this->getPage();
+        return $this->getPage(pageName: $this->getScrollPageName());
     }
 
     public function hasMorePages(): bool
