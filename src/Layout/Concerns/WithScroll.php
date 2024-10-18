@@ -40,7 +40,7 @@ trait WithScroll
     {
         $page = $this->getScrollPage();
 
-        $limit =  $this->getScrollPageLimit();
+        $limit = $this->getScrollPageLimit();
 
         if (! $this->hasMorePages() || (is_numeric($limit) && $page > $limit)) {
             return;
@@ -93,7 +93,7 @@ trait WithScroll
 
         $pages = $this->getScrollPages($page);
 
-        $limit =  $this->getScrollPageLimit();
+        $limit = $this->getScrollPageLimit();
 
         $pages->each(function (int $page) use ($builder, $limit) {
             if (! $this->hasMorePages() || (is_numeric($limit) && $page > $limit)) {
