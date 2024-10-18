@@ -5,6 +5,7 @@ namespace Foxws\WireUse\Layout\Concerns;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Laravel\Scout\Scout;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 use Livewire\WithPagination;
@@ -18,7 +19,10 @@ trait WithScroll
 
     public function bootWithScroll(): void
     {
-        throw_if(! method_exists($this, 'getBuilder') || ! $this->getBuilder() instanceof Builder);
+        throw_if(
+            ! method_exists($this, 'getBuilder') ||
+            ! ($this->getBuilder() instanceof Builder || ! $this->getBuilder() instanceof Scout)
+        );
 
         data_set($this, 'models', collect(), false);
     }
@@ -40,7 +44,7 @@ trait WithScroll
     {
         $page = $this->getScrollPage();
 
-        $limit = $this->getScrollPageLimit();
+        $limit =  $this->getScrollPageLimit();
 
         if (! $this->hasMorePages() || (is_numeric($limit) && $page > $limit)) {
             return;
@@ -93,7 +97,7 @@ trait WithScroll
 
         $pages = $this->getScrollPages($page);
 
-        $limit = $this->getScrollPageLimit();
+        $limit =  $this->getScrollPageLimit();
 
         $pages->each(function (int $page) use ($builder, $limit) {
             if (! $this->hasMorePages() || (is_numeric($limit) && $page > $limit)) {
