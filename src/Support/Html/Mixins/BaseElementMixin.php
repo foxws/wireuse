@@ -36,13 +36,15 @@ class BaseElementMixin extends stdClass
 
     public function wireModel(): mixed
     {
-        return function (string $key, ?string $modifiers = null) {
+        return function (string $key, ?string $modifiers = null, bool $id = true) {
             /** @var BaseElement $this */
             $attribute = str('wire:model')
                 ->when($modifiers, fn (Stringable $str) => $str->append(".{$modifiers}"))
                 ->squish();
 
-            return $this->attribute($attribute->value(), $key);
+            return $this
+                ->attribute($attribute->value(), $key)
+                ->attributeIf($id, 'id', $key);
         };
     }
 }
