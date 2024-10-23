@@ -125,7 +125,11 @@ trait WithScroll
     {
         $perPage = $this->getScrollPerPage();
 
-        return $this->getBuilder()->simplePaginate(perPage: $perPage);
+        $limit = $this->getScrollPageLimit();
+
+        return $this->getBuilder()
+            ->when($limit, fn ($query) => $query->take($perPage * $limit))
+            ->simplePaginate(perPage: $perPage);
     }
 
     protected function getScrollPages(?int $page = null): Collection
