@@ -2,6 +2,19 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.7.0 - 2024-10-31
+
+### What's Changed
+
+* Code refactoring by @francoism90 in https://github.com/foxws/wireuse/pull/13
+
+### Upgrade Notice
+
+- The `WithScroll` trait is now only compatible with Collections containing models, and it's namespace has changed to `Foxws\WireUse\Models\Concerns`  to reflect this change
+- The Blade helpers have been removed. Please consider alternatives like [blade#slot-attributes](https://laravel.com/docs/11.x/blade#slot-attributes) or [Spatie Laravel HTML](https://github.com/spatie/laravel-html)
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.6.1...v2.7.0
+
 ## v2.6.1 - 2024-10-21
 
 **Full Changelog**: https://github.com/foxws/wireuse/compare/v2.6.0...v2.6.1
