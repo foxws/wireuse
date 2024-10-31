@@ -13,13 +13,13 @@ trait WithRateLimiter
 
     protected function rateLimit(): void
     {
-        $maxAttempts = static::getMaxAttempts();
+        $maxAttempts = $this->getMaxAttempts();
 
         if ($maxAttempts < 1) {
             return;
         }
 
-        $key = static::getRateLimitKey();
+        $key = $this->getRateLimitKey();
 
         if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
             throw new RateLimitedException(
@@ -28,41 +28,41 @@ trait WithRateLimiter
             );
         }
 
-        static::incrementRateLimiter();
+        $this->incrementRateLimiter();
     }
 
-    protected static function incrementRateLimiter(): void
+    protected function incrementRateLimiter(): void
     {
         RateLimiter::increment(
-            key: static::getRateLimitKey(),
-            decaySeconds: static::getDecaySeconds(),
-            amount: static::getRateLimitAmount(),
+            key: $this->getRateLimitKey(),
+            decaySeconds: $this->getDecaySeconds(),
+            amount: $this->getRateLimitAmount(),
         );
     }
 
-    protected static function clearRateLimiter(): void
+    protected function clearRateLimiter(): void
     {
-        RateLimiter::clear(static::getRateLimitKey());
+        RateLimiter::clear($this->getRateLimitKey());
     }
 
-    protected static function getRateLimitKey(): string
+    protected function getRateLimitKey(): string
     {
-        return hash('crc32c', serialize([
+        return hash('xxh128', serialize([
             get_called_class(), request()->ip(),
         ]));
     }
 
-    protected static function getMaxAttempts(): int
+    protected function getMaxAttempts(): int
     {
         return static::$maxAttempts;
     }
 
-    protected static function getDecaySeconds(): int
+    protected function getDecaySeconds(): int
     {
         return static::$decaySeconds;
     }
 
-    protected static function getRateLimitAmount(): int
+    protected function getRateLimitAmount(): int
     {
         return 1;
     }
