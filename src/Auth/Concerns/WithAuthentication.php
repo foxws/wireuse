@@ -2,7 +2,7 @@
 
 namespace Foxws\WireUse\Auth\Concerns;
 
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
 
 trait WithAuthentication
@@ -17,7 +17,7 @@ trait WithAuthentication
         return Auth::id();
     }
 
-    protected function getAuthModel(): ?User
+    protected function getAuthModel(): ?Authenticatable
     {
         return Auth::getUser();
     }
