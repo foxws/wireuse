@@ -29,9 +29,13 @@ class WireUseServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        $this
-            ->registerFeatures()
-            ->registerMixins();
+        if (count(config('wireuse.features', false))) {
+            $this->registerFeatures();
+        }
+
+        if (config('wireuse.html.mixins', false)) {
+            $this->registerHtmlMixins();
+        }
     }
 
     protected function registerFeatures(): static
@@ -40,15 +44,6 @@ class WireUseServiceProvider extends PackageServiceProvider
 
         foreach ($features as $feature) {
             app('livewire')->componentHook($feature);
-        }
-
-        return $this;
-    }
-
-    protected function registerMixins(): static
-    {
-        if (config('wireuse.html.mixins', false)) {
-            $this->registerHtmlMixins();
         }
 
         return $this;
