@@ -7,6 +7,7 @@
         "laravel",
         "livewire",
         "utilities",
+        "traits",
         "helpers"
     ],
     "homepage": "https://github.com/foxws/wireuse",
