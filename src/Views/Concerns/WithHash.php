@@ -9,12 +9,12 @@ trait WithHash
     #[Computed]
     public function hash(): string
     {
-        return hash('crc32c', serialize($this));
+        return hash('xxh128', serialize($this));
     }
 
     #[Computed]
     public function classHash(): string
     {
-        return hash('crc32c', serialize(static::class));
+        return hash('xxh128', serialize(static::class));
     }
 }
