@@ -7,9 +7,9 @@ use Ramsey\Uuid\UuidInterface;
 
 trait WithLivewire
 {
-    public function wireKey(): string
+    public function wireKey(): ?string
     {
-        return $this->attributes->get('id', $this->wireModel() ?? (string) $this->uuid());
+        return $this->attributes->get('id', $this->wireModel());
     }
 
     public function wireModel(): ?string

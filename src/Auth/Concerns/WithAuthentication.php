@@ -2,23 +2,24 @@
 
 namespace Foxws\WireUse\Auth\Concerns;
 
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 trait WithAuthentication
 {
     protected function isAuthenticated(): bool
     {
-        return auth()->check();
+        return Auth::check();
     }
 
     protected function getAuthId(): int|string|null
     {
-        return auth()->id();
+        return Auth::id();
     }
 
-    protected function getAuthModel(): ?User
+    protected function getAuthModel(): ?Authenticatable
     {
-        return auth()->user();
+        return Auth::getUser();
     }
 
     protected function getAuthKey(): int|string|null
@@ -28,11 +29,11 @@ trait WithAuthentication
 
     protected function can(string $ability, mixed $arguments = []): bool
     {
-        return $this->getAuthModel()?->can($ability, $arguments);
+        return Auth::user()?->can($ability, $arguments);
     }
 
     protected function cannot(string $ability, mixed $arguments = []): bool
     {
-        return $this->getAuthModel()?->cannot($ability, $arguments);
+        return Auth::user()?->cannot($ability, $arguments);
     }
 }

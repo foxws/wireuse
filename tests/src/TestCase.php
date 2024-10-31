@@ -29,6 +29,8 @@ abstract class TestCase extends Orchestra
 
     protected function getEnvironmentSetUp($app)
     {
+        $app['config']->set('broadcasting.default', 'log');
+
         $app['config']->set('cache.default', 'file');
 
         $app['config']->set('database.default', 'sqlite');
