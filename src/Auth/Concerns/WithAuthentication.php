@@ -29,11 +29,11 @@ trait WithAuthentication
 
     protected function can(string $ability, mixed $arguments = []): bool
     {
-        return Auth::user()->can($ability, $arguments);
+        return Auth::user()?->can($ability, $arguments);
     }
 
     protected function cannot(string $ability, mixed $arguments = []): bool
     {
-        return Auth::user()->cannot($ability, $arguments);
+        return Auth::user()?->cannot($ability, $arguments);
     }
 }
