@@ -2,10 +2,8 @@
 
 namespace Foxws\WireUse\Models\Concerns;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
-use Laravel\Scout\Scout;
+use Illuminate\Pagination\Paginator;
 use Livewire\WithPagination;
 
 trait WithPaginateScroll
@@ -13,14 +11,6 @@ trait WithPaginateScroll
     use WithPagination;
     use WithQueryBuilder;
     use WithScroll;
-
-    public function bootWithPaginateScroll(): void
-    {
-        throw_if(
-            ! method_exists($this, 'getBuilder') ||
-            ! ($this->getBuilder() instanceof Builder || ! $this->getBuilder() instanceof Scout)
-        );
-    }
 
     public function updatedPage(): void
     {
