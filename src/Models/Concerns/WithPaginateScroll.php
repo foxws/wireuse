@@ -2,8 +2,8 @@
 
 namespace Foxws\WireUse\Models\Concerns;
 
-use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Livewire\WithPagination;
 
 trait WithPaginateScroll
