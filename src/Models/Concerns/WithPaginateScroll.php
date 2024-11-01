@@ -3,15 +3,15 @@
 namespace Foxws\WireUse\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Laravel\Scout\Scout;
 use Livewire\WithPagination;
 
 trait WithPaginateScroll
 {
-    use WithQueryBuilder;
     use WithPagination;
+    use WithQueryBuilder;
     use WithScroll;
 
     public function bootWithPaginateScroll(): void
