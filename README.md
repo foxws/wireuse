@@ -7,7 +7,7 @@
 
 This packages offers a collection of useful [Livewire](https://livewire.laravel.com/) utilities and components.
 
-The full documentation and more information about WireUse, is on our dedicated [documentation](https://foxws.nl/projects/wireuse) website.
+Documentation and more information about WireUse, is available on our dedicated [documentation](https://foxws.nl/projects/wireuse) website.
 
 ## Installation
 
@@ -27,12 +27,12 @@ php artisan vendor:publish --tag="wireuse-config"
 
 This is a selection of the available features:
 
-- [Property Synthesizers](https://foxws.nl/posts/wireuse/property-synthesizers) - Force usage of model route-keys, instead of model ids.
-- [Components](https://foxws.nl/posts/wireuse/components) - Components like `Page` and useful traits.
-- [HTML](https://foxws.nl/posts/wireuse/laravel-html) - Extends Spatie's [laravel-html](https://spatie.be/docs/laravel-html/v3/introduction) to generate HTML using a clean, simple and easy to read API.
-- [State Objects](https://foxws.nl/posts/wireuse/state-objects) - State objects are based on states that you find, for example, in a VueJS Store.
-- [Forms](https://foxws.nl/posts/wireuse/forms) - Traits and extensions for [Livewire Forms](https://livewire.laravel.com/docs/forms).
-- [Structure Scout](https://foxws.nl/posts/wireuse/structure-scout) - Supported by [spatie/php-structure-discoverer](https://github.com/spatie/php-structure-discoverer) package, it provides a scout to discover and register components, which also offers benefits such as caching.
+- [Property Synthesizers](https://foxws.nl/posts/wireuse-property-synthesizers) - Force usage of model route-keys, instead of model ids.
+- [Components](https://foxws.nl/posts/wireuse-extending-components) - Components like `Page` and useful traits.
+- [Forms](https://foxws.nl/posts/wireuse-extending-forms) - Traits and extensions for [Livewire Forms](https://livewire.laravel.com/docs/forms).
+- [State Objects](https://foxws.nl/posts/wireuse-state-objects) - State objects are based on states that you find, for example, in a VueJS Store.
+- [Structure Scout](https://foxws.nl/posts/wireuse-structure-scout) - Supported by [spatie/php-structure-discoverer](https://github.com/spatie/php-structure-discoverer) package, it provides a scout to discover and register components, which also offers benefits such as caching.
+- [HTML](https://foxws.nl/posts/wireuse-laravel-html-spatie) - Extends Spatie's [laravel-html](https://spatie.be/docs/laravel-html/v3/introduction) to generate HTML using a clean, simple and easy to read API.
 
 Please checkout our [documentation](https://foxws.nl/projects/wireuse) for more information.
 
