@@ -7,7 +7,7 @@
 
 This packages offers a collection of useful [Livewire](https://livewire.laravel.com/) utilities and components.
 
-Documentation and more information about WireUse, is available on our dedicated [documentation](https://foxws.nl/projects/wireuse) website.
+Documentation is available on our dedicated [documentation website](https://foxws.nl/projects/wireuse).
 
 ## Installation
 
