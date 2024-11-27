@@ -14,12 +14,12 @@ class LinkElementMixin extends stdClass
             $href = route($route, ...$parameters);
 
             return $this
-                ->attribute('wire:navigate')
-                ->href($href)
-                ->class([
-                    'link',
-                    'link-active' => request()->routeIs($route, "{$route}.*") || request()->fullUrlIs($href),
-                ]);
+                ->attributes([
+                    'wire:navigate',
+                    'wire:current' => 'link-active',
+                ])
+                ->class('link')
+                ->href($href);
         };
     }
 
