@@ -2,43 +2,34 @@
 
 namespace Foxws\WireUse\Forms\Concerns;
 
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Fluent;
 
 trait WithAttributes
 {
-    protected function keys(): array
-    {
-        return array_keys($this->all());
-    }
-
     public function fill($values)
     {
-        $values = $this->callHook('beforeFill', $values);
+        if (method_exists($this, 'beforeFill')) {
+            $values = $this->beforeFill($values);
+        }
 
         return parent::fill($values);
     }
 
     public function get(string $key, mixed $default = null): mixed
     {
-        return $this->getPropertyValue($key) ?: $default;
+        return $this->request()->get($key, $default);
     }
 
     public function has(...$properties): bool
     {
-        return $this->toCollection()
-            ->has($properties);
+        return $this->request()->hasAny($properties);
     }
 
-    public function contains(string $property, mixed $args): bool
+    public function contains(string $key, mixed $value = null): bool
     {
-        $propertyValue = $this->get($property);
-
-        if (is_array($propertyValue)) {
-            return in_array($args, $propertyValue);
-        }
-
-        return $propertyValue === $args;
+        return $this->collect()->contains($key, $value);
     }
 
     public function is(string $property, mixed $args = null): bool
@@ -53,16 +44,12 @@ trait WithAttributes
 
     public function filled(...$properties): bool
     {
-        return $this->toCollection($properties)
-            ->filter()
-            ->isNotEmpty();
+        return $this->request()->filled($properties);
     }
 
     public function blank(...$properties): bool
     {
-        return $this->toCollection($properties)
-            ->filter()
-            ->isEmpty();
+        return ! $this->filled($properties);
     }
 
     public function clear(bool $submit = true): void
@@ -76,17 +63,25 @@ trait WithAttributes
         }
     }
 
-    protected function toCollection(...$properties): Collection
+    protected function keys(): array
     {
-        return $properties
-            ? new Collection($this->only(...$properties))
-            : new Collection($this->all());
+        return $this->request()->keys();
     }
 
-    protected function toFluent(...$properties): Fluent
+    protected function request(): FormRequest
     {
-        return $properties
-            ? new Fluent($this->only(...$properties))
-            : new Fluent($this->all());
+        $this->validate();
+
+        return (new FormRequest())->merge($this->all());
+    }
+
+    protected function collect(): Collection
+    {
+        return $this->request()->collect();
+    }
+
+    protected function fluent(): Fluent
+    {
+        return request()->fluent();
     }
 }
