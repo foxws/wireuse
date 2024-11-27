@@ -65,7 +65,7 @@ trait WithAttributes
 
     protected function keys(): array
     {
-        return $this->request()->keys();
+        return array_keys($this->all());
     }
 
     protected function request(): FormRequest

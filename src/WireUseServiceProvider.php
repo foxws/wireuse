@@ -52,7 +52,7 @@ class WireUseServiceProvider extends PackageServiceProvider
     protected function registerStructureDiscovery(): static
     {
         if (! InstalledVersions::isInstalled('spatie/php-structure-discoverer')) {
-            abort(500, 'The spatie/php-structure-discoverer package is required to use the Structure Discovery.');
+            abort(500, 'The spatie/php-structure-discoverer package is required to use Structure Discovery.');
         }
 
         $this->app->singleton(ComponentScout::class, fn () => new ComponentScout);
@@ -64,7 +64,7 @@ class WireUseServiceProvider extends PackageServiceProvider
     protected function registerHtmlMixins(): static
     {
         if (! InstalledVersions::isInstalled('spatie/laravel-html')) {
-            abort(500, 'The spatie/laravel-html package is required to use the HTML mixins.');
+            abort(500, 'The spatie/laravel-html package is required to use HTML mixins.');
         }
 
         $mixins = [

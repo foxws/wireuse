@@ -6,6 +6,10 @@ trait WithSession
 {
     protected static bool $store = false;
 
+    /**
+     * Restore the form data from the session.
+     * This should be called in your mount() method.
+     */
     public function restore(): void
     {
         if (! $this->useStore() || ! $this->hasStore()) {
@@ -18,6 +22,10 @@ trait WithSession
         );
     }
 
+    /**
+     * Stores the form data in the session.
+     * This should be called in your updated() method.
+     */
     public function store(): void
     {
         if (! $this->useStore() || ! $this->storeWhen()) {
@@ -30,6 +38,10 @@ trait WithSession
         session()->put($this->storeId(), serialize($this->storeWith()));
     }
 
+    /**
+     * Forget the form data from the session.
+     * This may be called in your clear() method.
+     */
     public function forget(): void
     {
         session()->forget($this->storeId());
