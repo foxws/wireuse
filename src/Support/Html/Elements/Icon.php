@@ -10,6 +10,8 @@ class Icon extends BaseElement
 
     public function svg(?string $name = null, ?string $class = null, ?array $attributes = []): static
     {
+        throw_if(! function_exists('svg'), 'Make sure blade-ui-kit/blade-icons is installed');
+
         return $this->html(svg($name, $class, $attributes)->toHtml());
     }
 }
