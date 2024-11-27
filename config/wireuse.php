@@ -25,7 +25,7 @@ return [
     |
     | This extends Laravel HTML.
     |
-    | @doc https://foxws.nl/posts/wireuse/laravel-html
+    | @doc https://foxws.nl/posts/wireuse-laravel-html-spatie
     | @doc https://spatie.be/docs/laravel-html/v3
     |
     */
@@ -41,7 +41,7 @@ return [
     |
     | This controls structure discovery.
     |
-    | @doc https://foxws.nl/posts/wireuse/structure-scout
+    | @doc https://foxws.nl/posts/wireuse-structure-scout
     | @doc https://github.com/spatie/php-structure-discoverer
     |
     */

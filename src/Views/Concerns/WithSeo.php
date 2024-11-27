@@ -8,6 +8,15 @@ trait WithSeo
 {
     public function bootWithSeo(): void
     {
+        if (! $this->shouldSetSeoMeta()) {
+        	return;
+        }
+
+        $this->setSeoMeta();
+    }
+
+    protected function setSeoMeta(): void
+    {
         if (method_exists(static::class, 'getTitle')) {
             SEOMeta::setTitle($this->getTitle());
         }
@@ -19,5 +28,10 @@ trait WithSeo
         if (method_exists(static::class, 'getRobots')) {
             SEOMeta::setRobots($this->getRobots());
         }
+    }
+
+    protected function shouldSetSeoMeta(): bool
+    {
+        return class_exists(SEOMeta::class);
     }
 }
