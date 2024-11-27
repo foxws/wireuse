@@ -72,7 +72,7 @@ trait WithAttributes
     {
         $this->validate();
 
-        return (new FormRequest())->merge($this->all());
+        return (new FormRequest)->merge($this->all());
     }
 
     protected function collect(): Collection
