@@ -9,7 +9,7 @@ trait WithSeo
     public function bootWithSeo(): void
     {
         if (! $this->shouldSetSeoMeta()) {
-        	return;
+            return;
         }
 
         $this->setSeoMeta();
