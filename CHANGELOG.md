@@ -2,6 +2,20 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.8.0 - 2024-11-27
+
+### Upgrade Notice
+
+* `Foxws\WireUse\Forms\Concerns\WithAttributes` now uses `FormRequest`, and it's methods have been renamed from `$form->toCollect()` to `$form->collect()`, `$form->toFluent()` to `$form->fluent()`, and newly introduced `$form->request()`.
+* To use SEO on `Foxws\WireUse\Views\Support\Page`, please install and configure  `artesaos/seotools`.
+* For navigation links, it's recommended to use `wire:current` to mark active classes.
+
+### What's Changed
+
+* feat: seo by @francoism90 in https://github.com/foxws/wireuse/pull/15
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.7.3...v2.8.0
+
 ## v2.7.3 - 2024-11-01
 
 **Full Changelog**: https://github.com/foxws/wireuse/compare/v2.7.2...v2.7.3
