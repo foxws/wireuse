@@ -70,8 +70,6 @@ trait WithAttributes
 
     protected function request(): FormRequest
     {
-        $this->validate();
-
         return (new FormRequest)->merge($this->all());
     }
 
