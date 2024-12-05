@@ -13,7 +13,7 @@ class LinkElementMixin extends stdClass
         return function (string $route, array $parameters = [], ?string $modifiers = null) {
             /** @var A $this */
             $href = route($route, $parameters);
-            
+
             $current = str('wire:current')
                 ->when($modifiers, fn (Stringable $str) => $str->append(".{$modifiers}"))
                 ->squish();
