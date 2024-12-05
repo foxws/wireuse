@@ -10,7 +10,7 @@ class LinkElementMixin extends stdClass
 {
     public function link(?string $modifiers = null): mixed
     {
-        return function (string $route, array $parameters = [], ?string $modifiers = null) {
+        return function (string $route, mixed $parameters = [], ?string $modifiers = null) {
             /** @var A $this */
             $href = route($route, $parameters);
 
