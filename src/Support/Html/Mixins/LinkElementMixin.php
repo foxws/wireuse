@@ -8,7 +8,7 @@ use stdClass;
 
 class LinkElementMixin extends stdClass
 {
-    public function link(?string $modifiers = null): mixed
+    public function link(): mixed
     {
         return function (string $route, mixed $parameters = [], ?string $modifiers = null) {
             /** @var A $this */
