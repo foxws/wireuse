@@ -2,22 +2,25 @@
 
 namespace Foxws\WireUse\Support\Html\Mixins;
 
+use Illuminate\Support\Stringable;
 use Spatie\Html\Elements\A;
 use stdClass;
 
 class LinkElementMixin extends stdClass
 {
-    public function link(): mixed
+    public function link(?string $modifiers = null): mixed
     {
-        return function (string $route, ...$parameters) {
+        return function (string $route, array $parameters = [], ?string $modifiers = null) {
             /** @var A $this */
-            $href = route($route, ...$parameters);
+            $href = route($route, $parameters);
+            
+            $current = str('wire:current')
+                ->when($modifiers, fn (Stringable $str) => $str->append(".{$modifiers}"))
+                ->squish();
 
             return $this
-                ->attributes([
-                    'wire:navigate',
-                    'wire:current' => 'link-active',
-                ])
+                ->attribute('wire:navigate')
+                ->attribute($current->value(), 'link-active')
                 ->class('link')
                 ->href($href);
         };
