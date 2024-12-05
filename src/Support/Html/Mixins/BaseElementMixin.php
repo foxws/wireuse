@@ -10,7 +10,7 @@ class BaseElementMixin extends stdClass
 {
     public function crossorigin(): mixed
     {
-        return function (?string $value = 'use-credentials') {
+        return function (string $value = 'use-credentials') {
             /** @var BaseElement $this */
             return $this->attribute('crossorigin', $value);
         };
