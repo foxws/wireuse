@@ -2,6 +2,16 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.9.0 - 2025-04-23
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot in https://github.com/foxws/wireuse/pull/16
+* Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot in https://github.com/foxws/wireuse/pull/17
+* Code refactoring by @francoism90 in https://github.com/foxws/wireuse/pull/18
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.8.3...v2.9.0
+
 ## v2.8.3 - 2024-12-05
 
 **Full Changelog**: https://github.com/foxws/wireuse/compare/v2.8.2...v2.8.3
