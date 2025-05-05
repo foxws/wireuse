@@ -2,8 +2,8 @@
 
 namespace Foxws\WireUse\Models\Concerns;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Collection;
 use Livewire\WithPagination;
 
 trait WithPaginateScroll
@@ -32,7 +32,7 @@ trait WithPaginateScroll
 
         $this->resetPage();
 
-        $this->models = collect();
+        $this->models = Collection::make();
 
         unset($this->items);
     }

@@ -2,8 +2,8 @@
 
 namespace Foxws\WireUse\Models\Concerns;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 
@@ -17,7 +17,7 @@ trait WithScroll
 
     public function bootWithScroll(): void
     {
-        data_set($this, 'models', collect(), false);
+        data_set($this, 'models', Collection::make(), false);
     }
 
     public function mountWithScroll(): void
@@ -104,7 +104,7 @@ trait WithScroll
      */
     protected function getMergeCandidates(): Collection
     {
-        return collect();
+        return Collection::make();
     }
 
     /**
