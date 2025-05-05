@@ -32,7 +32,7 @@ trait WithPaginateScroll
 
         $this->resetPage();
 
-        $this->models = Collection::make();
+        $this->resetModels();
 
         unset($this->items);
     }

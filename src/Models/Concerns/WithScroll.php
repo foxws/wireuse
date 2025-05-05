@@ -3,7 +3,6 @@
 namespace Foxws\WireUse\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 
@@ -68,7 +67,7 @@ trait WithScroll
     {
         $this->reset('fetchCount');
 
-        $this->models = collect();
+        $this->resetModels();
 
         unset($this->items);
     }
@@ -87,16 +86,14 @@ trait WithScroll
      */
     protected function mergeScrollItems(Collection $items): void
     {
-        $items = $items
-            ->take($this->getCandidatesLimit())
-            ->filter(fn (mixed $item) => $item instanceof Model)
-            ->all();
-
-        $this->models = $this->models
-            ->mergeRecursive($items)
-            ->unique($this->getItemUniqueKey());
+        $this->models->push(...$items);
 
         $this->refresh();
+    }
+
+    protected function resetModels(): void
+    {
+        $this->models = Collection::make();
     }
 
     /**

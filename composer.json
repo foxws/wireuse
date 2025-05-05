@@ -2,12 +2,12 @@
     "name": "foxws/wireuse",
     "description": "Collection of Livewire traits and utilities",
     "keywords": [
-        "wireuse",
         "laravel",
         "livewire",
         "utilities",
         "traits",
         "concerns",
+        "components",
         "helpers"
     ],
     "homepage": "https://github.com/foxws/wireuse",
