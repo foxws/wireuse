@@ -89,12 +89,11 @@ trait WithScroll
     {
         $items = $items
             ->take($this->getCandidatesLimit())
-            ->reject(fn ($item) => ! $item instanceof Model)
-            ->filter()
+            ->filter(fn (mixed $item) => $item instanceof Model)
             ->all();
 
         $this->models = $this->models
-            ->merge($items)
+            ->mergeRecursive($items)
             ->unique($this->getItemUniqueKey());
 
         $this->refresh();
