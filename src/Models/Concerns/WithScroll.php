@@ -86,7 +86,9 @@ trait WithScroll
      */
     protected function mergeScrollItems(Collection $items): void
     {
-        $this->models->push(...$items);
+        $this->models = $this->models
+            ->mergeRecursive($items)
+            ->unique($this->getItemUniqueKey());
 
         $this->refresh();
     }
