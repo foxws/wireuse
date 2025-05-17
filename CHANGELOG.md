@@ -2,6 +2,15 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.9.3 - 2025-05-17
+
+### What's Changed
+
+* Fix paginate not merging all items
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot in https://github.com/foxws/wireuse/pull/19
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.9.2...v2.9.3
+
 ## v2.9.2 - 2025-05-06
 
 **Full Changelog**: https://github.com/foxws/wireuse/compare/v2.9.1...v2.9.2
