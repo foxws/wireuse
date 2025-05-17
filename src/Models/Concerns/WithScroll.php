@@ -37,10 +37,6 @@ trait WithScroll
      */
     public function fetch(): void
     {
-        if (! $this->isFetchable()) {
-            return;
-        }
-
         $items = $this->getMergeCandidates();
 
         if ($items->isNotEmpty()) {
@@ -74,11 +70,11 @@ trait WithScroll
 
     public function isFetchable(): bool
     {
-        if ($this->items->isEmpty()) {
+        if ($this->items->isEmpty() || is_null($this->getFetchLimits())) {
             return true;
         }
 
-        return is_null($this->getFetchLimits()) || $this->fetchCount < $this->getFetchLimits();
+        return $this->fetchCount < $this->getFetchLimits();
     }
 
     /**
