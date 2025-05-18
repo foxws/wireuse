@@ -2,6 +2,10 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.9.4 - 2025-05-18
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.9.3...v2.9.4
+
 ## v2.9.3 - 2025-05-17
 
 ### What's Changed
