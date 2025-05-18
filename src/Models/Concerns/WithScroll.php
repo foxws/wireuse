@@ -70,11 +70,13 @@ trait WithScroll
 
     public function isFetchable(): bool
     {
-        if ($this->items->isEmpty() || is_null($this->getFetchLimits())) {
+        $fetchLimit = $this->getFetchLimits();
+
+        if ($this->items->isEmpty() || blank($fetchLimit)) {
             return true;
         }
 
-        return $this->fetchCount < $this->getFetchLimits();
+        return $this->fetchCount < $fetchLimit;
     }
 
     /**
