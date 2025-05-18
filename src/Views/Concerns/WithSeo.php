@@ -8,7 +8,7 @@ trait WithSeo
 {
     public function bootWithSeo(): void
     {
-        if (! $this->shouldSetSeoMeta()) {
+        if (! $this->useSeoMeta()) {
             return;
         }
 
@@ -30,8 +30,8 @@ trait WithSeo
         }
     }
 
-    protected function shouldSetSeoMeta(): bool
+    protected function useSeoMeta(): bool
     {
-        return class_exists(SEOMeta::class);
+        return config('wireuse.seo.enabled', false);
     }
 }
