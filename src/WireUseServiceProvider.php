@@ -25,6 +25,10 @@ class WireUseServiceProvider extends PackageServiceProvider
         if (config('wireuse.scout.enabled', false)) {
             $this->registerStructureDiscovery();
         }
+
+        if (config('wireuse.seo.enabled', false)) {
+            $this->registerSeoTools();
+        }
     }
 
     public function packageBooted(): void
@@ -57,6 +61,15 @@ class WireUseServiceProvider extends PackageServiceProvider
 
         $this->app->singleton(ComponentScout::class, fn () => new ComponentScout);
         $this->app->singleton(LivewireScout::class, fn () => new LivewireScout);
+
+        return $this;
+    }
+
+    protected function registerSeoTools(): static
+    {
+        if (! InstalledVersions::isInstalled('artesaos/seotools')) {
+            abort(500, 'The artesaos/seotools package is required to use SEO tools.');
+        }
 
         return $this;
     }
