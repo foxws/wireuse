@@ -41,6 +41,8 @@ trait WithScroll
 
         if ($items->isNotEmpty()) {
             $this->mergeScrollItems($items);
+
+            $this->refresh();
         }
 
         $this->fetchCount++;
@@ -87,8 +89,6 @@ trait WithScroll
         $this->models = $this->models
             ->mergeRecursive($items)
             ->unique($this->getItemUniqueKey());
-
-        $this->refresh();
     }
 
     protected function resetModels(): void
