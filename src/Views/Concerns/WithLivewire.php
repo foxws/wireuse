@@ -2,9 +2,6 @@
 
 namespace Foxws\WireUse\Views\Concerns;
 
-use Illuminate\Support\Str;
-use Ramsey\Uuid\UuidInterface;
-
 trait WithLivewire
 {
     public function wireKey(): ?string
@@ -15,10 +12,5 @@ trait WithLivewire
     public function wireModel(): ?string
     {
         return $this->attributes->wireModel();
-    }
-
-    public function uuid(): UuidInterface|string
-    {
-        return once(fn (): UuidInterface => Str::uuid());
     }
 }
