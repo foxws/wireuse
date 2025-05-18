@@ -2,8 +2,9 @@
 
 namespace Foxws\WireUse\Auth\Concerns;
 
-use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 trait WithAuthentication
 {
@@ -17,23 +18,27 @@ trait WithAuthentication
         return Auth::id();
     }
 
-    protected function getAuthModel(): ?Authenticatable
+    protected function getAuthModel(): ?User
     {
         return Auth::getUser();
     }
 
     protected function getAuthKey(): int|string|null
     {
-        return $this->getAuthModel()?->getRouteKey();
+        if (! $this->isAuthenticated()) {
+            return null;
+        }
+
+        return $this->getAuthModel()->getRouteKey();
     }
 
     protected function can(string $ability, mixed $arguments = []): bool
     {
-        return Auth::user()?->can($ability, $arguments);
+        return Gate::allows($ability, $arguments);
     }
 
     protected function cannot(string $ability, mixed $arguments = []): bool
     {
-        return Auth::user()?->cannot($ability, $arguments);
+        return Gate::denies($ability, $arguments);
     }
 }
