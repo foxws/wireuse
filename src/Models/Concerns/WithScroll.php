@@ -70,6 +70,9 @@ trait WithScroll
         unset($this->items);
     }
 
+    /**
+     * This will check if the items can be fetched.
+     */
     public function isFetchable(): bool
     {
         $fetchLimit = $this->getFetchLimits();
@@ -91,6 +94,9 @@ trait WithScroll
             ->unique($this->getItemUniqueKey());
     }
 
+    /**
+     * This should be called to reset the model instances.
+     */
     protected function resetModels(): void
     {
         $this->models = Collection::make();
@@ -105,7 +111,7 @@ trait WithScroll
     }
 
     /**
-     * This will ensure that the items are unique, to prevent any Livewire key conflicts.
+     * This will ensure that the items are unique, preventing Livewire key conflicts.
      */
     protected function getItemUniqueKey(): ?string
     {
