@@ -2,6 +2,12 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.9.5 - 2025-05-21
+
+*HTML: Use relative routes urls
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.9.4...v2.9.5
+
 ## v2.9.4 - 2025-05-18
 
 **Full Changelog**: https://github.com/foxws/wireuse/compare/v2.9.3...v2.9.4
