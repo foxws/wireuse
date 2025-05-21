@@ -19,10 +19,10 @@ class LinkElementMixin extends stdClass
                 ->squish();
 
             return $this
-                ->attribute('wire:navigate')
-                ->attribute($current->value(), 'link-active')
+                ->href($href)
                 ->class('link')
-                ->href($href);
+                ->attribute('wire:navigate')
+                ->attribute($current->value(), 'link-active');
         };
     }
 
