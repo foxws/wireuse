@@ -31,7 +31,7 @@ return [
     */
 
     'html' => [
-        'mixins' => false,
+        'mixins' => env('WIREUSE_MIXINS_ENABLED', false),
     ],
 
     /*
@@ -47,11 +47,11 @@ return [
     */
 
     'scout' => [
-        'enabled' => false,
+        'enabled' => env('WIREUSE_SCOUT_ENABLED', false),
 
-        'cache_store' => null,
+        'cache_store' => env('WIREUSE_CACHE_STORE', null),
 
-        'cache_lifetime' => 60 * 60 * 24 * 7,
+        'cache_lifetime' => (int) env('WIREUSE_CACHE_LIFETIME', 60 * 60 * 24 * 7),
     ],
 
     /*
@@ -66,7 +66,7 @@ return [
     */
 
     'seo' => [
-        'enabled' => false,
+        'enabled' => env('WIREUSE_SEO_ENABLED', false),
     ],
 
 ];
