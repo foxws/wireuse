@@ -2,6 +2,14 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v2.9.8 - 2025-06-04
+
+### Upgrade Notice
+
+*The scout structure cache is now disabled by default. It can be enabled by publishing `config/wireuse.php`, and setting `cache_store` to `null` or a defined store.
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.9.7...v2.9.8
+
 ## v2.9.7 - 2025-06-04
 
 **Full Changelog**: https://github.com/foxws/wireuse/compare/v2.9.6...v2.9.7
