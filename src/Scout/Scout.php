@@ -29,6 +29,10 @@ abstract class Scout
 
     public function get(): Collection
     {
+        if (! $this->shouldUseCache()) {
+            return $this->buildCollection();
+        }
+
         return Cache::store($this->getCacheStore())->remember(
             $this->getCacheKey(),
             $this->getCacheLifetime(),
@@ -40,7 +44,9 @@ abstract class Scout
     {
         $this->getComponentStructures()->clear();
 
-        Cache::store($this->getCacheStore())->forget($this->getCacheKey());
+        if ($this->shouldUseCache()) {
+            Cache::store($this->getCacheStore())->forget($this->getCacheKey());
+        }
     }
 
     abstract protected function getComponentStructures(): ComponentStructureScout;
@@ -81,6 +87,12 @@ abstract class Scout
             ->replace('\\', '.')
             ->slug('.')
             ->finish('.');
+    }
+
+    protected function shouldUseCache(): bool
+    {
+        return $this->getCacheStore() !== null
+            && $this->getCacheLifetime() !== null;
     }
 
     protected function getCacheKey(): string
