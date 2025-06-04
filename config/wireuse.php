@@ -40,6 +40,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | This controls structure auto-discovery.
+    | To enable caching, set cache_store to null or any defined cache store.
     |
     | @doc https://foxws.nl/posts/wireuse-structure-scout
     | @doc https://github.com/spatie/php-structure-discoverer
