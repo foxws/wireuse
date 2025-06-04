@@ -49,7 +49,7 @@ return [
     'scout' => [
         'enabled' => env('WIREUSE_SCOUT_ENABLED', false),
 
-        'cache_store' => env('WIREUSE_CACHE_STORE', null),
+        'cache_store' => env('WIREUSE_CACHE_STORE', false),
 
         'cache_lifetime' => (int) env('WIREUSE_CACHE_LIFETIME', 60 * 60 * 24 * 7),
     ],
