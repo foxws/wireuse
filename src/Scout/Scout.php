@@ -91,8 +91,7 @@ abstract class Scout
 
     protected function shouldUseCache(): bool
     {
-        return $this->getCacheStore() !== null
-            && $this->getCacheLifetime() !== null;
+        return $this->getCacheStore() !== null;
     }
 
     protected function getCacheKey(): string
