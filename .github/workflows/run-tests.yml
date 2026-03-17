@@ -1,6 +1,13 @@
-name: Tests
+name: run-tests
 
-on: [push, pull_request]
+on:
+    push:
+        paths:
+            - '**.php'
+            - '.github/workflows/run-tests.yml'
+            - 'phpunit.xml.dist'
+            - 'composer.json'
+            - 'composer.lock'
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.ref }}
@@ -8,72 +15,46 @@ concurrency:
 
 jobs:
     test:
+        runs-on: ${{ matrix.os }}
+        timeout-minutes: 5
         strategy:
-            fail-fast: false
+            fail-fast: true
             matrix:
                 os: [ubuntu-latest]
-                php: [8.3, 8.4]
-                laravel: [12.*, 11.*]
-                stability: [prefer-lowest, prefer-stable]
+                php: [8.4, 8.5]
+                laravel: [12.*, 13.*]
+                stability: [prefer-stable]
                 include:
-                    - laravel: 11.*
-                      testbench: 9.*
                     - laravel: 12.*
                       testbench: 10.*
+                    - laravel: 13.*
+                      testbench: 11.*
 
-        runs-on: ${{ matrix.os }}
-
-        name: L${{ matrix.laravel }} - ${{ matrix.stability }} - P${{ matrix.php }} - ${{ matrix.os }}
-
-        env:
-            php-extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, pcov
-            key: ${{ matrix.os }}_Laravel${{ matrix.laravel }}_${{ matrix.stability }}_Php${{ matrix.php }}
+        name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
         steps:
             - name: Checkout code
               uses: actions/checkout@v6
 
-            - name: Setup PHP extensions cache
-              id: phpextcache
-              uses: shivammathur/cache-extensions@v1
-              with:
-                  php-version: ${{ matrix.php }}
-                  extensions: ${{ env.php-extensions }}
-                  key: ${{ env.key }}
-
-            - name: 'Determine composer cache directory'
-              id: 'composer-cache-directory'
-              run: 'echo "::set-output name=directory::$(composer config cache-dir)"'
-
-            - name: Cache php extensions & composer downloads
-              uses: actions/cache@v5
-              with:
-                  key: ${{ env.key }}
-                  path: |
-                      ${{ steps.phpextcache.outputs.dir }}
-                      ${{ steps.composer-cache-directory.outputs.directory }}
-
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php }}
-                  extensions: ${{ env.php-extensions }}
-                  coverage: pcov
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+                  coverage: none
 
             - name: Setup problem matchers
               run: |
                   echo "::add-matcher::${{ runner.tool_cache }}/php.json"
                   echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-            - name: Fix carbon dependency for L9
-              if: ${{ startsWith(matrix.laravel, '9') }}
-              run: |
-                  composer require "nesbot/carbon:^2.72.6" --no-interaction --no-update
-
             - name: Install dependencies
               run: |
-                  composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update --dev
+                  composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
                   composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
+            - name: List Installed Dependencies
+              run: composer show -D
+
             - name: Execute tests
-              run: composer test-coverage
+              run: vendor/bin/pest --ci
