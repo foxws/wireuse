@@ -7,6 +7,12 @@
 
 This packages offers a collection of useful [Livewire](https://livewire.laravel.com/) utilities and components.
 
+## Requirements
+
+- PHP 8.2 or higher
+- Laravel 12.x or higher
+- Livewire 4.2 or higher
+
 ## Installation
 
 You can install the package via composer:
