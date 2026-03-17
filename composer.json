@@ -29,21 +29,21 @@
         "spatie/laravel-package-tools": "^1.9"
     },
     "require-dev": {
-        "blade-ui-kit/blade-icons": "^1.8.0",
-        "larastan/larastan": "^3.4",
-        "laravel/pint": "^1.22",
+        "blade-ui-kit/blade-icons": "^1.9",
+        "larastan/larastan": "^3.9",
+        "laravel/pint": "^1.29",
         "laravel/scout": "^11.0",
-        "nunomaduro/collision": "^8.8",
+        "nunomaduro/collision": "^8.9",
         "orchestra/testbench": "^10.0|^11.0",
-        "pestphp/pest": "^4.0",
+        "pestphp/pest": "^4.4",
         "pestphp/pest-plugin-arch": "^4.0",
-        "pestphp/pest-plugin-laravel": "^4.0",
-        "phpstan/extension-installer": "^1.4.3",
+        "pestphp/pest-plugin-laravel": "^4.1",
+        "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan-deprecation-rules": "^2.0",
         "phpstan/phpstan-phpunit": "^2.0",
-        "spatie/laravel-html": "^3.12",
-        "spatie/laravel-model-states": "^2.11",
-        "spatie/php-structure-discoverer": "^2.3"
+        "spatie/laravel-html": "^3.13",
+        "spatie/laravel-model-states": "^2.13",
+        "spatie/php-structure-discoverer": "^2.4"
     },
     "autoload": {
         "psr-4": {
