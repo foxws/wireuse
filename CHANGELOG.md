@@ -2,6 +2,19 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v3.0.0 - 2026-03-17
+
+### What's Changed
+
+* Bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/21
+* Bump actions/cache from 4 to 5 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/25
+* Bump actions/checkout from 4 to 6 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/24
+* Bump stefanzweifel/git-auto-commit-action from 5 to 7 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/23
+* Update laravel/scout requirement from ^10.0 to ^11.0 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/29
+* Update livewire/livewire requirement from ^3.6 to ^4.2 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/28
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v2.9.9...v3.0.0
+
 ## v2.9.9 - 2025-07-19
 
 * Add docs
