@@ -1,6 +1,6 @@
 ---
 title: Structure Scout
-order: 4
+sidebar_position: 4
 tags:
   - livewire
   - components

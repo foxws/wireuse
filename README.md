@@ -7,6 +7,8 @@
 
 This packages offers a collection of useful [Livewire](https://livewire.laravel.com/) utilities and components.
 
+Full documentation is available at [foxws.github.io/wireuse](https://foxws.github.io/wireuse/).
+
 ## Requirements
 
 - PHP 8.2 or higher
@@ -36,6 +38,7 @@ This is a selection of the available features:
 - [Forms](docs/form-extensions.md) - Traits and extensions for [Livewire Forms](https://livewire.laravel.com/docs/forms).
 - [State Objects](docs/state-objects.md) - State objects are based on states that you find, for example, in a VueJS Store.
 - [Structure Scout](docs/structure-scout.md) - Supported by [spatie/php-structure-discoverer](https://github.com/spatie/php-structure-discoverer) package, it provides a scout to discover and register components, which also offers benefits such as caching.
+- [Infinite Scroll](docs/infinite-scroll.md) - Load more results as the user scrolls.
 - [HTML](docs/laravel-html.md) - Extends Spatie's [laravel-html](https://spatie.be/docs/laravel-html/v3/introduction) to generate HTML using a clean, simple and easy to read API.
 
 ## Testing
