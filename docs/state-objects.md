@@ -1,6 +1,6 @@
 ---
 title: State Objects
-order: 5
+sidebar_position: 5
 tags:
   - livewire
   - states

@@ -1,6 +1,6 @@
 ---
 title: Infinite Scroll
-order: 6
+sidebar_position: 6
 tags:
   - components
   - blade

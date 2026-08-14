@@ -1,6 +1,6 @@
 ---
 title: Laravel HTML (Spatie)
-order: 7
+sidebar_position: 7
 tags:
   - html
   - blade

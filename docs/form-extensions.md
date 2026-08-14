@@ -1,6 +1,6 @@
 ---
 title: Extending Forms
-order: 3
+sidebar_position: 3
 tags:
   - components
   - forms
