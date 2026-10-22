@@ -2,6 +2,23 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v3.1.0 - 2026-10-14
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2 to 3 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/30
+* Add Docusaurus documentation site by @francoism90 in https://github.com/foxws/wireuse/pull/32
+* Bump actions/checkout from 6 to 7 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/31
+* Bump actions/deploy-pages from 4 to 5 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/36
+* Bump pnpm/action-setup from 4 to 6 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/35
+* Bump actions/upload-pages-artifact from 3 to 5 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/34
+* Bump actions/setup-node from 4 to 7 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/33
+* Bump react from 19.2.8 to 19.3.0 in /website by @dependabot[bot] in https://github.com/foxws/wireuse/pull/38
+* Bump react-dom from 19.2.8 to 19.3.0 in /website by @dependabot[bot] in https://github.com/foxws/wireuse/pull/39
+* Add Laravel Boost skill and tip by @francoism90 in https://github.com/foxws/wireuse/pull/40
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v3.0.0...v3.1.0
+
 ## v3.0.0 - 2026-03-17
 
 ### What's Changed

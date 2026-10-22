@@ -15,4 +15,17 @@ This is a selection of the available features:
 - [Infinite Scroll](./infinite-scroll.md) — Load more results as the user scrolls.
 - [HTML](./laravel-html.md) — Extends Spatie's [laravel-html](https://spatie.be/docs/laravel-html/v3/introduction) to generate HTML using a clean, simple and easy to read API.
 
+:::tip
+
+Let your AI agent do the hard parts. This package ships a [Laravel Boost](https://laravel.com/docs/boost) skill, `wireuse-development`, that teaches your agent how to install, configure and use WireUse. Install Boost and select the skill when prompted:
+
+```bash
+composer require laravel/boost --dev
+php artisan boost:install
+```
+
+Already using Boost? Run `php artisan boost:update --discover` to pick up the skill. Then just ask, for example: *"Add an infinite-scrolling tag list with a Load more button."*
+
+:::
+
 Continue to [Installing WireUse](./installing-wireuse.md) to get started.
