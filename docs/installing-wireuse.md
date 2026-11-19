@@ -8,7 +8,7 @@ tags:
 
 ## Requirements
 
-- PHP 8.2 or higher
+- PHP 8.5 or higher
 - Laravel 12.x or higher
 - Livewire 4.2 or higher
 
