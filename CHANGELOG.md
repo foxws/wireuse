@@ -2,6 +2,19 @@
 
 All notable changes to `wireuse` will be documented in this file.
 
+## v4.0.0 - 2026-11-19
+
+This release requires PHP 8.5 or newer and Laravel 13. PHP 8.4 and Laravel 12 are no longer supported, and PHP 8.6 is now tested in CI. Stay on the previous major version if you still run PHP 8.4 or Laravel 12.
+
+### What's Changed
+
+* Bump actions/checkout from 4 to 7 by @dependabot[bot] in https://github.com/foxws/wireuse/pull/37
+* Bump react from 19.3.0 to 19.3.1 in /website by @dependabot[bot] in https://github.com/foxws/wireuse/pull/41
+* Bump react-dom from 19.3.0 to 19.3.1 in /website by @dependabot[bot] in https://github.com/foxws/wireuse/pull/42
+* Drop PHP 8.4 and add PHP 8.6 by @francoism90 in https://github.com/foxws/wireuse/pull/43
+
+**Full Changelog**: https://github.com/foxws/wireuse/compare/v3.1.0...v4.0.0
+
 ## v3.1.0 - 2026-10-14
 
 ### What's Changed
